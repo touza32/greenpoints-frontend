@@ -23,11 +23,7 @@ function DetailsScreen() {
         title="OBTENER"
         onPress= {() => {
           console.log("click")
-          fetch('https://localhost:5001/premio', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'}
-          })
+          fetch('http://localhost:44331/premio')
           .then(response => response.json())
           .then(data => console.log(data))
           .catch(error => console.error(error))
