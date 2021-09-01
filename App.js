@@ -6,6 +6,9 @@ import styleContainer from './src/styles/Container'
 import styleTextInput from './src/styles/TextInput';
 import styleText from './src/styles/Text';
 import styleButton from './src/styles/Button';
+import styles from './src/styles/Container';
+
+
 
 function HomeScreen({ navigation }) {
   return (
@@ -46,10 +49,15 @@ function HomeScreen({ navigation }) {
         >
           <Text style={styleText.button}>INGRESAR</Text>
         </TouchableOpacity>
-        <Button 
-          title='premios'
+
+        <TouchableOpacity
           onPress={() => navigation.navigate('Premios')}
-        />
+        >
+          <Text style={styleText.blueTextUnderlined
+          }>Olvide mi contraseña</Text>
+        </TouchableOpacity>
+
+        
       </View>
     </View>
   );
