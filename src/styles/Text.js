@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         color: "#69A03A",
         fontSize: 60,
         fontWeight: "bold",
-        marginBottom: 1
     },
     button: {
         color: 'white',

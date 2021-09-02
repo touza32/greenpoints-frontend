@@ -7,8 +7,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'gray',
-        marginBottom: 10
+        borderColor: 'gray'
     },
     large: {
         height:40,
@@ -16,8 +15,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'gray',
-        marginBottom: 10
+        borderColor: 'gray'
     }
 })
 
