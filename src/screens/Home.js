@@ -7,8 +7,8 @@ import { View, Image, Text, TextInput, TouchableOpacity} from 'react-native';
 
 export default function Home({ navigation }) {
     return (
-        <View style={[styleContainer.main, { flex: 1 }]}>
-            <View style={[styleContainer.main, { flex: 4, marginTop: 50 }]}>
+        <View style={[styleContainer.main, { flex: 6 }]}>
+            <View style={[styleContainer.main, { flex: 4, marginTop: 70 }]}>
                 <Image
                     source={require('../assets/icon.png')}
                     style={{
@@ -20,11 +20,11 @@ export default function Home({ navigation }) {
             </View>
             <View style={[styleContainer.main, { flex: 6 }]}>
                 <TextInput
-                    style={[styleTextInput.large, { marginBottom: 10 }]}
+                    style={[styleTextInput.large, { marginBottom: 15 }]}
                     placeholder='Usuario'
                 />
                 <TextInput
-                    style={[styleTextInput.large, { marginBottom: 10 }]}
+                    style={[styleTextInput.large, { marginBottom: 15 }]}
                     placeholder='Contraseña'
                 />
                 <TouchableOpacity
@@ -35,11 +35,28 @@ export default function Home({ navigation }) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Premios')}
-                >
+                    >
                     <Text style={styleText.blueTextUnderlined
                     }>Olvide mi contraseña</Text>
                 </TouchableOpacity>
+
+                <Text style={styleText.blackText}> -------------------------------- o --------------------------------</Text>
+
+
+                <TouchableOpacity
+                    style={styleButton.google}
+                    onPress={() => navigation.navigate('Premios')}
+                >
+                    <Text style={styleText.buttongoogle}>Ingresar con Google</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Seleccion_de_rol')}
+                >
+                    <Text style={styleText.blueTextUnderlined
+                    }>Registrate</Text>
+                </TouchableOpacity>
+
             </View>
         </View>
     );
