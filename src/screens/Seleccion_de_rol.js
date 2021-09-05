@@ -27,7 +27,7 @@ export default function Seleccion_de_rol({ navigation }) {
 
         <TouchableOpacity
               style={[styleButton.base, {marginTop: 60},] }
-              onPress={() => navigation.navigate('Confirma_registro')}
+              onPress={() => navigation.navigate('RegistroSocioReciclador')}
               >
               <Text style={styleText.button}>REGISTRARSE COMO SOCIO RECICLADOR</Text>
         </TouchableOpacity>
@@ -54,7 +54,7 @@ export default function Seleccion_de_rol({ navigation }) {
 
         <TouchableOpacity
               style={[styleButton.base, { marginTop: 60 }] }
-              onPress={() => navigation.navigate('Confirma_registro')}
+              onPress={() => navigation.navigate('RegistroPuntoReciclaje')}
               >
               <Text style={styleText.button}>REGISTRARSE COMO PUNTO DE RECICLAJE</Text>
        </TouchableOpacity>
