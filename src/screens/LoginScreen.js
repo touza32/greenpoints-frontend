@@ -1,28 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { 
     View, 
     Image, 
     Text, 
     TextInput, 
     TouchableOpacity, 
-    KeyboardAvoidingView,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
+
+// styles
 import styleContainer from '../styles/Container';
 import styleTextInput from '../styles/TextInput';
 import styleText from '../styles/Text';
 import styleButton from '../styles/Button';
+
 import { useForm } from '../hooks/useForm';
 import { AuthContext } from '../context/AuthContext';
 
-export default function Home({ navigation }) {
+export default function LoginScreen({ navigation }) {
 
-    const { signIn } = useContext( AuthContext );
+    const { signIn, errorMessage, removeError } = useContext( AuthContext );
 
     const { user, password, onChange } = useForm({
         user: '',
         password: ''
     });
+
+    useEffect(() => {
+        if (errorMessage.length === 0) return;
+        Alert.alert('Error', 
+                errorMessage,
+                [
+                    {
+                        text: 'Ok',
+                        onPress: removeError
+                    }
+                ]);
+    }, [ errorMessage ])
 
     const onLogin = () => {
         Keyboard.dismiss();
@@ -31,9 +46,6 @@ export default function Home({ navigation }) {
 
     return (
         <View style={[styleContainer.main, { flex: 1 }]}>
-            <KeyboardAvoidingView 
-                behavior='padding'
-            >
                 <View style={[styleContainer.main, { flex: 4, marginTop: 50 }]}>
                     <Image
                         source={require('../assets/icon.png')}
@@ -63,21 +75,23 @@ export default function Home({ navigation }) {
                     >
                         <Text style={styleText.button}>INGRESAR</Text>
                     </TouchableOpacity>
-                    
-                    <TouchableOpacity
+
+                    {/* <TouchableOpacity
                         onPress={() => navigation.navigate('Premios')}
                     >
                         <Text style={styleText.blueTextUnderlined
                         }>Olvide mi contraseña</Text>
                     </TouchableOpacity>
-
+                    
+                    <Text style={styleText.blackText}> -------------------------------- o --------------------------------</Text>
+                    
                     <TouchableOpacity
                         style={styleButton.google}
                         onPress={() => navigation.navigate('Premios')}
                     >
                         <Text style={styleText.buttongoogle}>Ingresar con Google</Text>
-                    </TouchableOpacity>
-
+                    </TouchableOpacity> */}
+                    
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Seleccion_de_rol')}
                     >
@@ -85,8 +99,7 @@ export default function Home({ navigation }) {
                         }>Registrate</Text>
                     </TouchableOpacity>
                 </View>
-            </KeyboardAvoidingView>
-           
+                
         </View>
     );
 }

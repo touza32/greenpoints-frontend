@@ -22,17 +22,24 @@ export const AuthProvider = ({ children }) => {
                 type: 'signUp',
                 payload: {
                     token: data.token,
-                    user: data.n
-                }
-            })
+                    user: data.user
+                } 
+            });
         } catch (error) {
             console.log(error);
+            dispatch({
+                type: 'addError',
+                payload: 'Usuario o contraseña invalidos'
+            })
         }
     };
 
     const signUp = () => {};
     const logOut = () => {};
-    const removeError = () => {};
+    
+    const removeError = () => {
+        dispatch({ type: 'removeError' });
+    };
 
     return (
         <AuthContext.Provider value={{
