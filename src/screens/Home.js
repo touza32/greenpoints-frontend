@@ -70,6 +70,20 @@ export default function Home({ navigation }) {
                         <Text style={styleText.blueTextUnderlined
                         }>Olvide mi contraseña</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styleButton.google}
+                        onPress={() => navigation.navigate('Premios')}
+                    >
+                        <Text style={styleText.buttongoogle}>Ingresar con Google</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Seleccion_de_rol')}
+                    >
+                        <Text style={styleText.blueTextUnderlined
+                        }>Registrate</Text>
+                    </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
            

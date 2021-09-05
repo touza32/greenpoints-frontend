@@ -6,7 +6,19 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: 300,
         height: 40,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
+    },
+
+    google: {
+        borderWidth:1,
+        backgroundColor: "#FFFFFF",
+        borderColor: 'black',
+        borderRadius: 10,
+        width: 300,
+        height: 40,
+        justifyContent: 'center',
+        
     }
 })
 
