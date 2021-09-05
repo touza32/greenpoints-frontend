@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, Button} from 'react-native';
 import styleContainer from '../styles/Container';
-import styleTextInput from '../styles/TextInput';
 import styleText from '../styles/Text';
 import styleButton from '../styles/Button';
 
