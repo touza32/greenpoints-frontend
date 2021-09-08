@@ -68,6 +68,7 @@ export default function LoginScreen({ navigation }) {
                         placeholder='Contraseña'
                         onChangeText={ (value) => onChange(value, 'password') }
                         value = { password }
+                        secureTextEntry={true}
                     />
                     <TouchableOpacity
                         style={styleButton.base}
@@ -75,22 +76,6 @@ export default function LoginScreen({ navigation }) {
                     >
                         <Text style={styleText.button}>INGRESAR</Text>
                     </TouchableOpacity>
-
-                    {/* <TouchableOpacity
-                        onPress={() => navigation.navigate('Premios')}
-                    >
-                        <Text style={styleText.blueTextUnderlined
-                        }>Olvide mi contraseña</Text>
-                    </TouchableOpacity>
-                    
-                    <Text style={styleText.blackText}> -------------------------------- o --------------------------------</Text>
-                    
-                    <TouchableOpacity
-                        style={styleButton.google}
-                        onPress={() => navigation.navigate('Premios')}
-                    >
-                        <Text style={styleText.buttongoogle}>Ingresar con Google</Text>
-                    </TouchableOpacity> */}
                     
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Seleccion_de_rol')}

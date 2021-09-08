@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useForm } from "react-hook-form";
 import InputForm from "../components/InputForm";
+import InputFormMask from "../components/InputFormMask";
 import styleButton from "../styles/Button";
 import styleText from "../styles/Text";
 import styleContainer from "../styles/Container";
@@ -10,11 +11,11 @@ import * as yup from "yup";
 
 const schema = yup.object().shape({
     userName: yup.string().required('Requerido'),
-    password: yup.string().required('Requerido'),
+    password: yup.string().required('Requerido').matches(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,32}$/, 'La contraseña debe ser mayor o igual a 8 caracteres y debe contener al menos 1 mayúscula, 1 minúscula y un número'),
     passwordConfirmation: yup.string()
         .oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').required('Requerido'),
     customerName: yup.string().required('Requerido'),
-    document: yup.number().required('Requerido'),
+    document: yup.string().required('Requerido').min(11, 'El CUIT no es válido'),
 });
 
 export default function RegistroPuntoReciclaje( {navigation} ) {
@@ -51,11 +52,12 @@ export default function RegistroPuntoReciclaje( {navigation} ) {
                 name="customerName"
                 title="Nombre de la empresa"
             />
-            <InputForm
+            <InputFormMask
                 control={control}
                 errors={errors}
                 name="document"
                 title="CUIT"
+                mask="99-99999999-9"
                 keyboardType="numeric"
             />
             <TouchableOpacity style={styleButton.base} onPress={handleSubmit(onSubmit)}>
