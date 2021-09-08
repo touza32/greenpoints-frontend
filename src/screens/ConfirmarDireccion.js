@@ -12,11 +12,12 @@ const schema = yup.object().shape({
     address: yup.string().required('Requerido')
 });
 
-export default function ConfirmarDireccion() {
+export default function ConfirmarDireccion({navigation}) {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-    const onSubmit = (data) => { console.log(data) }
+
+    //const onSubmit = () => {navigation.navigate('RegistroTipoMaterial')}
 
     return (
         <View style={styleContainer.main}>
@@ -29,9 +30,14 @@ export default function ConfirmarDireccion() {
                 name="address"
                 title="Dirección"
             />
-            <TouchableOpacity style={styleButton.base} onPress={handleSubmit(onSubmit)}>
-                <Text style={styleText.button}>SIGUIENTE</Text>
+
+            <TouchableOpacity
+              style={[styleButton.base, { marginTop: 60 }] }
+              onPress={() => navigation.navigate('RegistroTipoMaterial')}
+              >
+              <Text style={styleText.button}>SIGUIENTE</Text>
             </TouchableOpacity>
+
         </View>
     )
 }

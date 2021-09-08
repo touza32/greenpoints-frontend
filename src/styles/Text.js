@@ -13,6 +13,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
 
+    subtitle25: {
+        color: "#69A03A",
+        textAlign: 'center',
+        fontSize: 25,
+        marginTop: 5,
+        fontWeight: "bold",
+    },
+
     button: {
         color: 'white',
         textAlign: 'center',
@@ -40,8 +48,17 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 5
         
-    }
-
+    },
+    listItem: {
+        marginTop: 10,
+        padding: 20,
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        width: '100%'
+      },
+      listItemText: {
+        fontSize: 18
+      }
 })
 
 export default styles;
