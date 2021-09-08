@@ -1,5 +1,6 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import { authReducer } from './authReducer';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import greenPointsApi from '../api/greenPointsApi';
 
 const authInicialState = {
@@ -15,6 +16,25 @@ export const AuthProvider = ({ children }) => {
     
     const [ state, dispatch ] = useReducer( authReducer, authInicialState);
 
+    useEffect(() => {
+        checkToken();
+    }, []);
+
+    const checkToken = async() => {
+        const token = await AsyncStorage.getItem('token');
+        const user = await AsyncStorage.getItem('user');
+
+        if (!token) return dispatch({ type: 'notAuthenticated' });
+
+        dispatch({
+            type: 'signUp',
+            payload: {
+                token: token,
+                user: user
+            }
+        });
+    };
+
     const signIn = async(user, password) => {
         try {
             const { data } = await greenPointsApi.post('/usuario/login', { user, password });
@@ -25,6 +45,9 @@ export const AuthProvider = ({ children }) => {
                     user: data.user
                 } 
             });
+
+            await AsyncStorage.setItem('token', data.token);
+            await AsyncStorage.setItem('user', data.user);
         } catch (error) {
             console.log(error);
             dispatch({
@@ -35,7 +58,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     const signUp = () => {};
-    const logOut = () => {};
+
+    const logOut = async () => {
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('user');
+
+        dispatch({ type: 'logout' });
+    };
     
     const removeError = () => {
         dispatch({ type: 'removeError' });

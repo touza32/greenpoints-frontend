@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { 
     View, 
     Image,
@@ -6,79 +6,64 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import { AuthContext } from '../context/AuthContext';
-
 // styles
 import styleContainer from '../styles/Container';
 import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
 
-export default function AdminMenuScreen ({ navigation }) {
-
-    const { logOut } = useContext( AuthContext );
-
+export default function PuntMenuScreen ({ navigation }) {
+    
     return (
         <View style={[styleContainer.main, { flex: 1 }]}>
                 <View style={[styleContainer.main, { flex: 4, marginTop: 50 }]}>
                     <Image
-                        source={require('../assets/AdminMenu.png')}
+                        source={require('../assets/PuntoMenu.png')}
                         style={{
-                            width: 370,
-                            height: 231
+                            width: 359,
+                            height: 215
                         }}>
                     </Image>
                 </View>
 
                 <View
-                    style={[styleContainer.main,{ flex: 8 }] } >
+                    style={[styleContainer.main,{flex: 10 }] } >
                 
                     <TouchableOpacity
                         onPress={() => {}} >
                         <View
-                            style={[styleContainer.main,{marginBottom:30,flexDirection: "row"}]}>
+                            style={[styleContainer.main,{marginBottom:50,flexDirection: "row"}]}>
                             <Image
                                 
                                 source={require('../assets/ItemFlechaMenu.png')}
                             >
                             </Image>    
-                            < Text style={[styleText.blackText,{marginLeft: 10 }]}>ABM de Premios                              </Text>
+                            < Text style={[styleText.blackText,{marginLeft: 20 }]}>Registrar Intercambio                   </Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => {}} >
                         <View
-                            style={[styleContainer.main,{marginBottom:30,flexDirection: "row"}]}>
+                            style={[styleContainer.main,{marginBottom:50,flexDirection: "row"}]}>
                             <Image style = {[{marginLeft: 1 }]}
                             
                                 source={require('../assets/ItemFlechaMenu.png')}
                             >
                             </Image>    
-                            < Text style={[styleText.blackText,{marginLeft: 10 }]}>ABM de Tipos de Reciclables        </Text>
+                            < Text style={[styleText.blackText,{marginLeft: 20 }]}>Nuevo Lote                                     </Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => {}} >
                         <View
-                            style={[styleContainer.main,{marginBottom:30,flexDirection: "row"}]}>
+                            style={[styleContainer.main,{marginBottom:50,flexDirection: "row"}]}>
                             <Image
                                 source={require('../assets/ItemFlechaMenu.png')}
                             >
                             </Image>    
-                            < Text style={[styleText.blackText,{marginLeft: 10 }]}>ABM de Sponsors                            </Text>
+                            < Text style={[styleText.blackText,{marginLeft: 20 }]
+                        }>Mis Lotes                                        </Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => {}} >
-                        <View
-                            style={[styleContainer.main,{marginBottom:30,flexDirection: "row"}]}>
-                            <Image
-                                source={require('../assets/ItemFlechaMenu.png')}
-                            >
-                            </Image>    
-                            < Text style={[styleText.blackText,{marginLeft: 10 }]}>ABM de Plantas Recicladoras       </Text>
-                        </View>
-                    </TouchableOpacity>
-                 
+                    
                 </View>
               
            
@@ -93,12 +78,6 @@ export default function AdminMenuScreen ({ navigation }) {
                     <Menu.Item icon="content-copy" onPress={() => {}} title="ABM Plantas Recicladoras"  />
     
                 </View> */}
-                <TouchableOpacity
-                    style={[styleButton.base, { marginTop: 60 }] }
-                    onPress={ logOut }
-              >
-              <     Text style={styleText.button}>Logout</Text>
-                </TouchableOpacity>
                 
         </View>
     );

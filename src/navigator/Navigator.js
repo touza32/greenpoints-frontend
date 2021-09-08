@@ -4,9 +4,11 @@ import { AuthContext } from '../context/AuthContext';
 
 // screens
 import LoginScreen from '../screens/LoginScreen';
+import LoadingScreen from '../screens/LoadingScreen';
 import Seleccion_de_rol from '../screens/Seleccion_de_rol';
 import Confirma_registro from '../screens/Confirma_registro';
 import AdminMenuScreen from '../screens/AdminMenuScreen';
+import PuntoMenuScreen from '../screens/PuntoMenuScreen';
 import RegistroSocioReciclador from '../screens/RegistroSocioReciclador';
 import RegistroPuntoReciclaje from '../screens/RegistroPuntoReciclaje';
 import ConfirmarDireccion from '../screens/ConfirmarDireccion';
@@ -17,7 +19,7 @@ const Stack = createStackNavigator();
 export const Navigator = () => {
 
   const { status } = useContext(AuthContext);
-
+  if ( status === 'checking' ) return <LoadingScreen/>
   return (
     <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: 'white' } }}>
 
@@ -26,6 +28,7 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
+              <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} />
               <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: ""}} />
               <Stack.Screen name="Confirma_registro" component={Confirma_registro} options={{ title: "" }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: ""}} />
@@ -35,7 +38,7 @@ export const Navigator = () => {
             </>
           )
           : (
-            <Stack.Screen name="Menu de Administrador" component={AdminMenuScreen} />
+            <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} />
           )
       }
 
