@@ -28,10 +28,7 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} />
               <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} />
-              <Stack.Screen name="Confirma_registro" component={Confirma_registro} />
-              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "" }} />
               <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: ""}} />
               <Stack.Screen name="Confirma_registro" component={Confirma_registro} options={{ title: "" }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: ""}} />
