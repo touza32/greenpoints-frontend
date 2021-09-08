@@ -68,6 +68,7 @@ export default function LoginScreen({ navigation }) {
                         placeholder='Contraseña'
                         onChangeText={ (value) => onChange(value, 'password') }
                         value = { password }
+                        secureTextEntry={true}
                     />
                     <TouchableOpacity
                         style={styleButton.base}
