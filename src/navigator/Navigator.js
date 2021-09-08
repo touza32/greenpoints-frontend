@@ -26,9 +26,9 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} />
-              <Stack.Screen name="Confirma_registro" component={Confirma_registro} />
-              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "" }} />
+              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: ""}} />
+              <Stack.Screen name="Confirma_registro" component={Confirma_registro} options={{ title: "" }} />
+              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: ""}} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "" }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR DIRECCIÓN", headerTitleStyle: {color: "#69A03A", fontWeight: 'bold'}}} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR TIPO DE MATERIALES", headerTitleStyle: {color: "#69A03A", fontWeight: 'bold'}}} />
