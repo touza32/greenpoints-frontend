@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 
 // screens
 import LoginScreen from '../screens/LoginScreen';
+import LoadingScreen from '../screens/LoadingScreen';
 import Seleccion_de_rol from '../screens/Seleccion_de_rol';
 import Confirma_registro from '../screens/Confirma_registro';
 import AdminMenuScreen from '../screens/AdminMenuScreen';
@@ -17,6 +18,8 @@ const Stack = createStackNavigator();
 export const Navigator = () => {
 
   const { status } = useContext(AuthContext);
+
+  if ( status === 'checking' ) return <LoadingScreen/>
 
   return (
     <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: 'white' } }}>
