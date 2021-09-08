@@ -7,6 +7,7 @@ import LoginScreen from '../screens/LoginScreen';
 import Seleccion_de_rol from '../screens/Seleccion_de_rol';
 import Confirma_registro from '../screens/Confirma_registro';
 import AdminMenuScreen from '../screens/AdminMenuScreen';
+import PuntoMenuScreen from '../screens/PuntoMenuScreen';
 import RegistroSocioReciclador from '../screens/RegistroSocioReciclador';
 import RegistroPuntoReciclaje from '../screens/RegistroPuntoReciclaje';
 import ConfirmarDireccion from '../screens/ConfirmarDireccion';
@@ -26,6 +27,7 @@ export const Navigator = () => {
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
               <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} />
+              <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} />
               <Stack.Screen name="Confirma_registro" component={Confirma_registro} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "" }} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "" }} />
@@ -33,7 +35,7 @@ export const Navigator = () => {
             </>
           )
           : (
-            <Stack.Screen name="Menu de Administrador" component={AdminMenuScreen} />
+            <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} />
           )
       }
 
