@@ -8,6 +8,7 @@ import styleText from "../styles/Text";
 import styleContainer from "../styles/Container";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import greenPointsApi from '../api/greenPointsApi';
 
 const schema = yup.object().shape({
     email: yup.string().email('Correo electrónico inválido').required('Requerido'),
@@ -23,7 +24,19 @@ export default function RegistroSocioReciclador() {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-    const onSubmit = data => console.log(data);
+    const onSubmit = async data => {
+         
+        await greenPointsApi.post('/usuario/socio-reciclador', {
+             birthDate: data.birthDate,
+             email: data.email,
+             firstName: data.firstName,
+             lastName: data.lastName,
+             password: data.password
+         })
+         
+         ;
+    };
+
 
     return (
         <View style={[styleContainer.main, { margin: 20 }]}>
