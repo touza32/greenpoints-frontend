@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from "react-native";
-import { MaskedTextInput } from "react-native-mask-text";
+import { TextInputMask } from 'react-native-masked-text';
 import { Controller } from 'react-hook-form';
 import styleTextInput from '../styles/TextInput';
 
-export default function InputForm({ control, errors, name, title, mask, ...inputProps }) {
+export default function InputForm({ control, errors, name, title, type, maskOptions, ...inputProps }) {
 
     return (
         <View style={{alignSelf: 'center'}}>
@@ -12,8 +12,9 @@ export default function InputForm({ control, errors, name, title, mask, ...input
             <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
-                    <MaskedTextInput style={styleTextInput.large}
-                        mask={mask}
+                    <TextInputMask style={styleTextInput.large}
+                        type={type}
+                        options={maskOptions}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}

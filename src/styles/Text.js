@@ -45,9 +45,7 @@ const styles = StyleSheet.create({
     blackText: {
         color: 'black',
         textAlign: 'center',
-        fontSize: 20,
-        marginTop: 5
-        
+        fontSize: 20
     },
     listItem: {
         marginTop: 10,

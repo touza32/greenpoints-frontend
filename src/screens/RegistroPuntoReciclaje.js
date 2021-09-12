@@ -15,13 +15,11 @@ const schema = yup.object().shape({
     passwordConfirmation: yup.string()
         .oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').required('Requerido'),
     customerName: yup.string().required('Requerido'),
-    document: yup.string().required('Requerido').min(11, 'El CUIT no es válido'),
+    document: yup.string().required('Requerido').transform(value => value.replace(/-/g, '')).min(11, 'El CUIT no es válido'),
 });
 
 export default function RegistroPuntoReciclaje( {navigation} ) {
-    const { control, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(schema)
-    });
+    const { control, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = () => {navigation.navigate('ConfirmarDireccion')}
 
     return (
@@ -31,12 +29,14 @@ export default function RegistroPuntoReciclaje( {navigation} ) {
                 errors={errors}
                 name="userName"
                 title="Nombre de usuario"
+                placeholder="usuario"
             />
             <InputForm
                 control={control}
                 errors={errors}
                 name="password"
                 title="Contraseña"
+                placeholder="Contraseña123"
                 secureTextEntry={true}
             />
             <InputForm
@@ -44,6 +44,7 @@ export default function RegistroPuntoReciclaje( {navigation} ) {
                 errors={errors}
                 name="passwordConfirmation"
                 title="Repetir contraseña"
+                placeholder="Contraseña123"
                 secureTextEntry={true}
             />
             <InputForm
@@ -51,13 +52,16 @@ export default function RegistroPuntoReciclaje( {navigation} ) {
                 errors={errors}
                 name="customerName"
                 title="Nombre de la empresa"
+                placeholder="Empresa"
             />
             <InputFormMask
                 control={control}
                 errors={errors}
                 name="document"
                 title="CUIT"
-                mask="99-99999999-9"
+                type="datetime"
+                maskOptions={{format: "99-99999999-9"}}
+                placeholder="20-12345678-0"
                 keyboardType="numeric"
             />
             <TouchableOpacity style={styleButton.base} onPress={handleSubmit(onSubmit)}>

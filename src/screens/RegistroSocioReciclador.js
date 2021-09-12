@@ -17,7 +17,7 @@ const schema = yup.object().shape({
         .oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').required('Requerido'),
     firstName: yup.string().required('Requerido'),
     lastName: yup.string().required('Requerido'),
-    birthDate: yup.string('Fecha inválida').required('Requerido')
+    dob: yup.string().required('Requerido').transform(value => value.replace(/(\d{2})-(\d{2})-(\d{4})/g, '$3$2$1')).min(8, 'Fecha inválida')
 });
 
 export default function RegistroSocioReciclador() {
@@ -45,6 +45,7 @@ export default function RegistroSocioReciclador() {
                 errors={errors}
                 name="email"
                 title="Correo electrónico"
+                placeholder="ejemplo@dominio.com"
             />
             <InputForm
                 control={control}
@@ -52,6 +53,7 @@ export default function RegistroSocioReciclador() {
                 name="password"
                 title="Contraseña"
                 secureTextEntry={true}
+                placeholder="Contraseña123"
             />
             <InputForm
                 control={control}
@@ -59,25 +61,30 @@ export default function RegistroSocioReciclador() {
                 name="passwordConfirmation"
                 title="Repetir contraseña"
                 secureTextEntry={true}
+                placeholder="Contraseña123"
             />
             <InputForm
                 control={control}
                 errors={errors}
                 name="firstName"
                 title="Nombre"
+                placeholder="Nombre"
             />
             <InputForm
                 control={control}
                 errors={errors}
                 name="lastName"
                 title="Apellido"
+                placeholder="Apellido"
             />
             <InputFormMask
                 control={control}
                 errors={errors}
-                name="birthDate"
+                name="dob"
                 title="Fecha de nacimiento"
-                mask="99-99-9999"
+                type="datetime"
+                maskOptions={{format: "DD-MM-YYYY"}}
+                placeholder="31-12-1999"
                 keyboardType="numeric"
             />
             <TouchableOpacity style={styleButton.base} onPress={handleSubmit(onSubmit)}>

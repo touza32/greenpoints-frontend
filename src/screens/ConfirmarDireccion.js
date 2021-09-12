@@ -17,7 +17,7 @@ export default function ConfirmarDireccion({navigation}) {
         resolver: yupResolver(schema)
     });
 
-    //const onSubmit = () => {navigation.navigate('RegistroTipoMaterial')}
+    const onSubmit = () => {navigation.navigate('RegistroTipoMaterial')}
 
     return (
         <View style={styleContainer.main}>
@@ -33,7 +33,7 @@ export default function ConfirmarDireccion({navigation}) {
 
             <TouchableOpacity
               style={[styleButton.base, { marginTop: 60 }] }
-              onPress={() => navigation.navigate('RegistroTipoMaterial')}
+              onPress={handleSubmit(onSubmit)}
               >
               <Text style={styleText.button}>SIGUIENTE</Text>
             </TouchableOpacity>
