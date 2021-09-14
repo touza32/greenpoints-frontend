@@ -15,7 +15,7 @@ const data = [
     { id: 6, title: 'COBRE', check: false }
 ];
 
-export default function RegistroTipoMaterial({ route }) {
+export default function RegistroTipoMaterial({ route, navigation }) {
 
     const errmsg = "Debe seleccionar al menos un tipo de material";
     const [alos, setAlos] = useState(false);
@@ -26,6 +26,7 @@ export default function RegistroTipoMaterial({ route }) {
         const aloselected = [...checkState].every(item => item === false)
         setAlos(aloselected)
         console.log(aloselected ? errmsg : { ...route.params, materials })
+        aloselected ? null : navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
     }
     const [checkState, setCheck] = useState(new Array(data.length).fill(false));
     const updateCheck = (position) => setCheck(

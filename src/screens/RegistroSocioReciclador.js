@@ -39,7 +39,7 @@ export default function RegistroSocioReciclador() {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-    
+
     const onSubmit = async data => {
         await greenPointsApi.post('/usuario/socio-reciclador', {
             birthDate: data.birthDate,
@@ -96,8 +96,8 @@ export default function RegistroSocioReciclador() {
                 name="birthDate"
                 title="Fecha de nacimiento"
                 type="datetime"
-                maskOptions={{ format: "DD/MM/YYYY" }}
-                placeholder="31/12/1999"
+                maskOptions={{ format: "DD-MM-YYYY" }}
+                placeholder="31-12-1999"
                 keyboardType="numeric"
             />
             <TouchableOpacity style={styleButton.base} onPress={handleSubmit(onSubmit)}>

@@ -30,11 +30,11 @@ const schema = yup.object().shape({
         min(11, 'El CUIT no es válido'),
 });
 
-export default function RegistroPuntoReciclaje( {navigation} ) {
+export default function RegistroPuntoReciclaje({ navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-    const onSubmit = (data) => {navigation.navigate('ConfirmarDireccion', data)}
+    const onSubmit = (data) => { navigation.navigate('ConfirmarDireccion', data) }
 
     return (
         <View style={[styleContainer.main, { margin: 20 }]}>
@@ -74,7 +74,7 @@ export default function RegistroPuntoReciclaje( {navigation} ) {
                 name="document"
                 title="CUIT"
                 type="datetime"
-                maskOptions={{format: "99-99999999-9"}}
+                maskOptions={{ format: "99-99999999-9" }}
                 placeholder="20-12345678-0"
                 keyboardType="numeric"
             />

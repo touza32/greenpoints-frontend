@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 import LoginScreen from '../screens/LoginScreen';
 import LoadingScreen from '../screens/LoadingScreen';
 import Seleccion_de_rol from '../screens/Seleccion_de_rol';
-import Confirma_registro from '../screens/Confirma_registro';
+import Confirmacion from '../screens/Confirmacion';
 import AdminMenuScreen from '../screens/AdminMenuScreen';
 import PuntoMenuScreen from '../screens/PuntoMenuScreen';
 import RegistroSocioReciclador from '../screens/RegistroSocioReciclador';
@@ -30,7 +30,7 @@ export const Navigator = () => {
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
               <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} />
               <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: ""}} />
-              <Stack.Screen name="Confirma_registro" component={Confirma_registro} options={{ title: "" }} />
+              <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: ""}} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "" }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR DIRECCIÓN", headerTitleStyle: {color: "#69A03A", fontWeight: 'bold'}}} />

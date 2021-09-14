@@ -18,14 +18,13 @@ export default function ConfirmarDireccion({ route, navigation }) {
     });
 
     const onSubmit = (data) => {
-        
-        navigation.navigate('RegistroTipoMaterial', {...route.params, ...data})}
 
-    useEffect(()=>console.log(route.params))
+        navigation.navigate('RegistroTipoMaterial', { ...route.params, ...data })
+    }
 
     return (
         <View style={styleContainer.main}>
-            <Image style={{height:300,width:'100%',marginBottom:20}} source={{uri: "https://picsum.photos/300"}}>
+            <Image style={{ height: 300, width: '100%', marginBottom: 20 }} source={{ uri: "https://picsum.photos/300" }}>
 
             </Image>
             <InputForm
@@ -36,10 +35,10 @@ export default function ConfirmarDireccion({ route, navigation }) {
             />
 
             <TouchableOpacity
-              style={[styleButton.base, { marginTop: 60 }] }
-              onPress={handleSubmit(onSubmit)}
-              >
-              <Text style={styleText.button}>SIGUIENTE</Text>
+                style={[styleButton.base, { marginTop: 60 }]}
+                onPress={handleSubmit(onSubmit)}
+            >
+                <Text style={styleText.button}>SIGUIENTE</Text>
             </TouchableOpacity>
 
         </View>
