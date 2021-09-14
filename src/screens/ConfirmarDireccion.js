@@ -12,12 +12,16 @@ const schema = yup.object().shape({
     address: yup.string().required('Requerido')
 });
 
-export default function ConfirmarDireccion({navigation}) {
+export default function ConfirmarDireccion({ route, navigation }) {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = () => {navigation.navigate('RegistroTipoMaterial')}
+    const onSubmit = (data) => {
+        
+        navigation.navigate('RegistroTipoMaterial', {...route.params, ...data})}
+
+    useEffect(()=>console.log(route.params))
 
     return (
         <View style={styleContainer.main}>
