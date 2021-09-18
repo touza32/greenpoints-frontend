@@ -15,18 +15,18 @@ const data = [
     { id: 6, title: 'COBRE', check: false }
 ];
 
-export default function RegistroTipoMaterial() {
+export default function RegistroTipoMaterial({ route, navigation }) {
+
     const errmsg = "Debe seleccionar al menos un tipo de material";
     const [alos, setAlos] = useState(false);
     const onSubmit = () => {
-        const materiales = [...data]
-        materiales.map((item, index) => {
-            delete item.title
-            item.check = checkState[index]
-        })
-        const aloselected = materiales.every(item => item.check === false)
+        const materials = data.
+            filter((item, index) => checkState[index] === true).
+            reduce((previous, current) => [...previous, current.id], [])
+        const aloselected = [...checkState].every(item => item === false)
         setAlos(aloselected)
-        console.log(aloselected ? errmsg : materiales)
+        console.log(aloselected ? errmsg : { ...route.params, materials })
+        aloselected ? null : navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
     }
     const [checkState, setCheck] = useState(new Array(data.length).fill(false));
     const updateCheck = (position) => setCheck(

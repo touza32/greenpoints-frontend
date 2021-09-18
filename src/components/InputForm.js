@@ -10,9 +10,8 @@ export default function InputForm({ control, errors, name, title, ...inputProps 
             <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 10}}>{title}</Text>
             <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value } }) => (
                     <TextInput style={styleTextInput.large}
-                        onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
                         {...inputProps}
@@ -20,7 +19,9 @@ export default function InputForm({ control, errors, name, title, ...inputProps 
                 )}
                 name={name}
             />
+            <View style={{width:'80%'}}>
             <Text style={{color:'red'}}>{errors[name]?.message}</Text>
+            </View>
         </View>
     )
 }

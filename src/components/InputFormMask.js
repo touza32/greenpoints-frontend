@@ -11,11 +11,10 @@ export default function InputForm({ control, errors, name, title, type, maskOpti
             <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 10}}>{title}</Text>
             <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field: { onChange, value } }) => (
                     <TextInputMask style={styleTextInput.large}
                         type={type}
                         options={maskOptions}
-                        onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
                         {...inputProps}

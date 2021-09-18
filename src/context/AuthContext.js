@@ -42,12 +42,14 @@ export const AuthProvider = ({ children }) => {
                 type: 'signUp',
                 payload: {
                     token: data.token,
-                    user: data.user
+                    user: data.user,
+                    rol: data.rol
                 } 
             });
 
             await AsyncStorage.setItem('token', data.token);
             await AsyncStorage.setItem('user', data.user);
+            await AsyncStorage.setItem('rol', JSON.stringify(data.rol));
         } catch (error) {
             console.log(error);
             dispatch({
@@ -62,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     const logOut = async () => {
         await AsyncStorage.removeItem('token');
         await AsyncStorage.removeItem('user');
+        await AsyncStorage.removeItem('rol');
 
         dispatch({ type: 'logout' });
     };

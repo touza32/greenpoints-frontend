@@ -10,17 +10,31 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-    userName: yup.string().required('Requerido'),
-    password: yup.string().required('Requerido').matches(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,32}$/, 'La contraseña debe ser mayor o igual a 8 caracteres y debe contener al menos 1 mayúscula, 1 minúscula y un número'),
-    passwordConfirmation: yup.string()
-        .oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').required('Requerido'),
-    customerName: yup.string().required('Requerido'),
-    document: yup.string().required('Requerido').transform(value => value.replace(/-/g, '')).min(11, 'El CUIT no es válido'),
+    userName: yup.
+        string().
+        required('Requerido'),
+    password: yup.
+        string().
+        required('Requerido').
+        matches(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,32}$/, 'La contraseña debe ser mayor o igual a 8 caracteres y debe contener al menos 1 mayúscula, 1 minúscula y 1 número'),
+    passwordConfirmation: yup.
+        string().
+        oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').
+        required('Requerido'),
+    customerName: yup.
+        string().
+        required('Requerido'),
+    document: yup.string().
+        required('Requerido').
+        transform(value => value.replace(/-/g, '')).
+        min(11, 'El CUIT no es válido'),
 });
 
-export default function RegistroPuntoReciclaje( {navigation} ) {
-    const { control, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = () => {navigation.navigate('ConfirmarDireccion')}
+export default function RegistroPuntoReciclaje({ navigation }) {
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = (data) => { navigation.navigate('ConfirmarDireccion', data) }
 
     return (
         <View style={[styleContainer.main, { margin: 20 }]}>
@@ -60,7 +74,7 @@ export default function RegistroPuntoReciclaje( {navigation} ) {
                 name="document"
                 title="CUIT"
                 type="datetime"
-                maskOptions={{format: "99-99999999-9"}}
+                maskOptions={{ format: "99-99999999-9" }}
                 placeholder="20-12345678-0"
                 keyboardType="numeric"
             />
