@@ -13,6 +13,7 @@ import RegistroSocioReciclador from '../screens/RegistroSocioReciclador';
 import RegistroPuntoReciclaje from '../screens/RegistroPuntoReciclaje';
 import ConfirmarDireccion from '../screens/ConfirmarDireccion';
 import RegistroTipoMaterial from '../screens/RegistroTipoMaterial';
+import SocioMenuScreen from '../screens/SocioMenuScreen';
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ export const Navigator = () => {
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "" }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR DIRECCIÓN", headerTitleStyle: {color: "#69A03A", fontWeight: 'bold'}}} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR TIPO DE MATERIALES", headerTitleStyle: {color: "#69A03A", fontWeight: 'bold'}}} />
+              <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} />
             </>
           )
           : (
