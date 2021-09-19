@@ -19,7 +19,13 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         
-    }
+    },
+    plus: {
+        backgroundColor: "#69A03A",
+        width: 40,
+        justifyContent: 'center',
+        marginTop: 40,
+        borderRadius: 5 }
 })
 
 export default styles;
