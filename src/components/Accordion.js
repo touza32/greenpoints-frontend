@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-export default function Accordion({ data, onSelect }) {
+export default function Accordion({ data, title, onSelect }) {
 
     const [expanded, setExpanded] = useState(false)
     const [selected, setSelected] = useState('Seleccione')
@@ -29,11 +29,11 @@ export default function Accordion({ data, onSelect }) {
                         onPress={() => {
                             setExpanded(false)
                             onSelect(l)
-                            setSelected(l.title)
+                            setSelected(l[title])
                         }}
                         >
                         <ListItem.Content>
-                            <ListItem.Title>{l.title}</ListItem.Title>
+                            <ListItem.Title>{l[title]}</ListItem.Title>
                         </ListItem.Content>
                     </ListItem>
                 ))}

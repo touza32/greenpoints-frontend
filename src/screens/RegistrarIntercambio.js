@@ -8,42 +8,58 @@ import styleButton from '../styles/Button';
 import Accordion from '../components/Accordion';
 import { AuthContext } from '../context/AuthContext';
 
-const materials = [
-    { id: 1, title: 'Plástico' },
-    { id: 2, title: 'Vidrio' },
-    { id: 3, title: 'Cartón' }
-]
-
 export default function RegistrarIntercambio() {
 
     const [socio, setSocio] = useState('');
-    const [intercambio, setIntercambio] = useState([{ id: 0, material: 0, peso: undefined }]);
+    const [intercambio, setIntercambio] = useState([{ id: 0, material: 0, peso: '' }]);
     const [enabled, setEnabled] = useState(false)
-    const { token } = useContext(AuthContext);
+    const { token, id } = useContext(AuthContext);
     const [tipoValor, setTipoValor] = useState([]);
+    const [materials, setMaterials] = useState([]);
     const [puntos, setPuntos] = useState(0);
+    const [loading, setLoading] = useState(true);
+
+    const getValores = async () => {
+        setLoading(true)
+        try {
+            const response = await greenPointsApi.
+                get('/tipo-reciclable', { headers: { Authorization: token } })
+            setLoading(false)
+            setTipoValor(response.data)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    const getMateriales = async (id) => {
+        setLoading(true)
+        try {
+            const response = await greenPointsApi.
+                get('/tipo-reciclable/' + id, { headers: { Authorization: token } })
+            setLoading(false)
+            console.log(response.data)
+            setMaterials(response.data)
+        } catch (e) {
+            console.error(e)
+        }
+    }
 
     useEffect(() => {
-        {
-            greenPointsApi.
-                get('/tipo-reciclable', { headers: { Authorization: token } }).
-                then(response => setTipoValor(response.data)).
-                catch(error => console.error(error))
-        }
+        getValores()
+        getMateriales(id)
     }, [])
 
     useEffect(() => setEnabled(intercambio.
         every(item => item.peso > 0 && item.material > 0 && socio !== "")))
 
     useEffect(() => {
-        try {
+        !loading ? (
             setPuntos(intercambio.
                 reduce((acc, item) =>
-                    acc + item.peso * tipoValor.
-                        find(i => i.id === item.material).points, 0))
-        } catch (e) {
-            console.log(e)
-        }
+                    item.material !== 0 ? acc + item.peso * tipoValor.
+                        find(i => i.id === item.material).points : null, 0))
+        ) : null
+
     }, [intercambio])
 
 
@@ -61,28 +77,28 @@ export default function RegistrarIntercambio() {
                     data={intercambio}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item, index }) =>
-                    (
+
                         <View style={{ maxHeight: materials.length * 100, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', width: 350 }}>
                             <View>
                                 <Text style={[styleTextInput.title, { marginLeft: 15 }]}>Material</Text>
                                 <Accordion
                                     data={materials}
+                                    title="nombre"
                                     onSelect={(value) => {
                                         const newArr = [...intercambio]
                                         newArr[index] = { ...newArr[index], material: value.id }
                                         setIntercambio(newArr)
                                     }
-
                                     } />
                             </View>
                             <View>
                                 <Text style={[styleTextInput.title, { marginBottom: 20 }]}>Peso (Kg)</Text>
                                 <View>
-                                    <TextInput
+                                    {item.material !== 0 ? <TextInput
                                         style={styleTextInput.small}
                                         keyboardType="numeric"
                                         placeholder="1.1"
-                                        value={intercambio[index].peso}
+                                        value={intercambio[index].peso.toString()}
                                         onChangeText={
                                             value => {
                                                 value = value.replace(/[^\d.]/, '')
@@ -91,7 +107,7 @@ export default function RegistrarIntercambio() {
                                                 setIntercambio(newArr)
                                             }
                                         }
-                                    />
+                                    /> : <TextInput style={[styleTextInput.small,{backgroundColor:'lightgray'}]} editable={false}/>}
                                 </View>
                             </View>
                             {item.id !== 0 ? <TouchableOpacity
@@ -103,13 +119,13 @@ export default function RegistrarIntercambio() {
                                 <Text style={[styleText.button, { fontSize: 30, marginBottom: 3 }]}>-</Text>
                             </TouchableOpacity> : <Text style={{ marginRight: 42 }}></Text>}
                         </View>
-                    )}
+                    }
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     <TouchableOpacity
                         style={[styleButton.base, styleButton.plus, {}]}
                         onPress={() =>
-                            setIntercambio([...intercambio, { id: intercambio[intercambio.length - 1].id + 1, material: 0, peso: 0 }])
+                            setIntercambio([...intercambio, { id: intercambio[intercambio.length - 1].id + 1, material: 0, peso: '' }])
                         }
                     >
                         <Text style={[styleText.button, { fontSize: 30 }]}>+</Text>
