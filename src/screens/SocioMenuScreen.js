@@ -34,9 +34,7 @@ export default function SocioMenuScreen ({ navigation }) {
         <View style={[styleContainer.main, { flex: 1 }]}>
                 
                 <View style={[styleContainer.main, { flex: 5, marginTop: 20}]}>
-                    <CarouselMenu data={Newdata}/>
-                      
-                   
+                    <CarouselMenu data={Newdata}/> 
                 </View>
                  
 
@@ -68,7 +66,7 @@ export default function SocioMenuScreen ({ navigation }) {
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => {}} >
+                        onPress={() => {navigation.navigate('MisIntercambios')}} >
                         <View
                             style={[styleContainer.main,{marginBottom:17,flexDirection: "row"}]}>
                             <Image

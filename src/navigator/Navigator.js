@@ -15,6 +15,7 @@ import RegistroPuntoReciclaje from '../screens/RegistroPuntoReciclaje';
 import ConfirmarDireccion from '../screens/ConfirmarDireccion';
 import RegistroTipoMaterial from '../screens/RegistroTipoMaterial';
 import RegistrarIntercambio from '../screens/RegistrarIntercambio';
+import MisIntercambios from '../screens/MisIntercambios';
 
 const Stack = createStackNavigator();
 
@@ -56,6 +57,7 @@ export const Navigator = () => {
               ? (
                 <>
                   <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} />
+                  <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ title: "Mis Intercambios", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
                  
                 </>
               )

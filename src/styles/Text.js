@@ -56,7 +56,16 @@ const styles = StyleSheet.create({
       },
       listItemText: {
         fontSize: 18
-      }
+      },
+
+      titleList: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        
+    }
+
 })
 
 export default styles;
