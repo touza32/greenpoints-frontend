@@ -31,7 +31,7 @@ export default function RegistrarIntercambio() {
         }
     }
 
-    const getMateriales = async (id) => {
+    const getMateriales = async id => {
         setLoading(true)
         try {
             const response = await greenPointsApi.

@@ -25,7 +25,7 @@ export default function Seleccion_de_rol({ navigation }) {
                   <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
                         <Divider orientation="horizontal" width={2} />
                   </View>
-                  <View style={{ flex: 0.45, justifyContent: 'space-around', alignItems: 'center', marginBottom: '5%' }}>
+                  <View style={{ flex: 0.45, justifyContent: 'space-around', alignItems: 'center', marginBottom: '8%' }}>
                         <View>
                               <Text style={styleText.subtitle}>Punto de Reciclaje</Text>
                         </View>
