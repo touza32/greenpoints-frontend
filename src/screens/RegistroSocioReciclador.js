@@ -34,7 +34,7 @@ const schema = yup.object().shape({
         required('Requerido')
 });
 
-export default function RegistroSocioReciclador() {
+export default function RegistroSocioReciclador( {navigation} ) {
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
@@ -48,6 +48,7 @@ export default function RegistroSocioReciclador() {
             lastName: data.lastName,
             password: data.password
         })
+        navigation.navigate('Confirmacion', {nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso'})
     }
 
 

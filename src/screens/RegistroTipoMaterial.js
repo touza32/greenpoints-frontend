@@ -1,37 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import styleContainer from "../styles/Container";
 import styleButton from "../styles/Button"
 import styleText from "../styles/Text";
 import { Ionicons } from '@expo/vector-icons';
 import { Divider, CheckBox } from 'react-native-elements';
-
-const data = [
-    { id: 1, title: 'PAPEL', check: false },
-    { id: 2, title: 'PLASTICO', check: true },
-    { id: 3, title: 'CARTON', check: false },
-    { id: 4, title: 'VIDRIO', check: false },
-    { id: 5, title: 'ALUMINIO', check: false },
-    { id: 6, title: 'COBRE', check: false }
-];
+import greenPointsApi from '../api/greenPointsApi';
+import { AuthContext } from '../context/AuthContext';
 
 export default function RegistroTipoMaterial({ route, navigation }) {
 
     const errmsg = "Debe seleccionar al menos un tipo de material";
     const [alos, setAlos] = useState(false);
-    const onSubmit = () => {
+    const { token } = useContext(AuthContext);
+    const [data, setData] = useState([]);
+    const [checkState, setCheck] = useState([]);
+
+    const validarChecks = () => {
+        const aloselected = [...checkState].every(item => item === false)
+        setAlos(aloselected)
+    }
+
+    const onSubmit = async () => {
+        validarChecks();
         const materials = data.
             filter((item, index) => checkState[index] === true).
             reduce((previous, current) => [...previous, current.id], [])
-        const aloselected = [...checkState].every(item => item === false)
-        setAlos(aloselected)
-        console.log(aloselected ? errmsg : { ...route.params, materials })
-        aloselected ? null : navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
+        if (alos) return errmsg
+        try {
+            await greenPointsApi.post('/usuario/punto-reciclaje', {
+                username: route.params.userName,
+                customerName: route.params.customerName,
+                document: route.params.document,
+                direccion: route.params.address,
+                password: route.params.password,
+            })
+            navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
+        } catch (e) {
+            console.error(e)
+        }
+
     }
-    const [checkState, setCheck] = useState(new Array(data.length).fill(false));
+
     const updateCheck = (position) => setCheck(
         checkState.map((item, index) => index === position ? !item : item)
     );
+
+    useEffect(() => {
+        const getMateriales = async () => {
+            try {
+                const response = await greenPointsApi.
+                    get('/tipo-reciclable', { headers: { Authorization: token } })
+                const data = await response.data
+                setData(data)
+                setCheck(new Array(data.length).fill(false))
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        getMateriales()
+    }, [])
 
     return (
         <View>
@@ -43,7 +71,7 @@ export default function RegistroTipoMaterial({ route, navigation }) {
                     renderItem={({ item }) => (
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="image" size={50} />
-                            <Text style={[styleText.subtitle25, { textAlign: 'left', marginLeft: 30 }]}>{item.title}</Text>
+                            <Text style={[styleText.subtitle25, { textAlign: 'left', marginLeft: 30 }]}>{item.nombre.toUpperCase()}</Text>
                             <CheckBox
                                 containerStyle={{ marginLeft: 'auto' }}
                                 checked={checkState[item.id - 1]}
