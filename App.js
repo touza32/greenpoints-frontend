@@ -7,13 +7,17 @@ import { Navigator } from './src/navigator/Navigator';
 
 // context
 import { AuthProvider } from './src/context/AuthContext';
+import { PermissionProvider } from './src/context/PermissionContext';
 
 
 const AppState = ({ children }) => {
   return (
-    <AuthProvider>
-      { children }
-    </AuthProvider>
+    <PermissionProvider>
+      <AuthProvider>
+        { children }
+      </AuthProvider>
+    </PermissionProvider>
+
   )
 }
 

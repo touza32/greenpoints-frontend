@@ -20,11 +20,18 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.green.points",
+      "permissions": [ "LOCATION" ],
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDRIknMfMM0Nn0Om0VBgfQeEquIFbAqICU"
+        }
+      }
     },
     "web": {
       "favicon": "./src/assets/favicon.png"

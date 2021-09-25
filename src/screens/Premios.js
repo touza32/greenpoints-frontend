@@ -8,7 +8,6 @@ export default function Premios() {
         <Button
           title="OBTENER"
           onPress={() => {
-            console.log("click")
             fetch('http://localhost:44331/premio')
               .then(response => response.json())
               .then(data => console.log(data))

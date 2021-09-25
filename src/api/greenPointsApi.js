@@ -9,7 +9,6 @@ greenPointsApi.interceptors.request.use(
     async(config) => {
         const token = await AsyncStorage.getItem('token');
         if (token) {
-            console.log(token);
             config.headers['Accept'] = 'application/json';
             config.headers['Authorization'] = `Bearer ${ token }`;
         }

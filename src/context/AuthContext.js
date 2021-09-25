@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }) => {
             await AsyncStorage.setItem('user', data.user);
             await AsyncStorage.setItem('rol', JSON.stringify(data.rol));
         } catch (error) {
-            console.log(error);
             dispatch({
                 type: 'addError',
                 payload: 'Usuario o contraseña invalidos'
