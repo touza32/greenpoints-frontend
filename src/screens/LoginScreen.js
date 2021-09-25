@@ -88,6 +88,13 @@ export default function LoginScreen({ navigation }) {
                     <Text style={styleText.blueTextUnderlined
                     }>Registrate</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('EnBlanco')}
+                >
+                    <Text style={styleText.blueTextUnderlined
+                    }>En Blanco</Text>
+                </TouchableOpacity>
             </View>
 
         </KeyboardAwareScrollView>

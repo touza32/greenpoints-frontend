@@ -3,8 +3,11 @@ import {
     View,
     Image,
     Text,
-    TouchableOpacity
+    TouchableOpacity, TouchableHighlight
 } from 'react-native';
+
+import { Header } from 'react-native-elements';
+import FAIcon from 'react-native-vector-icons/FontAwesome'
 
 // styles
 import styleContainer from '../styles/Container';
@@ -20,7 +23,23 @@ export default function PuntMenuScreen({ navigation }) {
 
     return (
         <View style={[styleContainer.main, { flex: 1}]}>
-            <View style={[styleContainer.main, { flex: 1, marginTop: 20}]}>
+
+        <Header   
+                              
+             backgroundColor="#69A03A"
+             leftComponent={
+            
+             <TouchableHighlight onPress={() =>{ navigation.navigate('MenuHamburguesaPunto');}}>
+             <FAIcon name='bars' size={28} style={{ color: "#FFFF" }} />
+             </TouchableHighlight>
+           
+             }
+            
+             centerComponent={{ text: 'GREEN POINTS', style: { color: '#fff', fontWeight: "bold", fontSize: 18} }}
+             
+          />  
+
+            <View style={[styleContainer.main, { flex: 1}]}>
                 <Image
                     source={require('../assets/PuntoMenu.png')}
                     style={{
@@ -60,7 +79,7 @@ export default function PuntMenuScreen({ navigation }) {
                 <TouchableOpacity
                     onPress={() => { }} >
                     <View
-                        style={[styleContainer.main, { flexDirection: "row" }]}>
+                        style={[styleContainer.main, { flexDirection: "row", marginBottom: 120 }]}>
                         <Image
                             source={require('../assets/ItemFlechaMenu.png')}
                         >
@@ -69,13 +88,7 @@ export default function PuntMenuScreen({ navigation }) {
                         }>Mis Lotes                                        </Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styleButton.base}
-                    onPress={logOut}
-                >
-                    <     Text style={styleText.button}>Logout</Text>
-                </TouchableOpacity>
-
+               
             </View>
 
 
