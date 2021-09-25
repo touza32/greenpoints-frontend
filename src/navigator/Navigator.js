@@ -51,6 +51,7 @@ export const Navigator = () => {
                 <>
                   <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} />
                   <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} />
+                  <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
                 </>
               )
               : (rol === 1)

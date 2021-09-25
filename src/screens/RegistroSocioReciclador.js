@@ -9,6 +9,7 @@ import styleContainer from "../styles/Container";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import greenPointsApi from '../api/greenPointsApi';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const schema = yup.object().shape({
     email: yup.
@@ -34,7 +35,7 @@ const schema = yup.object().shape({
         required('Requerido')
 });
 
-export default function RegistroSocioReciclador( {navigation} ) {
+export default function RegistroSocioReciclador({ navigation }) {
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
@@ -48,12 +49,14 @@ export default function RegistroSocioReciclador( {navigation} ) {
             lastName: data.lastName,
             password: data.password
         })
-        navigation.navigate('Confirmacion', {nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso'})
+        navigation.navigate('Confirmacion', { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
     }
 
 
     return (
-        <View style={[styleContainer.main, { margin: 20 }]}>
+        <KeyboardAwareScrollView
+        contentContainerStyle={[styleContainer.main, {padding:20, paddingTop:5}]}
+        >
             <InputForm
                 control={control}
                 errors={errors}
@@ -101,9 +104,9 @@ export default function RegistroSocioReciclador( {navigation} ) {
                 placeholder="31-12-1999"
                 keyboardType="numeric"
             />
-            <TouchableOpacity style={styleButton.base} onPress={handleSubmit(onSubmit)}>
+            <TouchableOpacity style={[styleButton.base,{alignSelf:'center'}]} onPress={handleSubmit(onSubmit)}>
                 <Text style={styleText.button}>FINALIZAR</Text>
             </TouchableOpacity>
-        </View>
+        </KeyboardAwareScrollView>
     );
 }
