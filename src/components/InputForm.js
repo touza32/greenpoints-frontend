@@ -7,7 +7,7 @@ export default function InputForm({ control, errors, name, title, ...inputProps 
 
     return (
         <View style={{alignSelf: 'center'}}>
-            <Text style={{fontWeight: 'bold', fontSize: 16, marginBottom: 10}}>{title}</Text>
+            <Text style={styleTextInput.title}>{title}</Text>
             <Controller
                 control={control}
                 render={({ field: { onChange, value } }) => (
