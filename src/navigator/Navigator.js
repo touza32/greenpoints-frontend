@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AuthContext } from '../context/AuthContext';
+import { PermissionContext } from '../context/PermissionContext';
 
 // screens
 import LoginScreen from '../screens/LoginScreen';
@@ -15,11 +16,7 @@ import RegistroPuntoReciclaje from '../screens/RegistroPuntoReciclaje';
 import ConfirmarDireccion from '../screens/ConfirmarDireccion';
 import RegistroTipoMaterial from '../screens/RegistroTipoMaterial';
 import RegistrarIntercambio from '../screens/RegistrarIntercambio';
-<<<<<<< HEAD
-import { PermissionContext } from '../context/PermissionContext';
-=======
 import MisIntercambios from '../screens/MisIntercambios';
->>>>>>> 935bdf042fe6a3baafbcad309fa68f6e3b25cf2e
 
 const Stack = createStackNavigator();
 

@@ -93,8 +93,6 @@ function getCuilCuit(document_number, gender) {
     C = 11 - resto;
   }
   const example = `${AB}-${document_number}-${C}`;
-  // Show example
-  //console.log(example);
 
   // Generate cuit
   const cuil_cuit = `${AB}${document_number}${C}`;

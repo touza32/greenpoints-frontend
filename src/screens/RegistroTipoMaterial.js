@@ -32,8 +32,11 @@ export default function RegistroTipoMaterial({ route, navigation }) {
                 username: route.params.userName,
                 customerName: route.params.customerName,
                 document: route.params.document,
+                latitud: route.params.latitud,
+                longitud: route.params.longitud,
                 direccion: route.params.address,
                 password: route.params.password,
+                materials: materials
             })
             navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
         } catch (e) {

@@ -37,10 +37,10 @@ export default function ConfirmarDireccion({ route, navigation }) {
     }
     const onSubmit = () => {
         const data = {
-            latitude: (currentMarket.latitude === 0) ? initialPosition.latitude : currentMarket.latitude,
-            longitude:  (currentMarket.longitude === 0) ? initialPosition.longitude : currentMarket.longitude
+            latitud: (currentMarket.latitude === 0) ? initialPosition.latitude : currentMarket.latitude,
+            longitud:  (currentMarket.longitude === 0) ? initialPosition.longitude : currentMarket.longitude
         };
-        navigation.navigate('RegistroTipoMaterial', { ...route.params, data })
+        navigation.navigate('RegistroTipoMaterial', { ...route.params, ...data })
     }
 
     return (
