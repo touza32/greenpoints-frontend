@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
             console.log(error);
             dispatch({
                 type: 'addError',
-                payload: 'Usuario o contraseña invalidos'
+                payload: 'Usuario o contraseña inválidos'
             })
         }
     };

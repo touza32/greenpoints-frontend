@@ -28,6 +28,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 
+    buttonH: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 25,
+        fontWeight: 'bold',
+    },
+
     buttongoogle: {
         color: 'black',
         textAlign: 'center',

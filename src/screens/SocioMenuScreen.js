@@ -3,11 +3,12 @@ import {
     View, 
     Image,
     Text, 
-    TouchableOpacity
+    TouchableOpacity, TouchableHighlight
 } from 'react-native';
 import CarouselMenu  from "../components/CarouselMenu";
-
+import { Header } from 'react-native-elements';
 import { AuthContext } from '../context/AuthContext';
+import FAIcon from 'react-native-vector-icons/FontAwesome'
 
 // styles
 import styleContainer from '../styles/Container';
@@ -31,7 +32,27 @@ export default function SocioMenuScreen ({ navigation }) {
       ];
 
     return (
+
         <View style={[styleContainer.main, { flex: 1 }]}>
+
+        <Header   
+                              
+             backgroundColor="#69A03A"
+             leftComponent={
+            
+             <TouchableHighlight onPress={() =>{ navigation.navigate('MenuHamburguesaSocio');}}>
+             <FAIcon name='bars' size={28} style={{ color: "#FFFF" }} />
+             </TouchableHighlight>
+           
+             }
+            
+             centerComponent={{ text: 'GREEN POINTS', style: { color: '#fff', fontWeight: "bold", fontSize: 18} }}
+             rightComponent={{ text: 'XXXX', style: {color: '#fff', textAlign: 'right',
+             fontSize: 15, fontWeight: "bold" }}}
+          />  
+
+
+       
                 
                 <View style={[styleContainer.main, { flex: 5, marginTop: 20}]}>
                     <CarouselMenu data={Newdata}/> 
@@ -121,5 +142,7 @@ export default function SocioMenuScreen ({ navigation }) {
                 </TouchableOpacity>
                 
         </View>
+
+       
     );
 }
