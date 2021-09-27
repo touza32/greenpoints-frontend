@@ -64,7 +64,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         
-    }
+    },
+
+        titleLayout: {
+            color: 'black',
+            fontSize: 25,
+            fontWeight: 'bold',
+            marginLeft: 30,
+            marginBottom:2
+
+        }
 
 })
 
