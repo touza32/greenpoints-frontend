@@ -35,10 +35,10 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: "" }} />
+              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
               <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
-              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "" }} />
-              <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "" }} />
+              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO SOCIO RECICLADOR", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
+              <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO PUNTO DE RECICLAJE", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR DIRECCIÓN", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR TIPO DE MATERIALES", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
               
@@ -55,7 +55,7 @@ export const Navigator = () => {
               ? (
                 <>
                   <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ title: "" }, { headerShown: false }}/>
-                  <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} />
+                  <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ title: "REGISTRAR INTERCAMBIO", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ title: "" }, { headerShown: false }} />
                 </>
@@ -64,7 +64,7 @@ export const Navigator = () => {
               ? (
                 <>
                   <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} options={{ title: "" }, { headerShown: false }}/>
-                  <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ title: "Mis Intercambios", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
+                  <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ title: "MIS INTERCAMBIOS", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
                   <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} />
                   <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ title: "" }, { headerShown: false }} />
                 </>

@@ -64,7 +64,7 @@ export default function LoginScreen({ navigation }) {
             <View style={styleContainer.main}>
                 <TextInput
                     style={[styleTextInput.large, { marginBottom: 10 }]}
-                    placeholder='Usuario'
+                    placeholder='Usuario/correo electrónico'
                     onChangeText={(value) => onChange(value, 'user')}
                     value={user}
                 />
