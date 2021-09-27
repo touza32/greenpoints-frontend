@@ -134,12 +134,7 @@ export default function SocioMenuScreen ({ navigation }) {
                     <Menu.Item icon="content-copy" onPress={() => {}} title="ABM Plantas Recicladoras"  />
     
                 </View> */}
-                {/*<TouchableOpacity
-                    style={[styleButton.base, { marginTop: 60 }] }
-                    onPress={ logOut }
-              >
-              <     Text style={styleText.button}>Logout</Text>
-                </TouchableOpacity>*/}
+               
                 
         </View>
 
