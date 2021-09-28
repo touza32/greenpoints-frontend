@@ -6,7 +6,7 @@ import {
     TouchableOpacity, TouchableHighlight
 } from 'react-native';
 import CarouselMenu from "../components/CarouselMenu";
-import { Header } from 'react-native-elements';
+import Header from '../components/Header';
 import { Ionicons } from '@expo/vector-icons';
 
 // styles
@@ -33,7 +33,7 @@ export default function SocioMenuScreen({ navigation }) {
         <View style={[styleContainer.main, { flex: 1 }]}>
 
             <Header navigation={navigation} leftComponent={
-                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesaPunto'); }}>
+                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesaSocio'); }}>
                     <Ionicons name="menu" size={30} color="white" />
                 </TouchableOpacity>
             } />

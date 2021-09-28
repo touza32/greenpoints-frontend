@@ -14,7 +14,10 @@ export default function HeaderComponent({ navigation, title, leftComponent }) {
         <>
             <Header
                 backgroundColor="#69A03A"
-                centerContainerStyle={{ flex: 1 }}>
+                leftContainerStyle={{flex:1,justifyContent:'center',marginTop:-10}}
+                centerContainerStyle={{ flex: 1, justifyContent:'center', marginTop:-10 }}
+                rightContainerStyle={{flex:1, justifyContent:'center',marginTop:-10}}
+                >
                 {leftComponent ? leftComponent : <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: -10 }}>
                     <TouchableOpacity
                         onPress={() => { navigation.goBack(); }}>
@@ -24,7 +27,7 @@ export default function HeaderComponent({ navigation, title, leftComponent }) {
                 </View>}
                 <Image
                     source={logo}
-                    style={{ width: 40, height: 40, borderRadius: 20, marginTop: -10 }}
+                    style={{ width: 40, height: 40, borderRadius: 20 }}
                 />
                 {rol === 1 ? (<Text style={styleText.button}>
                     Mis Puntos:
