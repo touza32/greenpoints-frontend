@@ -7,8 +7,11 @@ import styleText from '../styles/Text';
 import styleButton from '../styles/Button';
 import Accordion from '../components/Accordion';
 import { AuthContext } from '../context/AuthContext';
+import Header from '../components/Header';
+import { Input } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function RegistrarIntercambio({ navigation }) {
+export default function RegistrarIntercambio({ route, navigation }) {
 
     const [socio, setSocio] = useState({ socioId: 0, email: '' });
     const [query, setQuery] = useState('');
@@ -66,7 +69,7 @@ export default function RegistrarIntercambio({ navigation }) {
                 socioId: socio.socioId,
                 tipoReciclaje: intercambio
             })
-            console.log({puntoId:id,socioId:socio.socioId,tipoReciclaje:intercambio})
+            console.log({ puntoId: id, socioId: socio.socioId, tipoReciclaje: intercambio })
             //navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Su registro ha sido exitoso' })
         } catch (e) {
             console.error(e)
@@ -95,38 +98,49 @@ export default function RegistrarIntercambio({ navigation }) {
 
     return (
         socioFocus ? (
-            <View style={{ flex: 1, alignItems: 'center', marginTop: 10, marginRight: '12%' }}>
-                <View>
-                    <Text style={styleTextInput.title}>Socio reciclador</Text>
-                    <TextInput
-                        style={styleTextInput.large}
-                        placeholder="socio@correo.com"
-                        onChangeText={value => {
-                            setQuery(value)
-                            setSocios(sociosAll.filter(item => item.email.toUpperCase().indexOf(value.toUpperCase()) > -1))
-                        }}
-                        value={query}
-                        autoFocus={true}
-                    >
-                    </TextInput>
-                    <FlatList
-                        data={socios}
-                        keyExtractor={item => item.socioId.toString()}
-                        renderItem={({ item }) =>
-                            <View>
-                                <Text onPress={() => {
-                                    setSocio(item)
-                                    setQuery(item.email)
-                                    setSocioFocus(false)
-                                }}
-                                >{item.email}</Text>
-                            </View>
-                        }
-                    />
+            <View style={{ flex: 1 }}>
+                <Header navigation={navigation} title="REGISTRAR INTERCAMBIO" />
+                <View style={{ flex: 1, alignItems: 'center', marginTop: 10, marginRight: '12%' }}>
+                    <View>
+                        <Text style={[styleTextInput.title, { marginLeft: 10 }]}>Socio reciclador</Text>
+                        <Input
+                            inputContainerStyle={styleTextInput.large}
+                            style={{ fontSize: 15 }}
+                            placeholder="socio@correo.com"
+                            leftIcon={
+                                <TouchableOpacity onPress={() => setSocioFocus(false)}>
+                                    <Ionicons name='chevron-back' size={20} style={{ marginLeft: -10 }} />
+                                </TouchableOpacity>
+                            }
+                            onChangeText={value => {
+                                setQuery(value)
+                                setSocios(sociosAll.filter(item => item.email.toUpperCase().indexOf(value.toUpperCase()) > -1))
+                            }}
+                            value={query}
+                            autoFocus={true}
+                        >
+                        </Input>
+                        <FlatList
+                            style={{ marginLeft: 20, marginTop: -10 }}
+                            data={socios}
+                            keyExtractor={item => item.socioId.toString()}
+                            renderItem={({ item }) =>
+                                <View>
+                                    <Text onPress={() => {
+                                        setSocio(item)
+                                        setQuery(item.email)
+                                        setSocioFocus(false)
+                                    }}
+                                    >{item.email}</Text>
+                                </View>
+                            }
+                        />
+                    </View>
                 </View>
             </View>
         ) : (
             <View style={[styleContainer.main, { flex: 1 }]}>
+                <Header navigation={navigation} title="REGISTRAR INTERCAMBIO" />
                 <View style={{ flex: 4, marginTop: 10 }}>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styleTextInput.title, { marginRight: 'auto' }]}>Socio reciclador</Text>

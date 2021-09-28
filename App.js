@@ -1,5 +1,5 @@
-import React from 'react';
 import 'react-native-gesture-handler';
+import React from 'react';
 
 // navigator
 import { NavigationContainer } from '@react-navigation/native';

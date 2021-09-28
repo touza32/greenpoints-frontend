@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
         color: 'black',
         textAlign: 'center',
         fontSize: 15,
-        fontWeight: 'bold',
-        
+        fontWeight: 'bold'
     },
+
     blueTextUnderlined: {
         color: 'blue',
         textAlign: 'center',
@@ -54,34 +54,41 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20
     },
+
     listItem: {
         marginTop: 10,
         padding: 20,
         alignItems: 'center',
         backgroundColor: '#fff',
         width: '100%'
-      },
-      listItemText: {
-        fontSize: 18
-      },
+    },
 
-      titleList: {
+    listItemText: {
+        fontSize: 18
+    },
+
+    titleList: {
         color: 'black',
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
-        
+
     },
 
-        titleLayout: {
-            color: 'black',
-            fontSize: 25,
-            fontWeight: 'bold',
-            marginLeft: 30,
-            marginBottom:2
+    titleLayout: {
+        color: 'black',
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginLeft: 30,
+        marginBottom: 2
 
-        }
+    },
 
+    header: {
+        color: "#69A03A",
+        fontWeight: 'bold',
+        fontSize: 20
+    }
 })
 
 export default styles;

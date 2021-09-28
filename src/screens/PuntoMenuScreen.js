@@ -3,43 +3,30 @@ import {
     View,
     Image,
     Text,
-    TouchableOpacity, TouchableHighlight
+    TouchableOpacity
 } from 'react-native';
-
-import { Header } from 'react-native-elements';
-import FAIcon from 'react-native-vector-icons/FontAwesome'
+import { Divider } from 'react-native-elements';
+import Header from '../components/Header';
+import { Ionicons } from '@expo/vector-icons';
 
 // styles
 import styleContainer from '../styles/Container';
 import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
 import { AuthContext } from '../context/AuthContext';
 
 
 
 export default function PuntMenuScreen({ navigation }) {
 
-    const { logOut } = useContext(AuthContext);
-
     return (
-        <View style={[styleContainer.main, { flex: 1}]}>
+        <View style={[styleContainer.main, { flex: 1 }]}>
+            <Header navigation={navigation} leftComponent={
+                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesaPunto'); }}>
+                    <Ionicons name="menu" size={30} color="white" />
+                </TouchableOpacity>
+            } />
 
-        <Header   
-                              
-             backgroundColor="#69A03A"
-             leftComponent={
-            
-             <TouchableHighlight onPress={() =>{ navigation.navigate('MenuHamburguesaPunto');}}>
-             <FAIcon name='bars' size={28} style={{ color: "#FFFF" }} />
-             </TouchableHighlight>
-           
-             }
-            
-             centerComponent={{ text: 'GREEN POINTS', style: { color: '#fff', fontWeight: "bold", fontSize: 18} }}
-             
-          />  
-
-            <View style={[styleContainer.main, { flex: 1}]}>
+            <View style={[styleContainer.main, { flex: 1 }]}>
                 <Image
                     source={require('../assets/PuntoMenu.png')}
                     style={{
@@ -53,7 +40,7 @@ export default function PuntMenuScreen({ navigation }) {
                 style={{ justifyContent: 'space-between', alignItems: 'center', flex: 1 }} >
 
                 <TouchableOpacity
-                    onPress={() => {navigation.navigate('RegistrarIntercambio')}} >
+                    onPress={() => { navigation.navigate('RegistrarIntercambio') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
@@ -64,6 +51,7 @@ export default function PuntMenuScreen({ navigation }) {
                         < Text style={[styleText.blackText, { marginLeft: 20 }]}>Registrar Intercambio                   </Text>
                     </View>
                 </TouchableOpacity>
+                <Divider orientation="vertical" />
                 <TouchableOpacity
                     onPress={() => { }} >
                     <View
@@ -76,6 +64,7 @@ export default function PuntMenuScreen({ navigation }) {
                         < Text style={[styleText.blackText, { marginLeft: 20 }]}>Nuevo Lote                                     </Text>
                     </View>
                 </TouchableOpacity>
+                <Divider orientation="vertical" />
                 <TouchableOpacity
                     onPress={() => { }} >
                     <View
@@ -88,7 +77,7 @@ export default function PuntMenuScreen({ navigation }) {
                         }>Mis Lotes                                        </Text>
                     </View>
                 </TouchableOpacity>
-               
+
             </View>
 
 

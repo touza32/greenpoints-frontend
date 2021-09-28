@@ -22,6 +22,8 @@ import DetalleDeIntercambio from '../screens/DetalleDeIntercambio';
 import MenuHamburguesaSocio from '../screens/MenuHamburguesaSocio';
 import MenuHamburguesaPunto from '../screens/MenuHamburguesaPunto';
 
+import styleText from '../styles/Text';
+
 const Stack = createStackNavigator();
 
 export const Navigator = () => {
@@ -41,10 +43,10 @@ export const Navigator = () => {
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
               <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
               <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
-              <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
-              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO SOCIO RECICLADOR", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
-              <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO PUNTO DE RECICLAJE", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
-              <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR TIPO DE MATERIALES", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
+              <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
+              <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
+              <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
+              <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR MATERIALES", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               
               
             </>
@@ -59,7 +61,7 @@ export const Navigator = () => {
               ? (
                 <>
                   <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ title: "" }, { headerShown: false }}/>
-                  <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ title: "REGISTRAR INTERCAMBIO", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
+                  <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }}/>
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ title: "" }, { headerShown: false }} />
                 </>

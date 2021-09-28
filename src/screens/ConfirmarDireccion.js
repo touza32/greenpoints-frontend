@@ -10,7 +10,7 @@ import styleText from "../styles/Text";
 // hooks
 import { useLocation } from '../hooks/useLocation';
 // screens
-import LoadingScreen from '../screens/LoadingScreen';
+import LoadingScreen from './LoadingScreen';
 
 
 const schema = yup.object().shape({

@@ -62,6 +62,7 @@ export default function RegistroTipoMaterial({ route, navigation }) {
             }
         }
         getMateriales()
+        console.log(data)
     }, [])
 
     return (
