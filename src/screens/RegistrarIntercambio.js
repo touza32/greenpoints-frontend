@@ -70,7 +70,7 @@ export default function RegistrarIntercambio({ route, navigation }) {
                 tipoReciclaje: intercambio
             })
             console.log({ puntoId: id, socioId: socio.socioId, tipoReciclaje: intercambio })
-            //navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Su registro ha sido exitoso' })
+            navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Su registro ha sido exitoso' })
         } catch (e) {
             console.error(e)
         }
@@ -84,7 +84,7 @@ export default function RegistrarIntercambio({ route, navigation }) {
 
     useEffect(() => {
         setEnabled(intercambio.
-            every(item => item.peso > 0 && item.tipoId > 0 && socio !== ""))
+            every(item => item.peso > 0 && item.tipoId > 0 && socio.socioId !== 0))
     })
 
     useEffect(() => {
@@ -180,8 +180,8 @@ export default function RegistrarIntercambio({ route, navigation }) {
                                             const newArr = [...intercambio]
                                             newArr[index] = { ...newArr[index], tipoId: value.id }
                                             setIntercambio(newArr)
-                                        }
-                                        } />
+                                        }}
+                                        />
                                 </View>
                                 <View>
                                     <Text style={[styleTextInput.title, { marginBottom: 20 }]}>Peso (Kg)</Text>
@@ -197,8 +197,8 @@ export default function RegistrarIntercambio({ route, navigation }) {
                                                     const newArr = [...intercambio]
                                                     newArr[index] = {
                                                         ...newArr[index],
-                                                        peso: parseInt(value),
-                                                        puntos: parseInt(value) * tipoValor.find(i => i.id === item.tipoId).points
+                                                        peso: value!=="" ? parseInt(value): "",
+                                                        puntos: parseInt(value*1) * tipoValor.find(i => i.id === item.tipoId).points
                                                     }
                                                     setIntercambio(newArr)
                                                 }

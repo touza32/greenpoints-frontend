@@ -54,25 +54,25 @@ export const Navigator = () => {
           : (rol === 3)
             ? (
               <>
-                <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} />
+                <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} options={{ headerShown: false }}/>
               </>
             )
             : (rol === 2)
               ? (
                 <>
-                  <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ title: "" }, { headerShown: false }}/>
+                  <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ headerShown: false }}/>
                   <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }}/>
-                  <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
-                  <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ title: "" }, { headerShown: false }} />
+                  <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
+                  <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
                 </>
               )
               : (rol === 1)
               ? (
                 <>
-                  <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} options={{ title: "" }, { headerShown: false }}/>
-                  <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ title: "MIS INTERCAMBIOS", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
-                  <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} />
-                  <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ title: "" }, { headerShown: false }} />
+                  <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} options={{ headerShown: false }}/>
+                  <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ headerShown: false}} />
+                  <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} options={{headerShown: false}}/>
+                  <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
