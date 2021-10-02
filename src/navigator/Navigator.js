@@ -18,6 +18,7 @@ import RegistroTipoMaterial from '../screens/RegistroTipoMaterial';
 import RegistrarIntercambio from '../screens/RegistrarIntercambio';
 import MisIntercambios from '../screens/MisIntercambios';
 import DetalleDeIntercambio from '../screens/DetalleDeIntercambio';
+import MapaPuntosReciclaje from '../screens/Intercambio/MapaPuntosReciclaje';
 
 import MenuHamburguesaSocio from '../screens/MenuHamburguesaSocio';
 import MenuHamburguesaPunto from '../screens/MenuHamburguesaPunto';
@@ -73,6 +74,7 @@ export const Navigator = () => {
                   <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ title: "MIS INTERCAMBIOS", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
                   <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} />
                   <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ title: "" }, { headerShown: false }} />
+                  <Stack.Screen name="MapaPuntosReciclaje" component={MapaPuntosReciclaje} options={{ title: "PUNTOS DE RECICLAJE" }, { headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />

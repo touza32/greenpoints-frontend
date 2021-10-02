@@ -15,7 +15,6 @@ import styleText from '../styles/Text';
 
 export default function SocioMenuScreen({ navigation }) {
 
-    /*const {Newdata} = useState(null);*/
     const Newdata = [
         {
             fuente: require('../assets/PremioCine.png')
@@ -58,7 +57,7 @@ export default function SocioMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => { navigation.navigate('MapaPuntosReciclaje') }} >
                     <View
                         style={[styleContainer.main, { marginBottom: 30, flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
@@ -104,21 +103,7 @@ export default function SocioMenuScreen({ navigation }) {
                 </TouchableOpacity>
 
             </View>
-
-
-            {/*<View style={{ flex:4}}>
-                    <Menu.Item style={{ color: '#4B9D2D'}}
-                      icon="heart-outline" onPress={() => {}} title="ABM de Premios" 
-
-                    />
-                    
-                    <Menu.Item icon="undo" onPress={() => {}} title="ABM Tipos de Reciclables" />
-                    <Menu.Item icon="content-cut" onPress={() => {}} title="ABM de Sponsors"  />
-                    <Menu.Item icon="content-copy" onPress={() => {}} title="ABM Plantas Recicladoras"  />
-    
-                </View> */}
-               
-                
+                     
         </View>
 
 
