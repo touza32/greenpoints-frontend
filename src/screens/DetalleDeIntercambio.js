@@ -6,14 +6,17 @@ import styleText from "../styles/Text";
 import greenPointsApi from '../api/greenPointsApi';
 import { AuthContext } from '../context/AuthContext';
 import { Divider} from 'react-native-elements';
+import ModalIntercambio from "../components/ModalIntercambio";
 
 export default function({ route, navigation }){
     const [UnIntercambio,setIntercambio] = useState(null);
     /*console.log(UnIntercambio);*/
     const [Detalle,setDetalle] = useState(null);
     /*console.log(Detalle);*/
+    const [ModalId,setModalId] = useState(null);
     const {id} = route.params
     console.log(id)
+    const [modalVisible, setModalVisible] = useState(false);
 
   
     useEffect(() => {
@@ -47,7 +50,7 @@ return (
                     data={Detalle}
                     keyExtractor={item =>item.tipoReciclableName}
                     renderItem={({ item }) => (
-                        <View style={{marginBottom:10, flexDirection: "row"}}>
+                        <View style={{marginBottom:5, flexDirection: "row"}}>
                             <Image source={require('../assets/CheckOrange.png')}
                                         style={{
                                             width: 25,
@@ -65,33 +68,40 @@ return (
                 />                  
             </View>
             
-            <View>
+            <View style={{marginBottom:5}}>
                         
                 <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Punto de Reciclaje</Text>
                 <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{UnIntercambio.puntoReciclajeName}</Text>
-                
+                <Text style={{marginLeft: 30, textAlign: 'left'}}>{UnIntercambio.puntoReciclajeAddress}</Text>
             </View>
-            <View>
+            <View style={{marginBottom:5}}>
                 <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Fecha</Text>
                 <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{UnIntercambio.date.substring(0,10)}</Text>
             </View>
-            <View>
+            <View style={{marginBottom:5}}>
                 <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Mis Puntos</Text>
                 <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{UnIntercambio.points + ' Green Points'}</Text>
             </View>
 
             
 
-            <TouchableOpacity style={[styleButton.base, {marginTop:20, alignSelf: 'center' }]} onPress={() => {}}>
+            <TouchableOpacity style={[styleButton.base, {marginTop:20, alignSelf: 'center' }]} onPress={() => {setModalVisible(true)
+                                                                                                               setModalId(UnIntercambio.id)}}>
                 <Text style={styleText.button}>Ver Ubicación</Text>
             </TouchableOpacity>
 
+            {modalVisible && (        
+            <View>
+                <ModalIntercambio data={ModalId}/>
+            </View>
+         )}
+
         </View>
-
-
-
+         
 
         )}
+
+        
            
            
     </View>

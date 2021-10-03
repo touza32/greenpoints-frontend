@@ -6,13 +6,19 @@ import styleText from "../styles/Text";
 import { Divider, CheckBox } from 'react-native-elements';
 import greenPointsApi from '../api/greenPointsApi';
 import { AuthContext } from '../context/AuthContext';
+import ModalIntercambio from "../components/ModalIntercambio";
+
 
 export default function MisIntercambios({ props,navigation }) {
     const {id} = useContext(AuthContext);
     console.log(id);
     const [newIntercambios,setnewIntercambios] = useState(null);
     console.log(newIntercambios);
+    const [modalVisible, setModalVisible] = useState(false);
     /*const text = navigation.getParams('text','nothing sent');*/
+    /*const {modalVisible} = true;*/
+    console.log(modalVisible);
+    const [UnIntercambio,setIntercambio] = useState(null);
     
    
     useEffect(() => {
@@ -28,17 +34,19 @@ export default function MisIntercambios({ props,navigation }) {
  
     return (
         <View>
-            <View style={[styleContainer.main, { marginTop: 30, alignItems: 'stretch' }]}>
+            <View style={styleContainer.main[{ marginTop: 30, alignItems: 'stretch' }]}>
                 <FlatList
                     data={newIntercambios}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => {navigation.navigate('DetalleDeIntercambio',{id:item.id})}}>
-                            <View style={{marginBottom:10, flexDirection: "row"}}>
-                                <Image source={require('../assets/MisIntercambios.png')}
+                            <View style={{marginBottom:10,marginTop:10, flexDirection: "row"}}>
+                                <Image source={require('../assets/MisIntercambiosList.png')}
                                         style={{
-                                            width: 136,
-                                            height: 96
+                                            width: 87,
+                                            height: 69,
+                                            marginLeft:10,
+                                            marginRight:10
                                         }}>
                                 </Image> 
                                 <View>
@@ -47,24 +55,35 @@ export default function MisIntercambios({ props,navigation }) {
                                     <Text style={[styleText.blackText, { textAlign: 'left'}]}>{item.points + ' Green Points'}</Text>
                                  
                                 </View>
-                                <TouchableOpacity style={[styleButton.lista, { alignSelf: 'center' }]} onPress={() => Alert.alert(item.name,'tus reciclables se encuentran en PLANTA RECICLADORA: XXX')}>
+                                <TouchableOpacity style={[styleButton.lista, {marginLeft:5, alignSelf: 'center' }]} onPress={() => {setModalVisible(true)
+                                                                                                                       setIntercambio(item.id)
+                                                                                                                       }/*Alert.alert(item.name,'tus reciclables se encuentran en PLANTA RECICLADORA: XXX')*/   
+                    
+                            }>
                                     <Text style={styleText.button}>Ver Ubicación</Text>
                                 </TouchableOpacity>
                             </View>
                         </TouchableOpacity>
                     )}
-                    ItemSeparatorComponent={() => { return <Divider orientation="horizontal" /> }}
+                    ItemSeparatorComponent={() => { return <Divider color= '#B2B2B2'/> }}
                     ListEmptyComponent={()=>
                     <View style={[styleContainer.main, { alignItems: 'center'}]}> 
                         <Text style={[{color:'#B2B2B2',alignSelf:'center'}]}>No tenes intercambios aún</Text>   
                     </View>
                     }
                 />
+                
             
                 
             </View>
-         
+            {modalVisible && (        
+                <View>
+                    <ModalIntercambio data={UnIntercambio}/>
+    
+                </View>
+             )}
         </View>
+        
     )
     
      

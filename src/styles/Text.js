@@ -69,9 +69,9 @@ const styles = StyleSheet.create({
 
     titleList: {
         color: 'black',
-        textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: 'center',
 
     },
 
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 25,
         fontWeight: 'bold',
-        marginLeft: 30,
-        marginBottom: 2
+        marginLeft: 30
+        
 
     },
 
