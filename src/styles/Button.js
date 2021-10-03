@@ -20,6 +20,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         
     },
+
+    crearLote: {
+        borderWidth:1,
+        backgroundColor: "#FFFFFF",
+        borderColor: 'grey',
+        borderRadius: 10,
+        width: 300,
+        height: 40,
+        justifyContent: 'center',
+        
+    },
     lista:{
         borderWidth:1,
         backgroundColor: "#CC7D00",

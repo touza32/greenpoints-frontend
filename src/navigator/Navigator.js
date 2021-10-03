@@ -18,6 +18,7 @@ import RegistroTipoMaterial from '../screens/RegistroTipoMaterial';
 import RegistrarIntercambio from '../screens/RegistrarIntercambio';
 import MisIntercambios from '../screens/MisIntercambios';
 import DetalleDeIntercambio from '../screens/DetalleDeIntercambio';
+import CrearLote from '../screens/CrearLote';
 
 import MenuHamburguesaSocio from '../screens/MenuHamburguesaSocio';
 import MenuHamburguesaPunto from '../screens/MenuHamburguesaPunto';
@@ -64,6 +65,7 @@ export const Navigator = () => {
                   <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }}/>
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
+                  <Stack.Screen name="CrearLote" component={CrearLote} options={{ headerShown: false }} />
                 </>
               )
               : (rol === 1)

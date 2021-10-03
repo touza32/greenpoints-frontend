@@ -55,6 +55,12 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
 
+    whiteText: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 20
+    },
+
     listItem: {
         marginTop: 10,
         padding: 20,
