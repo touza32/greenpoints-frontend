@@ -92,11 +92,19 @@ return (
                 <Text style={styleText.button}>Ver Ubicación</Text>
             </TouchableOpacity>
 
-            {modalVisible && (        
+            {/* JT: no va -> {modalVisible && (        
             <View>
                 <ModalIntercambio data={ModalId}/>
             </View>
-         )}
+         )} 
+                El componente padre le tiene que pasar el estado al hijo
+                a través de una prop, se agrega la prop "visible".
+                A su vez cuando en el hijo se cierre el modal tiene que
+                propagar el cambio al padre, para eso se agrega la prop
+                "hideModal" que le pasa un callback al hijo para ocultar
+                el modal.
+         */}
+            {modalVisible && <ModalIntercambio data={ModalId} visible={modalVisible} hideModal={()=>setModalVisible(false)}/>}
 
         </View>
          

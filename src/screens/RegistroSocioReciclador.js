@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useForm } from "react-hook-form";
 import InputForm from "../components/InputForm";
-import InputFormMask from "../components/InputFormMask";
+import InputFormDate from "../components/InputFormDate";
 import styleButton from "../styles/Button";
 import styleText from "../styles/Text";
 import styleContainer from "../styles/Container";
@@ -31,7 +31,7 @@ const schema = yup.object().shape({
         string().
         required('Requerido'),
     birthDate: yup.
-        string().
+        mixed().transform(e => e.toISOString().slice(8, 10) + e.toISOString().slice(4, 8) + e.toISOString().slice(0, 4)).
         required('Requerido')
 });
 
@@ -56,7 +56,7 @@ export default function RegistroSocioReciclador({ navigation }) {
     return (
         
         <KeyboardAwareScrollView
-        contentContainerStyle={[styleContainer.main, {padding:20, paddingTop:5}]}
+            contentContainerStyle={[styleContainer.main, { padding: 20, paddingTop: 5 }]}
         >
             <InputForm
                 control={control}
@@ -95,17 +95,13 @@ export default function RegistroSocioReciclador({ navigation }) {
                 title="Apellido"
                 placeholder="Apellido"
             />
-            <InputFormMask
+            <InputFormDate
                 control={control}
                 errors={errors}
                 name="birthDate"
                 title="Fecha de nacimiento"
-                type="datetime"
-                maskOptions={{ format: "DD-MM-YYYY" }}
-                placeholder="31-12-1999"
-                keyboardType="numeric"
             />
-            <TouchableOpacity style={[styleButton.base,{alignSelf:'center'}]} onPress={handleSubmit(onSubmit)}>
+            <TouchableOpacity style={[styleButton.base, { alignSelf: 'center' }]} onPress={handleSubmit(onSubmit)}>
                 <Text style={styleText.button}>FINALIZAR</Text>
             </TouchableOpacity>
         </KeyboardAwareScrollView>

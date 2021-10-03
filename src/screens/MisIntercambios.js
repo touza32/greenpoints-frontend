@@ -79,7 +79,7 @@ export default function MisIntercambios({ props, navigation }) {
             </View>
             {modalVisible && (        
                 <View>
-                    <ModalIntercambio data={UnIntercambio}/>
+                    <ModalIntercambio data={UnIntercambio} visible={modalVisible} hideModal={()=>setModalVisible(false)}/>
     
                 </View>
              )}

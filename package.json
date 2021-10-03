@@ -34,7 +34,8 @@
     "react-native-web": "^0.13.12",
     "yup": "^0.32.9",
     "expo-permissions": "~12.1.1",
-    "expo-location": "~12.1.2"
+    "expo-location": "~12.1.2",
+    "@react-native-community/datetimepicker": "3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

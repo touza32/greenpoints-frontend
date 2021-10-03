@@ -8,7 +8,8 @@ export default function ModalIntercambio (props) {
     /*const {IdModal} = props; 
     console.log('IdModal: ',IdModal);
     /*const modalVisible = true;*/
-    const [modalVisible, setModalVisible] = useState(true);
+    //JT: no va -> const [modalVisible, setModalVisible] = useState(true);
+    const { visible, hideModal } = props
     const [UnIntercambio,setIntercambio] = useState(null);
     console.log('props:',props.data);
     const [Detalle,setDetalle] = useState(null);
@@ -32,7 +33,8 @@ export default function ModalIntercambio (props) {
         <Modal
           animationType="fade"
           transparent={true}
-          visible={modalVisible}
+          //JT: se usa el estado "visible" recibido del padre
+          visible={visible}
           backdropOpacity= {0.90}
           /*onRequestClose={() => {
           Alert.alert("Modal has been closed.");
@@ -72,10 +74,10 @@ export default function ModalIntercambio (props) {
 
                 /> 
                   
-                      
+                   {/* JT: en onPress se llama al callback    */}
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(false)}
+                onPress={() => hideModal()}
               >
                 <Text style={styles.textStyle}>Ok</Text>
               </Pressable>
