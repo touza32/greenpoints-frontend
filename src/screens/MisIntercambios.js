@@ -1,5 +1,5 @@
-import React, {useState,useEffect,useContext} from "react";
-import { Text, View, Image,TouchableOpacity, FlatList, Alert } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { Text, View, Image, TouchableOpacity, FlatList, Alert } from "react-native";
 import styleContainer from "../styles/Container";
 import styleButton from "../styles/Button"
 import styleText from "../styles/Text";
@@ -7,12 +7,12 @@ import { Divider, CheckBox } from 'react-native-elements';
 import greenPointsApi from '../api/greenPointsApi';
 import { AuthContext } from '../context/AuthContext';
 import ModalIntercambio from "../components/ModalIntercambio";
+import Header from '../components/Header';
 
-
-export default function MisIntercambios({ props,navigation }) {
-    const {id} = useContext(AuthContext);
+export default function MisIntercambios({ props, navigation }) {
+    const { id } = useContext(AuthContext);
     console.log(id);
-    const [newIntercambios,setnewIntercambios] = useState(null);
+    const [newIntercambios, setnewIntercambios] = useState(null);
     console.log(newIntercambios);
     const [modalVisible, setModalVisible] = useState(false);
     /*const text = navigation.getParams('text','nothing sent');*/
@@ -22,19 +22,20 @@ export default function MisIntercambios({ props,navigation }) {
     
    
     useEffect(() => {
-        async function fetchData(){
-        const data = await greenPointsApi.get('/intercambio?socioId=' + id);
-        setnewIntercambios(data.data);
-        
-    }
-    fetchData();
-    
-},[]);
+        async function fetchData() {
+            const data = await greenPointsApi.get('/intercambio?socioId=' + id);
+            setnewIntercambios(data.data);
 
- 
+        }
+        fetchData();
+
+    }, []);
+
+
     return (
         <View>
-            <View style={styleContainer.main[{ marginTop: 30, alignItems: 'stretch' }]}>
+            <Header navigation={navigation} title="MIS INTERCAMBIOS" />
+            <View style={[styleContainer.main, { marginTop: 10, alignItems: 'stretch' }]}>
                 <FlatList
                     data={newIntercambios}
                     keyExtractor={item => item.id.toString()}
@@ -50,10 +51,10 @@ export default function MisIntercambios({ props,navigation }) {
                                         }}>
                                 </Image> 
                                 <View>
-                                    <Text style={[styleText.titleList, { textAlign: 'left'}]}>{item.name}</Text>
-                                    <Text style={{color:'#B2B2B2', textAlign: 'left'}}>{item.date.substring(0,10)}</Text>
-                                    <Text style={[styleText.blackText, { textAlign: 'left'}]}>{item.points + ' Green Points'}</Text>
-                                 
+                                    <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.name}</Text>
+                                    <Text style={{ color: '#B2B2B2', textAlign: 'left' }}>{item.date.substring(0, 10)}</Text>
+                                    <Text style={[styleText.blackText, { textAlign: 'left' }]}>{item.points + ' Green Points'}</Text>
+
                                 </View>
                                 <TouchableOpacity style={[styleButton.lista, {marginLeft:5, alignSelf: 'center' }]} onPress={() => {setModalVisible(true)
                                                                                                                        setIntercambio(item.id)
@@ -85,6 +86,6 @@ export default function MisIntercambios({ props,navigation }) {
         </View>
         
     )
-    
-     
+
+
 }

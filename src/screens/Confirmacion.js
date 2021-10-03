@@ -33,7 +33,7 @@ export default function Confirma_registro({ route, navigation }) {
             height: 170
           }}>
         </Image>
-        <Text style={styleText.blackText}>{message}</Text>
+        <Text style={[styleText.blackText,{marginTop:20}]}>{message}</Text>
 
       </View>
 

@@ -5,7 +5,6 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-import { Divider } from 'react-native-elements';
 import Header from '../components/Header';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -51,7 +50,6 @@ export default function PuntMenuScreen({ navigation }) {
                         < Text style={[styleText.blackText, { marginLeft: 20 }]}>Registrar Intercambio                   </Text>
                     </View>
                 </TouchableOpacity>
-                <Divider orientation="vertical" />
                 <TouchableOpacity
                     onPress={() => { }} >
                     <View
@@ -64,7 +62,6 @@ export default function PuntMenuScreen({ navigation }) {
                         < Text style={[styleText.blackText, { marginLeft: 20 }]}>Nuevo Lote                                     </Text>
                     </View>
                 </TouchableOpacity>
-                <Divider orientation="vertical" />
                 <TouchableOpacity
                     onPress={() => { }} >
                     <View
