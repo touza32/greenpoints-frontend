@@ -6,6 +6,7 @@ import { Header } from 'react-native-elements';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import { AuthContext } from '../context/AuthContext';
 
+
 var { height } = Dimensions.get('window');
 var box_count = 8;
 var box_height = height / box_count;
@@ -24,15 +25,14 @@ export default function MenuHamburguesaSocio({navigation}) {
              backgroundColor="#69A03A"
              leftComponent={
              <TouchableHighlight onPress={() =>{ navigation.navigate('SocioMenuScreen');}}>
-             <FAIcon name='arrow-left' size={25} style={{ color: "#FFFF" }} />
+             <FAIcon name='chevron-left' size={25} style={{ color: "#FFFF" }} />
              </TouchableHighlight>           
-             }
-            
+             }            
              centerComponent={{ text: 'GREEN POINTS', style: { color: '#fff', fontWeight: "bold", fontSize: 18} }}
-             rightComponent={{ text: 'XXXX', style: {color: '#fff', textAlign: 'right',
+             rightComponent={{ text: '', style: {color: '#fff', textAlign: 'right',
              fontSize: 15, fontWeight: "bold" }}}
-          />  
-                                       
+             />
+                                                   
             <View style={[styles.container ,{ marginTop: 30}]}>
 
                   <View style={[styles.box, styles.box0], { marginLeft: 20}}>

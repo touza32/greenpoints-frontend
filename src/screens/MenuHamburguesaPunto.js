@@ -24,7 +24,7 @@ export default function MenuHamburguesaPunto({navigation}) {
              backgroundColor="#69A03A"
              leftComponent={
              <TouchableHighlight onPress={() =>{ navigation.navigate('PuntoMenuScreen');}}>
-             <FAIcon name='arrow-left' size={25} style={{ color: "#FFFF" }} />
+             <FAIcon name='chevron-left' size={25} style={{ color: "#FFFF" }} />
              </TouchableHighlight>           
              }
             

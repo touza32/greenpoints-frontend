@@ -3,10 +3,13 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styleText from '../styles/Text';
 import styleButton from '../styles/Button';
 import { Divider } from 'react-native-elements';
+import Header from '../components/Header';  
 
 export default function Seleccion_de_rol({ navigation }) {
       return (
             <View style={{ flex: 1 }}>
+                  <Header navigation={navigation} title="" />
+                  
                   <View style={{ flex: 0.45, justifyContent: 'space-around', alignItems: 'center', marginTop: '5%' }}>
                         <View>
                               <Text style={styleText.subtitle}>Socio Reciclador</Text>

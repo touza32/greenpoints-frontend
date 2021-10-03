@@ -23,9 +23,11 @@ export default function Confirma_registro({ route, navigation }) {
 
   return (
 
-    <View style={[styleContainer.main, { flex: 4, marginBottom: 50 }]}>
-
+    <View style={[styleContainer.main, { flex: 4, marginBottom: 10 }]}>
+          
       <View style={[styleContainer.main]}>
+        
+     
         <Image
           source={require('../assets/tilde.png')}
           style={{

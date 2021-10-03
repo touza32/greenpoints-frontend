@@ -54,6 +54,7 @@ export default function RegistroSocioReciclador({ navigation }) {
 
 
     return (
+        
         <KeyboardAwareScrollView
         contentContainerStyle={[styleContainer.main, {padding:20, paddingTop:5}]}
         >

@@ -41,8 +41,8 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' } }} />
-              <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" }} />
+              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' }, headerShown: false }} />
+              <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" , headerShown: false }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />

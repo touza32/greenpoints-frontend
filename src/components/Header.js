@@ -22,7 +22,7 @@ export default function HeaderComponent({ navigation, title, leftComponent }) {
                     <TouchableOpacity
                     style={{marginLeft:-10}}
                         onPress={() => { navigation.goBack(); }}>
-                        <Ionicons name="chevron-back" size={30} color="white"/>
+                        <Ionicons name="chevron-back" size={35} color="white"/>
                     </TouchableOpacity>
                     <Text 
                         style={[styleText.button, { width: '90%'}]}>{title}</Text>
