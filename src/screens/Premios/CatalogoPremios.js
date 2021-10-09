@@ -32,7 +32,7 @@ export default function CatalogoPremios({ props, navigation }) {
                         <TouchableOpacity onPress={() => {  }}>
                             <View style={ styles.premio }>
                                 <View style={{ flexDirection: "row" }}>
-                                    <Image source={require('../../assets/MisIntercambiosList.png')}
+                                    <Image source={ require('../../assets/PremioCine.png') }
                                             style={ styles.image }>
                                     </Image> 
                                     <View style={ styles.premioDetail }>
@@ -58,14 +58,15 @@ export default function CatalogoPremios({ props, navigation }) {
 
 const styles = StyleSheet.create({
     image: {
-        width: 87,
-        height: 69,
+        width: 110,
+        height: 80,
         marginLeft:10,
         marginRight:10
     },
     sponsor: {
-        color: '#B2B2B2', 
-        textAlign: 'left'
+        color: '#827C7B', 
+        textAlign: 'left',
+        fontSize: 15
     },
     premio: {
         marginBottom: 10,
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     },
     premioDetail: {
         flexDirection: "column",
-        width: 180
+        width: 170
     },
     points: {
         flex:1,
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     },
     pointsHeader: {
         fontWeight: "bold",
-        fontSize: 30
+        fontSize: 35
     },
     pointsBody: {
         fontWeight: "bold",

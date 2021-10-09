@@ -44,7 +44,7 @@ export default function AdminMenuScreen({ navigation }) {
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Premios                              </Text>
+                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>Gestión de Premios                              </Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -56,7 +56,7 @@ export default function AdminMenuScreen({ navigation }) {
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Tipos de Reciclables        </Text>
+                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>Gestión de Tipos de Reciclables        </Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -67,7 +67,7 @@ export default function AdminMenuScreen({ navigation }) {
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Sponsors                            </Text>
+                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>Gestión de Sponsors                            </Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -78,7 +78,7 @@ export default function AdminMenuScreen({ navigation }) {
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Plantas Recicladoras       </Text>
+                        < Text style={[styleText.blackText, { marginLeft: 10 }]}>Gestión de Plantas Recicladoras       </Text>
                     </View>
                 </TouchableOpacity>
 
@@ -91,20 +91,6 @@ export default function AdminMenuScreen({ navigation }) {
                     <     Text style={styleText.button}>Salir</Text>
                 </TouchableOpacity>
             </View>
-
-
-            {/*<View style={{ flex:4}}>
-                    <Menu.Item style={{ color: '#4B9D2D'}}
-                      icon="heart-outline" onPress={() => {}} title="ABM de Premios" 
-
-                    />
-                    
-                    <Menu.Item icon="undo" onPress={() => {}} title="ABM Tipos de Reciclables" />
-                    <Menu.Item icon="content-cut" onPress={() => {}} title="ABM de Sponsors"  />
-                    <Menu.Item icon="content-copy" onPress={() => {}} title="ABM Plantas Recicladoras"  />
-    
-                </View> */}
-
 
         </View>
     );
