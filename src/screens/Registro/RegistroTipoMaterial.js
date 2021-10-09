@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
-import styleContainer from "../styles/Container";
-import styleButton from "../styles/Button"
-import styleText from "../styles/Text";
+import styleContainer from "../../styles/Container";
+import styleButton from "../../styles/Button"
+import styleText from "../../styles/Text";
 import { Ionicons } from '@expo/vector-icons';
 import { Divider, CheckBox } from 'react-native-elements';
-import greenPointsApi from '../api/greenPointsApi';
-import { AuthContext } from '../context/AuthContext';
+import greenPointsApi from '../../api/greenPointsApi';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function RegistroTipoMaterial({ route, navigation }) {
 

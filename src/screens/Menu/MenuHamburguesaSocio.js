@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import styleContainer from '../styles/Container';
-import styleText from '../styles/Text';
+import styleContainer from '../../styles/Container';
+import styleText from '../../styles/Text';
 import { View, Text, Image, TouchableHighlight, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 import { Header } from 'react-native-elements';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 
 var { height } = Dimensions.get('window');
@@ -37,7 +37,7 @@ export default function MenuHamburguesaSocio({navigation}) {
 
                   <View style={[styles.box, styles.box0], { marginLeft: 20}}>
 
-                      <Image source={require('../assets/User.png')}
+                      <Image source={require('../../assets/User.png')}
                               style={{
                                 width: 80,
                                 height: 80

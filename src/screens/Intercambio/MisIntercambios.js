@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Text, View, Image, TouchableOpacity, FlatList, Alert } from "react-native";
-import styleContainer from "../styles/Container";
-import styleButton from "../styles/Button"
-import styleText from "../styles/Text";
+import styleContainer from "../../styles/Container";
+import styleButton from "../../styles/Button"
+import styleText from "../../styles/Text";
 import { Divider, CheckBox } from 'react-native-elements';
-import greenPointsApi from '../api/greenPointsApi';
-import { AuthContext } from '../context/AuthContext';
-import ModalIntercambio from "../components/ModalIntercambio";
-import Header from '../components/Header';
+import greenPointsApi from '../../api/greenPointsApi';
+import { AuthContext } from '../../context/AuthContext';
+import ModalIntercambio from "../../components/ModalIntercambio";
+import Header from '../../components/Header';
 
 export default function MisIntercambios({ props, navigation }) {
     const { id } = useContext(AuthContext);
@@ -42,7 +42,7 @@ export default function MisIntercambios({ props, navigation }) {
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => {navigation.navigate('DetalleDeIntercambio',{id:item.id})}}>
                             <View style={{marginBottom:10,marginTop:10, flexDirection: "row"}}>
-                                <Image source={require('../assets/MisIntercambiosList.png')}
+                                <Image source={require('../../assets/MisIntercambiosList.png')}
                                         style={{
                                             width: 87,
                                             height: 69,

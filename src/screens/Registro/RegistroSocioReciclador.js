@@ -1,14 +1,14 @@
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useForm } from "react-hook-form";
-import InputForm from "../components/InputForm";
-import InputFormDate from "../components/InputFormDate";
-import styleButton from "../styles/Button";
-import styleText from "../styles/Text";
-import styleContainer from "../styles/Container";
+import InputForm from "../../components/InputForm";
+import InputFormDate from "../../components/InputFormDate";
+import styleButton from "../../styles/Button";
+import styleText from "../../styles/Text";
+import styleContainer from "../../styles/Container";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import greenPointsApi from '../api/greenPointsApi';
+import greenPointsApi from '../../api/greenPointsApi';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const schema = yup.object().shape({

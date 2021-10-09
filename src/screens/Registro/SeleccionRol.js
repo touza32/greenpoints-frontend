@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
+import styleText from '../../styles/Text';
+import styleButton from '../../styles/Button';
 import { Divider } from 'react-native-elements';
-import Header from '../components/Header';  
+import Header from '../../components/Header';  
 
-export default function Seleccion_de_rol({ navigation }) {
+export default function SeleccionRol({ navigation }) {
       return (
             <View style={{ flex: 1 }}>
                   <Header navigation={navigation} title="" />

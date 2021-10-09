@@ -4,23 +4,29 @@ import { AuthContext } from '../context/AuthContext';
 import { PermissionContext } from '../context/PermissionContext';
 
 // screens
-import LoginScreen from '../screens/LoginScreen';
 import LoadingScreen from '../screens/LoadingScreen';
-import Seleccion_de_rol from '../screens/Seleccion_de_rol';
 import Confirmacion from '../screens/Confirmacion';
-import AdminMenuScreen from '../screens/AdminMenuScreen';
-import PuntoMenuScreen from '../screens/PuntoMenuScreen';
-import SocioMenuScreen from '../screens/SocioMenuScreen';
-import RegistroSocioReciclador from '../screens/RegistroSocioReciclador';
-import RegistroPuntoReciclaje from '../screens/RegistroPuntoReciclaje';
-import ConfirmarDireccion from '../screens/ConfirmarDireccion';
-import RegistroTipoMaterial from '../screens/RegistroTipoMaterial';
-import RegistrarIntercambio from '../screens/RegistrarIntercambio';
-import MisIntercambios from '../screens/MisIntercambios';
-import DetalleDeIntercambio from '../screens/DetalleDeIntercambio';
+
+import LoginScreen from '../screens/Login/LoginScreen';
+
+import AdminMenuScreen from '../screens/Menu/AdminMenuScreen';
+import PuntoMenuScreen from '../screens/Menu/PuntoMenuScreen';
+import SocioMenuScreen from '../screens/Menu/SocioMenuScreen';
+import MenuHamburguesaSocio from '../screens/Menu/MenuHamburguesaSocio';
+import MenuHamburguesaPunto from '../screens/Menu/MenuHamburguesaPunto';
+
+import SeleccionRol from '../screens/Registro/SeleccionRol';
+import RegistroSocioReciclador from '../screens/Registro/RegistroSocioReciclador';
+import RegistroPuntoReciclaje from '../screens/Registro/RegistroPuntoReciclaje';
+import ConfirmarDireccion from '../screens/Registro/ConfirmarDireccion';
+import RegistroTipoMaterial from '../screens/Registro/RegistroTipoMaterial';
+
+import RegistrarIntercambio from '../screens/Intercambio/RegistrarIntercambio';
+import MisIntercambios from '../screens/Intercambio/MisIntercambios';
+import DetalleDeIntercambio from '../screens/Intercambio/DetalleDeIntercambio';
+import MapaPuntosReciclaje from '../screens/Intercambio/MapaPuntosReciclaje';
+
 import CrearLote from '../screens/CrearLote';
-import MenuHamburguesaSocio from '../screens/MenuHamburguesaSocio';
-import MenuHamburguesaPunto from '../screens/MenuHamburguesaPunto';
 
 import styleText from '../styles/Text';
 
@@ -41,7 +47,7 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Seleccion_de_rol" component={Seleccion_de_rol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' }, headerShown: false }} />
+              <Stack.Screen name="SeleccionRol" component={SeleccionRol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' }, headerShown: false }} />
               <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" , headerShown: false }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />

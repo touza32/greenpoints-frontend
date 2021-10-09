@@ -6,13 +6,13 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import { AuthContext } from '../context/AuthContext';
-import Header from '../components/Header';
+import { AuthContext } from '../../context/AuthContext';
+import Header from '../../components/Header';
 
 // styles
-import styleContainer from '../styles/Container';
-import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
+import styleContainer from '../../styles/Container';
+import styleText from '../../styles/Text';
+import styleButton from '../../styles/Button';
 
 export default function AdminMenuScreen({ navigation }) {
 
@@ -24,7 +24,7 @@ export default function AdminMenuScreen({ navigation }) {
             <View style={[styleContainer.main, { flex: 0.4, marginTop:50 }]}>
 
                 <Image
-                    source={require('../assets/AdminMenu.png')}
+                    source={require('../../assets/AdminMenu.png')}
                     style={{
                         width: 370,
                         height: 231
@@ -41,7 +41,7 @@ export default function AdminMenuScreen({ navigation }) {
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
 
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Premios                              </Text>
@@ -53,7 +53,7 @@ export default function AdminMenuScreen({ navigation }) {
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
 
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Tipos de Reciclables        </Text>
@@ -64,7 +64,7 @@ export default function AdminMenuScreen({ navigation }) {
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Sponsors                            </Text>
@@ -75,7 +75,7 @@ export default function AdminMenuScreen({ navigation }) {
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 10 }]}>ABM de Plantas Recicladoras       </Text>

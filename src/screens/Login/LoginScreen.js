@@ -8,16 +8,16 @@ import {
     Keyboard,
     Alert
 } from 'react-native';
-import { useForm } from '../hooks/useForm';
-import { AuthContext } from '../context/AuthContext';
+import { useForm } from '../../hooks/useForm';
+import { AuthContext } from '../../context/AuthContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // styles
-import styleContainer from '../styles/Container';
-import styleTextInput from '../styles/TextInput';
-import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
+import styleContainer from '../../styles/Container';
+import styleTextInput from '../../styles/TextInput';
+import styleText from '../../styles/Text';
+import styleButton from '../../styles/Button';
 
 export default function LoginScreen({ navigation }) {
 
@@ -54,7 +54,7 @@ export default function LoginScreen({ navigation }) {
             <KeyboardAwareScrollView>
                 <View style={[styleContainer.main, { marginTop: 10, marginBottom: 20 }]}>
                     <Image
-                        source={require('../assets/icon.png')}
+                        source={require('../../assets/icon.png')}
                         style={{
                             width: 170,
                             height: 170
@@ -84,7 +84,7 @@ export default function LoginScreen({ navigation }) {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('Seleccion_de_rol')}
+                        onPress={() => navigation.navigate('SeleccionRol')}
                     >
                         <Text style={styleText.blueTextUnderlined
                         }>Registrate</Text>

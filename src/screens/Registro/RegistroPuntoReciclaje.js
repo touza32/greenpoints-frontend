@@ -1,11 +1,11 @@
 import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { useForm } from "react-hook-form";
-import InputForm from "../components/InputForm";
-import InputFormMask from "../components/InputFormMask";
-import styleButton from "../styles/Button";
-import styleText from "../styles/Text";
-import styleContainer from "../styles/Container";
+import InputForm from "../../components/InputForm";
+import InputFormMask from "../../components/InputFormMask";
+import styleButton from "../../styles/Button";
+import styleText from "../../styles/Text";
+import styleContainer from "../../styles/Container";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';

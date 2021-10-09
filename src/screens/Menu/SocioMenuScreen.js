@@ -5,25 +5,25 @@ import {
     Text,
     TouchableOpacity, TouchableHighlight
 } from 'react-native';
-import CarouselMenu from "../components/CarouselMenu";
-import Header from '../components/Header';
+import CarouselMenu from "../../components/CarouselMenu";
+import Header from '../../components/Header';
 import { Ionicons } from '@expo/vector-icons';
 
 // styles
-import styleContainer from '../styles/Container';
-import styleText from '../styles/Text';
+import styleContainer from '../../styles/Container';
+import styleText from '../../styles/Text';
 
 export default function SocioMenuScreen({ navigation }) {
 
     const Newdata = [
         {
-            fuente: require('../assets/PremioCine.png')
+            fuente: require('../../assets/PremioCine.png')
         },
         {
-            fuente: require('../assets/PremioBurger.png')
+            fuente: require('../../assets/PremioBurger.png')
         },
         {
-            fuente: require('../assets/PremioLatte.png')
+            fuente: require('../../assets/PremioLatte.png')
         }
     ];
 
@@ -50,7 +50,7 @@ export default function SocioMenuScreen({ navigation }) {
                         style={[styleContainer.main, { marginBottom: 30, flexDirection: "row" }]}>
                         <Image
 
-                            source={require('../assets/ItemCatMenu.png')}
+                            source={require('../../assets/ItemCatMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 30 }]}>Catálogo de Premios              </Text>
@@ -62,7 +62,7 @@ export default function SocioMenuScreen({ navigation }) {
                         style={[styleContainer.main, { marginBottom: 30, flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
 
-                            source={require('../assets/ItemRedMenu.png')}
+                            source={require('../../assets/ItemRedMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 30 }]}>Puntos de Reciclale                 </Text>
@@ -73,7 +73,7 @@ export default function SocioMenuScreen({ navigation }) {
                     <View
                         style={[styleContainer.main, { marginBottom: 17, flexDirection: "row" }]}>
                         <Image
-                            source={require('../assets/ItemCoronamenu.png')}
+                            source={require('../../assets/ItemCoronamenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 30 }]}>Mis Intercambios                     </Text>
@@ -84,7 +84,7 @@ export default function SocioMenuScreen({ navigation }) {
                     <View
                         style={[styleContainer.main, { marginBottom: 20, flexDirection: "row" }]}>
                         <Image
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 30 }]}>Mis Premios                               </Text>
@@ -95,7 +95,7 @@ export default function SocioMenuScreen({ navigation }) {
                     <View
                         style={[styleContainer.main, { marginBottom: 30, flexDirection: "row" }]}>
                         <Image
-                            source={require('../assets/ItemCorazonMenu.png')}
+                            source={require('../../assets/ItemCorazonMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 30 }]}>Donar Puntos                            </Text>

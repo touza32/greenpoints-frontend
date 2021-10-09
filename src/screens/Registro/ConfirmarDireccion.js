@@ -5,12 +5,12 @@ import MapView, { Marker } from 'react-native-maps';
 // 3rd party libraries
 import * as yup from "yup";
 // styles
-import styleButton from "../styles/Button"
-import styleText from "../styles/Text";
+import styleButton from "../../styles/Button"
+import styleText from "../../styles/Text";
 // hooks
-import { useLocation } from '../hooks/useLocation';
+import { useLocation } from '../../hooks/useLocation';
 // screens
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from '../LoadingScreen';
 
 
 const schema = yup.object().shape({

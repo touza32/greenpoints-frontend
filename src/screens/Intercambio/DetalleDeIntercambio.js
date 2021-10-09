@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Text, View, Image, TouchableOpacity, FlatList, Alert } from "react-native";
-import styleContainer from "../styles/Container";
-import styleButton from "../styles/Button"
-import styleText from "../styles/Text";
-import greenPointsApi from '../api/greenPointsApi';
-import { AuthContext } from '../context/AuthContext';
-import ModalIntercambio from "../components/ModalIntercambio";
+import styleContainer from "../../styles/Container";
+import styleButton from "../../styles/Button"
+import styleText from "../../styles/Text";
+import greenPointsApi from '../../api/greenPointsApi';
+import { AuthContext } from '../../context/AuthContext';
+import ModalIntercambio from "../../components/ModalIntercambio";
 import { Divider } from 'react-native-elements';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 export default function ({ route, navigation }) {
     const [UnIntercambio, setIntercambio] = useState(null);
@@ -39,7 +39,7 @@ return (
 
         <View>
             <Image
-                source={require('../assets/icon.png')}
+                source={require('../../assets/icon.png')}
                 style={{
                     width: 184,
                     height: 184,
@@ -53,7 +53,7 @@ return (
                     keyExtractor={item =>item.tipoReciclableName}
                     renderItem={({ item }) => (
                         <View style={{marginBottom:5, flexDirection: "row"}}>
-                            <Image source={require('../assets/CheckOrange.png')}
+                            <Image source={require('../../assets/CheckOrange.png')}
                                    style={{
                                     width: 25,
                                     height: 31,

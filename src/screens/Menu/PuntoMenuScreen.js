@@ -5,13 +5,13 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import { Ionicons } from '@expo/vector-icons';
 
 // styles
-import styleContainer from '../styles/Container';
-import styleText from '../styles/Text';
-import { AuthContext } from '../context/AuthContext';
+import styleContainer from '../../styles/Container';
+import styleText from '../../styles/Text';
+import { AuthContext } from '../../context/AuthContext';
 
 
 
@@ -27,7 +27,7 @@ export default function PuntMenuScreen({ navigation }) {
 
             <View style={[styleContainer.main, { flex: 1 }]}>
                 <Image
-                    source={require('../assets/PuntoMenu.png')}
+                    source={require('../../assets/PuntoMenu.png')}
                     style={{
                         width: 359,
                         height: 215
@@ -44,7 +44,7 @@ export default function PuntMenuScreen({ navigation }) {
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
 
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 20 }]}>Registrar Intercambio                   </Text>
@@ -56,7 +56,7 @@ export default function PuntMenuScreen({ navigation }) {
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
 
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 20 }]}>Nuevo Lote                                     </Text>
@@ -67,7 +67,7 @@ export default function PuntMenuScreen({ navigation }) {
                     <View
                         style={[styleContainer.main, { flexDirection: "row", marginBottom: 120 }]}>
                         <Image
-                            source={require('../assets/ItemFlechaMenu.png')}
+                            source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
                         < Text style={[styleText.blackText, { marginLeft: 20 }]

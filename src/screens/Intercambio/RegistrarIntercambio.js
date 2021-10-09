@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
-import greenPointsApi from '../api/greenPointsApi';
-import styleContainer from '../styles/Container';
-import styleTextInput from '../styles/TextInput';
-import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
-import Accordion from '../components/Accordion';
-import { AuthContext } from '../context/AuthContext';
-import Header from '../components/Header';
+import greenPointsApi from '../../api/greenPointsApi';
+import styleContainer from '../../styles/Container';
+import styleTextInput from '../../styles/TextInput';
+import styleText from '../../styles/Text';
+import styleButton from '../../styles/Button';
+import Accordion from '../../components/Accordion';
+import { AuthContext } from '../../context/AuthContext';
+import Header from '../../components/Header';
 import { Input } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 
