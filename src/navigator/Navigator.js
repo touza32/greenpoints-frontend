@@ -19,7 +19,6 @@ import RegistrarIntercambio from '../screens/RegistrarIntercambio';
 import MisIntercambios from '../screens/MisIntercambios';
 import DetalleDeIntercambio from '../screens/DetalleDeIntercambio';
 import CrearLote from '../screens/CrearLote';
-
 import MenuHamburguesaSocio from '../screens/MenuHamburguesaSocio';
 import MenuHamburguesaPunto from '../screens/MenuHamburguesaPunto';
 
@@ -48,8 +47,6 @@ export const Navigator = () => {
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR MATERIALES", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
-              
-              
             </>
           )
           : (rol === 3)
@@ -75,6 +72,7 @@ export const Navigator = () => {
                   <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ headerShown: false}} />
                   <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} options={{headerShown: false}}/>
                   <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ headerShown: false }} />
+                  <Stack.Screen name="MapaPuntosReciclaje" component={MapaPuntosReciclaje} options={{ title: "PUNTOS DE RECICLAJE" }, { headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
