@@ -5,16 +5,9 @@ import greenPointsApi from '../api/greenPointsApi';
 
 
 export default function ModalIntercambio (props) {
-    /*const {IdModal} = props; 
-    console.log('IdModal: ',IdModal);
-    /*const modalVisible = true;*/
-    //JT: no va -> const [modalVisible, setModalVisible] = useState(true);
     const { visible, hideModal } = props
     const [UnIntercambio,setIntercambio] = useState(null);
-    console.log('props:',props.data);
     const [Detalle,setDetalle] = useState(null);
-    console.log(UnIntercambio);
-    console.log(Detalle);
 
     useEffect(() => {
       async function fetchData(){

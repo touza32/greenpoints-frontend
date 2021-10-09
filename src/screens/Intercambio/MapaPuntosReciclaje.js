@@ -41,7 +41,6 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
     const filterTipo = async (tipoId) => {
         const puntosData = await greenPointsApi.get('/usuario/punto-reciclaje?tipoId=' + tipoId );
         setPuntos(puntosData.data);
-        console.log(tipoId);
     }
 
     return (

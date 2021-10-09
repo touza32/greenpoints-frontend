@@ -32,8 +32,7 @@ export default function ConfirmarDireccion({ route, navigation }) {
         setCurrentMarket({
             latitude: coords.latitude,
             longitude: coords.longitude
-        })
-        console.log(currentMarket);
+        });
     }
     const onSubmit = () => {
         const data = {

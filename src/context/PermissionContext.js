@@ -19,7 +19,6 @@ export const PermissionProvider = ({ children }) => {
         AppState.addEventListener('change', state => {
             if ( state !== 'active') 
                 return;
-            console.log('revisando permisos...');
             checkLocationPermission();
         });
     }, [])

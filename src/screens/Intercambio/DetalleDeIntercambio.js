@@ -10,13 +10,11 @@ import { Divider } from 'react-native-elements';
 import Header from '../../components/Header';
 
 export default function ({ route, navigation }) {
+
     const [UnIntercambio, setIntercambio] = useState(null);
-    /*console.log(UnIntercambio);*/
     const [Detalle, setDetalle] = useState(null);
-    /*console.log(Detalle);*/
     const [ModalId,setModalId] = useState(null);
     const {id} = route.params
-    console.log(id)
     const [modalVisible, setModalVisible] = useState(false);
 
 

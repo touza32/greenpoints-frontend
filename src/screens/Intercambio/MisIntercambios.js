@@ -10,14 +10,10 @@ import ModalIntercambio from "../../components/ModalIntercambio";
 import Header from '../../components/Header';
 
 export default function MisIntercambios({ props, navigation }) {
+
     const { id } = useContext(AuthContext);
-    console.log(id);
     const [newIntercambios, setnewIntercambios] = useState(null);
-    console.log(newIntercambios);
     const [modalVisible, setModalVisible] = useState(false);
-    /*const text = navigation.getParams('text','nothing sent');*/
-    /*const {modalVisible} = true;*/
-    console.log(modalVisible);
     const [UnIntercambio,setIntercambio] = useState(null);
     
    

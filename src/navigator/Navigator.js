@@ -26,6 +26,8 @@ import MisIntercambios from '../screens/Intercambio/MisIntercambios';
 import DetalleDeIntercambio from '../screens/Intercambio/DetalleDeIntercambio';
 import MapaPuntosReciclaje from '../screens/Intercambio/MapaPuntosReciclaje';
 
+import CatalogoPremios from '../screens/Premios/CatalogoPremios'
+
 import CrearLote from '../screens/CrearLote';
 
 import styleText from '../styles/Text';
@@ -79,6 +81,7 @@ export const Navigator = () => {
                   <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} options={{headerShown: false}}/>
                   <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ headerShown: false }} />
                   <Stack.Screen name="MapaPuntosReciclaje" component={MapaPuntosReciclaje} options={{ title: "PUNTOS DE RECICLAJE" }, { headerShown: false }} />
+                  <Stack.Screen name="CatalogoPremios" component={CatalogoPremios} options={{ title: "PREMIOS" }, { headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />

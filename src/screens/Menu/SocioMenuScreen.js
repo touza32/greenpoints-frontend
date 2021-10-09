@@ -45,7 +45,7 @@ export default function SocioMenuScreen({ navigation }) {
                 style={[styleContainer.main, { flex: 8 }]} >
 
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => { navigation.navigate('CatalogoPremios') }} >
                     <View
                         style={[styleContainer.main, { marginBottom: 30, flexDirection: "row" }]}>
                         <Image
