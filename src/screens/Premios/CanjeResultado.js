@@ -19,7 +19,7 @@ export default function CanjeResultado({ navigation }) {
                 <Text style={[styles.Text.titleList, { fontWeight: 'normal', marginHorizontal: 50, marginBottom: 50 }]}>Canjealo en cualquiera de los locales adheridos</Text>
                 <TouchableOpacity
                     style={styles.Button.base}
-                    onPress={() => navigation.navigate('DetalleDePremio')}
+                    onPress={() => navigation.navigate('CatalogoPremios')}
                 >
                     <Text style={styles.Text.button}>VOLVER</Text>
                 </TouchableOpacity>

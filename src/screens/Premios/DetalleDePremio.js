@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Header from '../../components/Header';
 import * as styles from '../../styles';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthContext } from '../../context/AuthContext';
 
 const data = {
     detalle: 'Aqui va a ir el texto con el detalle del premio. Por ejemplo: una rica hamburguesa con queso',
@@ -16,16 +15,20 @@ const data = {
     vigencia: '31/12/2021'
 }
 
-//traer de contexto los puntos disponibles del socio
-//const { puntos } = useContext(AuthContext);
-//const suficientes = puntos >= data.puntos;
-const suficientes = false;
+
 
 export default function DetalleDePremio({ route, navigation }) {
 
     //llamada a la API para consultar premio por id y traer la data (detalle, direcciones, puntos, vigencia)
-    //useEffect(()=>console.log(route.params),[])
-
+    
+    const [suficiente, setSuficiente] = useState(false)
+    const {premio, puntos} = route.params
+    
+    useEffect(()=>{
+        setSuficiente(puntos >= data.puntos)
+    }
+        ,[])
+    
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
             <Header navigation={navigation} title='PREMIO' />
@@ -56,7 +59,7 @@ export default function DetalleDePremio({ route, navigation }) {
                 </View>
             </View>
             <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                {suficientes
+                {suficiente
                     ? <TouchableOpacity
                         style={styles.Button.base}
                         onPress={() => navigation.navigate('CanjeResultado')}

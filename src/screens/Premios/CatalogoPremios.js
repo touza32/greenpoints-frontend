@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { Divider, Input } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 //styles
 import styleContainer from "../../styles/Container";
 import styleText from "../../styles/Text";
 import styleTextInput from '../../styles/TextInput';
 //api
 import greenPointsApi from '../../api/greenPointsApi';
+//context
+import { AuthContext } from '../../context/AuthContext';
 // components
 import Header from '../../components/Header';
 
-import { Ionicons } from '@expo/vector-icons';
-
-export default function CatalogoPremios({ props, navigation }) {
+export default function CatalogoPremios({ navigation }) {
 
     const [premios, setPremios] = useState([]);
     const [filtro, setFiltro] = useState({ id: 0, type: 'description' });
     const [query, setQuery] = useState('');
     const [resultado, setResultado] = useState([]);
+    const [puntos, setPuntos] = useState(0);
 
-    const puntos = 50;
+    const { id } = useContext(AuthContext);
 
     useEffect(() => {
         (async () => {
@@ -27,6 +29,11 @@ export default function CatalogoPremios({ props, navigation }) {
             const premios = await premiosData.data;
             setPremios(premios);
             setResultado(premios);
+        })();
+        (async () => {
+            const puntosData = await greenPointsApi.get('/usuario/socio-reciclador/puntos?socioId='+id);
+            const puntos = await puntosData.data;
+            setPuntos(puntos)
         })();
 
     }, []);
@@ -92,7 +99,7 @@ export default function CatalogoPremios({ props, navigation }) {
                     data={resultado}
                     keyExtractor={(premio) => premio.id.toString()}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => { navigation.navigate('DetalleDePremio', item.id) }}>
+                        <TouchableOpacity onPress={() => { navigation.navigate('DetalleDePremio', { premio: item.id, puntos: puntos })}}>
                             <View style={styles.premio}>
                                 <View style={{ flexDirection: "row" }}>
                                     <Image source={require('../../assets/PremioCine.png')}
