@@ -65,7 +65,7 @@ export default function SocioMenuScreen({ navigation }) {
                             source={require('../../assets/ItemRedMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 30 }]}>Puntos de Reciclale                 </Text>
+                        < Text style={[styleText.blackText, { marginLeft: 30 }]}>Puntos de Reciclaje                 </Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity

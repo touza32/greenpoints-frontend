@@ -91,8 +91,8 @@ export default function RegistrarIntercambio({ route, navigation }) {
         if (!loading) {
             setPuntos(intercambio.
                 reduce((acc, item) =>
-                    item.tipoId !== 0 ? acc + item.peso * tipoValor.
-                        find(i => i.id === item.tipoId).points : null, 0))
+                    item.tipoId !== 0 ? acc + Math.round(item.peso * tipoValor.
+                        find(i => i.id === item.tipoId).points) : null, 0))
         }
     }, [intercambio])
 
@@ -181,7 +181,7 @@ export default function RegistrarIntercambio({ route, navigation }) {
                                             newArr[index] = { ...newArr[index], tipoId: value.id }
                                             setIntercambio(newArr)
                                         }}
-                                        />
+                                    />
                                 </View>
                                 <View>
                                     <Text style={[styleTextInput.title, { marginBottom: 20 }]}>Peso (Kg)</Text>
@@ -193,12 +193,12 @@ export default function RegistrarIntercambio({ route, navigation }) {
                                             value={intercambio[index].peso.toString()}
                                             onChangeText={
                                                 value => {
-                                                    value = value.replace(/[^\d.]/, '')
+                                                    value = value.replace(/[^\d\.]/, '')
                                                     const newArr = [...intercambio]
                                                     newArr[index] = {
                                                         ...newArr[index],
-                                                        peso: value!=="" ? parseInt(value): "",
-                                                        puntos: parseInt(value*1) * tipoValor.find(i => i.id === item.tipoId).points
+                                                        peso: value !== "" ? value.match(/\.$/) ? value : value : "",
+                                                        puntos: value !== "" ? value.match(/\.$/) ? value : Math.round(value * tipoValor.find(i => i.id === item.tipoId).points) : ""
                                                     }
                                                     setIntercambio(newArr)
                                                 }

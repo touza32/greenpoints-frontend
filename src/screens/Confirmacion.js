@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import styleContainer from '../styles/Container';
-import styleText from '../styles/Text';
-import { View, Image, Text } from 'react-native';
+import * as styles from '../styles';
+import { View, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 //NOTA:
 //Se modifica para que sea un componente reutilizable
@@ -22,24 +22,11 @@ export default function Confirma_registro({ route, navigation }) {
   const { nextScreen, message } = route.params
 
   return (
-
-    <View style={[styleContainer.main, { flex: 4, marginBottom: 10 }]}>
-          
-      <View style={[styleContainer.main]}>
-        
-     
-        <Image
-          source={require('../assets/tilde.png')}
-          style={{
-            width: 170,
-            height: 170
-          }}>
-        </Image>
-        <Text style={[styleText.blackText,{marginTop:20}]}>{message}</Text>
-
+    <View style={{ alignItems: 'center', flex: 1 }}>
+      <View style={[styles.Container.main, { flex: 1, marginBottom: 50 }]}>
+        <Ionicons name='checkmark-circle-outline' size={175} color="#69A03A" style={{ marginLeft: 15 }} />
+        <Text style={[styles.Text.titleList, { fontSize: 25, fontWeight: 'normal' }]}>{message}</Text>
       </View>
-
     </View>
-
   );
 }
