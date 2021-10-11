@@ -65,7 +65,7 @@ export default function MisIntercambios({ props, navigation }) {
                     ItemSeparatorComponent={() => { return <Divider color= '#B2B2B2'/> }}
                     ListEmptyComponent={()=>
                     <View style={[styleContainer.main, { alignItems: 'center'}]}> 
-                        <Text style={[{color:'#B2B2B2',alignSelf:'center'}]}>No tenes intercambios aún</Text>   
+                        <Text style={[{color:'#B2B2B2',alignSelf:'center'}]}>No tienes intercambios aún</Text>   
                     </View>
                     }
                 />

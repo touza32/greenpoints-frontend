@@ -87,7 +87,7 @@ export default function LoginScreen({ navigation }) {
                         onPress={() => navigation.navigate('SeleccionRol')}
                     >
                         <Text style={styleText.blueTextUnderlined
-                        }>Registrate</Text>
+                        }>Regístrate</Text>
                     </TouchableOpacity>
                 </View>
 

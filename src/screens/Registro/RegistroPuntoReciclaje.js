@@ -106,7 +106,9 @@ const schema = yup.object().shape({
   password: yup.
     string().
     required('Requerido').
-    matches(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,32}$/, 'La contraseña debe ser mayor o igual a 8 caracteres y debe contener al menos 1 mayúscula, 1 minúscula y 1 número'),
+    matches(/^.{8,32}$/, 'Contraseña muy débil: debe ser mayor o igual a 8 caracteres').
+    matches(/^(?=.*[a-zñáéíóú])(?=.*[A-ZÑÁÉÍÓÚ])[a-zA-ZñáéíóúÑÁÉÍÓÚ\d]{8,32}$/, 'Contraseña débil: debe tener al menos una minúscula y una mayúscula').
+    matches(/^(?=.*[a-zñáéíóú])(?=.*[A-ZÑÁÉÍÓÚ])(?=.*\d)[a-zA-ZñáéíóúÑÁÉÍÓÚ\d]{8,}$/, 'Contraseña moderada: debe tener al menos un número'),
   passwordConfirmation: yup.
     string().
     oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').
@@ -128,8 +130,9 @@ export default function RegistroPuntoReciclaje({ navigation }) {
 
   return (
     <KeyboardAwareScrollView
-      contentContainerStyle={[styleContainer.main, { padding: 20 }]}
+      contentContainerStyle={[styleContainer.main, { padding: 20, paddingTop: 5 }]}
     >
+      <Text style={{marginVertical: 10, textDecorationLine: 'underline'}}>Todos los campos son requeridos</Text>
       <InputForm
         control={control}
         errors={errors}

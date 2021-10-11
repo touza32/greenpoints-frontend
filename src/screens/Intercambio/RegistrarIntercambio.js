@@ -70,7 +70,7 @@ export default function RegistrarIntercambio({ route, navigation }) {
                 tipoReciclaje: intercambio
             })
             console.log({ puntoId: id, socioId: socio.socioId, tipoReciclaje: intercambio })
-            navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Su registro ha sido exitoso' })
+            navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Tu registro ha sido exitoso' })
         } catch (e) {
             console.error(e)
         }

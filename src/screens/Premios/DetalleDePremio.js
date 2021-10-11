@@ -41,7 +41,7 @@ export default function DetalleDePremio({ route, navigation }) {
                     <Text>{data.detalle}</Text>
                 </View>
                 <View style={{ maxHeight: '50%', alignItems: 'flex-start' }}>
-                    <Text style={styles.Text.titleList}>¿Dónde lo uso?</Text>
+                    <Text style={styles.Text.titleList}>¿En dónde lo uso?</Text>
                     <FlatList
                         data={data.direcciones}
                         keyExtractor={(item, index) => index.toString()}
@@ -73,7 +73,7 @@ export default function DetalleDePremio({ route, navigation }) {
                         >
                             <Text style={styles.Text.button}>CANJEAR</Text>
                         </TouchableOpacity>
-                        <Text style={{textAlign:'center'}}>No contás con suficientes puntos</Text>
+                        <Text style={{textAlign:'center'}}>No cuentas con suficientes puntos</Text>
                     </>
                 }
             </View>

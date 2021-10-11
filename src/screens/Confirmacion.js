@@ -25,7 +25,7 @@ export default function Confirma_registro({ route, navigation }) {
     <View style={{ alignItems: 'center', flex: 1 }}>
       <View style={[styles.Container.main, { flex: 1, marginBottom: 50 }]}>
         <Ionicons name='checkmark-circle-outline' size={175} color="#69A03A" style={{ marginLeft: 15 }} />
-        <Text style={[styles.Text.titleList, { fontSize: 25, fontWeight: 'normal' }]}>{message}</Text>
+        <Text style={[styles.Text.titleList, { fontSize: 20, fontWeight: 'normal' }]}>{message}</Text>
       </View>
     </View>
   );

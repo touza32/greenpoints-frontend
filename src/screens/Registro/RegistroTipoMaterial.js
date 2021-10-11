@@ -10,7 +10,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 export default function RegistroTipoMaterial({ route, navigation }) {
 
-    const errmsg = "Debe seleccionar al menos un tipo de material";
+    const errmsg = "Debes seleccionar al menos un tipo de material";
     const [alos, setAlos] = useState(false);
     const { token } = useContext(AuthContext);
     const [data, setData] = useState([]);
@@ -38,7 +38,7 @@ export default function RegistroTipoMaterial({ route, navigation }) {
                 password: route.params.password,
                 materials: materials
             })
-            navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
+            navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Tu registro ha sido exitoso' })
         } catch (e) {
             console.error(e)
         }

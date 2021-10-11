@@ -60,7 +60,7 @@ export default function MenuHamburguesaPunto({navigation}) {
                               <View
                                   style={[{flexDirection: "row"}]}>
                                   <FAIcon name='question-circle' size={45} style={{ color: "#FFFF" }} />  
-                                  < Text style={[styleText.buttonH,{marginLeft: 30 }]}>Contactanos</Text>
+                                  < Text style={[styleText.buttonH,{marginLeft: 30 }]}>Contáctanos</Text>
                               </View>
                   </TouchableOpacity>
                   </View>
