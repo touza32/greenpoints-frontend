@@ -80,7 +80,7 @@ export default function SocioMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => {navigation.navigate('MisPremios')}} >
                     <View
                         style={[styleContainer.main, { marginBottom: 20, flexDirection: "row" }]}>
                         <Image

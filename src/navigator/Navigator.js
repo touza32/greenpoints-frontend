@@ -29,6 +29,8 @@ import MapaPuntosReciclaje from '../screens/Intercambio/MapaPuntosReciclaje';
 import CatalogoPremios from '../screens/Premios/CatalogoPremios'
 import DetalleDePremio from '../screens/Premios/DetalleDePremio';
 import CanjeResultado from '../screens/Premios/CanjeResultado';
+import MisPremios from '../screens/Premios/MisPremios';
+import DetalleDeMiPremio from '../screens/Premios/DetalleDeMiPremio';
 
 import CrearLote from '../screens/CrearLote';
 
@@ -86,6 +88,8 @@ export const Navigator = () => {
                   <Stack.Screen name="CatalogoPremios" component={CatalogoPremios} options={{ title: "PREMIOS" }, { headerShown: false }} />
                   <Stack.Screen name="DetalleDePremio" component={DetalleDePremio} options={{ headerShown: false }} />
                   <Stack.Screen name="CanjeResultado" component={CanjeResultado} options={{ headerShown: false }} />
+                  <Stack.Screen name="MisPremios" component={MisPremios} options={{ headerShown: false }} />
+                  <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
