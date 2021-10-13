@@ -99,15 +99,15 @@ export default function CatalogoPremios({ navigation }) {
                     data={resultado}
                     keyExtractor={(premio) => premio.id.toString()}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => { navigation.navigate('DetalleDePremio', { premio: item.id, puntos: puntos })}}>
+                        <TouchableOpacity onPress={() => { navigation.navigate('DetalleDePremio', { premioId: item.id, puntos: puntos })}}>
                             <View style={styles.premio}>
                                 <View style={{ flexDirection: "row" }}>
-                                    <Image source={require('../../assets/PremioCine.png')}
+                                    <Image source={{ uri: item.imagen }}
                                         style={styles.image}>
                                     </Image>
                                     <View style={styles.premioDetail}>
-                                        <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.description}</Text>
-                                        <Text style={styles.sponsor}>{item.sponsorName}</Text>
+                                        <Text style={[styleText.titleList, { textAlign: 'left' }]}>{ item.nombre }</Text>
+                                        <Text style={styles.sponsor}>{ item.sponsorName }</Text>
                                     </View>
                                 </View>
                                 <View style={styles.points}>

@@ -3,7 +3,9 @@ import * as styles from '../../styles';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function CanjeResultado({ navigation }) {
+export default function CanjeResultado({ route, navigation }) {
+
+    const { codigo } = route.params;
 
     return (
         <View style={{ alignItems: 'center', flex: 1 }}>
@@ -14,7 +16,7 @@ export default function CanjeResultado({ navigation }) {
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                 <Text style={[styles.Text.titleList, { fontSize: 25, marginBottom: 10 }]}>Tu código:</Text>
                 <View style={{ borderColor: 'black', borderWidth: 1, marginBottom: 10 }}>
-                    <Text style={[styles.Text.subtitle25, { marginHorizontal: 30, marginTop: 10, marginBottom: 10 }]}>ABC123456</Text>
+                    <Text style={[styles.Text.subtitle25, { marginHorizontal: 30, marginTop: 10, marginBottom: 10 }]}>{ codigo }</Text>
                 </View>
                 <Text style={[styles.Text.titleList, { fontWeight: 'normal', marginHorizontal: 50, marginBottom: 50 }]}>Canjealo en cualquiera de los locales adheridos</Text>
                 <TouchableOpacity

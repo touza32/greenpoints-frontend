@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import Header from '../../components/Header';
+import React, { useEffect, useState, useContext } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList } from 'react-native';
+
+//styles
 import * as styles from '../../styles';
-import { Ionicons } from '@expo/vector-icons';
+//3er party libraries
+import Moment from 'moment';
+//api
+import greenPointsApi from '../../api/greenPointsApi';
+//context
+import { AuthContext } from '../../context/AuthContext';
+
+import Header from '../../components/Header';
 
 const data = {
     detalle: 'Aqui va a ir el texto con el detalle del premio. Por ejemplo: una rica hamburguesa con queso',
@@ -22,23 +30,46 @@ export default function DetalleDePremio({ route, navigation }) {
     //llamada a la API para consultar premio por id y traer la data (detalle, direcciones, puntos, vigencia)
     
     const [suficiente, setSuficiente] = useState(false)
-    const {premio, puntos} = route.params
+    const [premio, setPremio] = useState({})
+    const { premioId, puntos } = route.params
+    const { id } = useContext(AuthContext);
     
     useEffect(()=>{
+        (async () => {
+            const premioData = await greenPointsApi.get(`/premio/${ premioId }`);
+            setPremio(premioData.data)
+        })();
+
         setSuficiente(puntos >= data.puntos)
-    }
-        ,[])
+    },[]);
+
+    const canjearPremio = async () => {
+        try {
+            const codigo = await greenPointsApi.post('/premio/exchange', {
+                premioId: premio.id,
+                socioId: id
+            });
+
+            if(codigo && codigo.data) {
+                navigation.navigate('CanjeResultado', { codigo: codigo.data });
+            };
+            
+        } catch (e) {
+            console.error(e)
+        }
+    };
     
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
             <Header navigation={navigation} title='PREMIO' />
             <View style={{ flex: 0.35, justifyContent: 'center' }}>
-                <Ionicons name='image' size={200} />
+                <Image source={{ uri: premio.imagen }} style={ ownStyle.image }>
+                </Image>
             </View>
             <View style={{ flex: 0.45, justifyContent: 'space-around', width: '80%' }}>
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>Detalle</Text>
-                    <Text>{data.detalle}</Text>
+                    <Text>{ premio.description }</Text>
                 </View>
                 <View style={{ maxHeight: '50%', alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>¿En dónde lo uso?</Text>
@@ -55,16 +86,16 @@ export default function DetalleDePremio({ route, navigation }) {
                 </View>
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>Vigente hasta</Text>
-                    <Text>{data.vigencia}</Text>
+                    <Text>{ Moment(premio.desde).format('DD/MM/yyyy') }</Text>
                 </View>
             </View>
             <View style={{ flex: 0.2, justifyContent: 'center' }}>
                 {suficiente
                     ? <TouchableOpacity
                         style={styles.Button.base}
-                        onPress={() => navigation.navigate('CanjeResultado')}
+                        onPress={() =>  canjearPremio()}
                     >
-                        <Text style={styles.Text.button}>CANJEAR</Text>
+                        <Text style={ styles.Text.button }>CANJEAR</Text>
                     </TouchableOpacity>
                     : <>
                         <TouchableOpacity
@@ -80,3 +111,11 @@ export default function DetalleDePremio({ route, navigation }) {
         </View>
     )
 }
+
+
+const ownStyle = StyleSheet.create({
+    image: {
+        width: 260,
+        height: 180
+    }
+})
