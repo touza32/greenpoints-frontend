@@ -90,6 +90,14 @@ const styles = StyleSheet.create({
 
     },
 
+    blackTextleft: {
+        color: 'black',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'left',
+
+    },
+
     header: {
         color: "#69A03A",
         fontWeight: 'bold',

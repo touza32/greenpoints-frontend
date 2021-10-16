@@ -89,6 +89,8 @@ export default function LoginScreen({ navigation }) {
                         <Text style={styleText.blueTextUnderlined
                         }>Regístrate</Text>
                     </TouchableOpacity>
+
+                   
                 </View>
 
             </KeyboardAwareScrollView>
