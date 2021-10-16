@@ -20,8 +20,8 @@ const schema = yup.object().shape({
         string().
         required('Requerido').
         matches(/^.{8,32}$/, 'Contraseña muy débil: debe ser mayor o igual a 8 caracteres').
-        matches(/^(?=.*[a-zñáéíóú])(?=.*[A-ZÑÁÉÍÓÚ])[a-zA-ZñáéíóúÑÁÉÍÓÚ\d]{8,32}$/, 'Contraseña débil: debe tener al menos una minúscula y una mayúscula').
-        matches(/^(?=.*[a-zñáéíóú])(?=.*[A-ZÑÁÉÍÓÚ])(?=.*\d)[a-zA-ZñáéíóúÑÁÉÍÓÚ\d]{8,}$/, 'Contraseña moderada: debe tener al menos un número'),
+        matches(/^(?=.*[a-zñáéíóú])(?=.*[A-ZÑÁÉÍÓÚ]).{8,32}$/, 'Contraseña débil: debe tener al menos una minúscula y una mayúscula').
+        matches(/^(?=.*[a-zñáéíóú])(?=.*[A-ZÑÁÉÍÓÚ])(?=.*\d).{8,}$/, 'Contraseña moderada: debe tener al menos un número'),
     passwordConfirmation: yup.
         string().
         oneOf([yup.ref('password'), null], 'La contraseña debe coincidir').

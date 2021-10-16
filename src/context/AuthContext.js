@@ -41,13 +41,15 @@ export const AuthProvider = ({ children }) => {
             dispatch({
                 type: 'signUp',
                 payload: {
+                    nombre: data.nombre,
                     token: data.token,
                     user: data.user,
                     rol: data.rol,
                     id: data.id
                 } 
             });
-
+            
+            await AsyncStorage.setItem('nombre', data.nombre);
             await AsyncStorage.setItem('token', data.token);
             await AsyncStorage.setItem('user', data.user);
             await AsyncStorage.setItem('rol', JSON.stringify(data.rol));
@@ -63,6 +65,7 @@ export const AuthProvider = ({ children }) => {
     const signUp = () => {};
 
     const logOut = async () => {
+        await AsyncStorage.removeItem('nombre');
         await AsyncStorage.removeItem('token');
         await AsyncStorage.removeItem('user');
         await AsyncStorage.removeItem('rol');

@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     View,
     Image,
     Text,
-    TouchableOpacity, TouchableHighlight
+    TouchableOpacity
 } from 'react-native';
 import CarouselMenu from "../../components/CarouselMenu";
 import Header from '../../components/Header';
 import { Ionicons } from '@expo/vector-icons';
+import { AuthContext } from '../../context/AuthContext';
+import greenPointsApi from '../../api/greenPointsApi';
 
 // styles
 import styleContainer from '../../styles/Container';
 import styleText from '../../styles/Text';
 
 export default function SocioMenuScreen({ navigation }) {
+
+    const { id } = useContext(AuthContext);
+
+    const [puntos, setPuntos] = useState(0);
 
     const Newdata = [
         {
@@ -27,6 +33,16 @@ export default function SocioMenuScreen({ navigation }) {
         }
     ];
 
+    useEffect(() => {
+        navigation.addListener('focus', () => {
+            (async () => {
+                const puntosData = await greenPointsApi.get('/usuario/socio-reciclador/puntos?socioId=' + id);
+                const puntos = await puntosData.data;
+                setPuntos(puntos)
+            })();
+        })
+    }, [navigation]);
+
     return (
 
         <View style={[styleContainer.main, { flex: 1 }]}>
@@ -36,7 +52,12 @@ export default function SocioMenuScreen({ navigation }) {
                     <Ionicons name="menu" size={40} color="white" />
                 </TouchableOpacity>
             } />
-
+            <View style={{ marginTop: 20, backgroundColor: '#CC7D00', borderRadius: 30, alignItems: 'center', flexDirection: 'row', justifyContent: 'space-evenly', height: 40, width: '60%' }}>
+                <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>MIS PUNTOS</Text>
+                <View style={{ backgroundColor: 'white', height: 25, paddingHorizontal: 10, justifyContent: 'center' }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#CC7D00' }}>{puntos}</Text>
+                </View>
+            </View>
             <View style={[styleContainer.main, { flex: 5, marginTop: 20 }]}>
                 <CarouselMenu data={Newdata} />
             </View>
@@ -80,7 +101,7 @@ export default function SocioMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => {navigation.navigate('MisPremios')}} >
+                    onPress={() => { navigation.navigate('MisPremios') }} >
                     <View
                         style={[styleContainer.main, { marginBottom: 20, flexDirection: "row" }]}>
                         <Image
@@ -103,7 +124,7 @@ export default function SocioMenuScreen({ navigation }) {
                 </TouchableOpacity>
 
             </View>
-                     
+
         </View>
 
 
