@@ -34,6 +34,7 @@ import DetalleDeMiPremio from '../screens/Premios/DetalleDeMiPremio';
 
 import CrearLote from '../screens/CrearLote';
 import ActualizacionLote from '../screens/ActualizacionLote';
+import DetalleLote from '../screens/DetalleLote';
 
 import styleText from '../styles/Text';
 
@@ -77,6 +78,7 @@ export const Navigator = () => {
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
                   <Stack.Screen name="CrearLote" component={CrearLote} options={{ headerShown: false }} />
                   <Stack.Screen name="ActualizacionLote" component={ActualizacionLote} options={{ headerShown: false }} />
+                  <Stack.Screen name="DetalleLote" component={DetalleLote} options={{ headerShown: false }} />
                 </>
               )
               : (rol === 1)

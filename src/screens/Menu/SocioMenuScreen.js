@@ -123,6 +123,8 @@ export default function SocioMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
 
+                
+
             </View>
 
         </View>

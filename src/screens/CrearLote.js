@@ -34,7 +34,7 @@ export default function CrearLote({ navigation }) {
                        <View style={[styles.box, styles.box1],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                              
                               <TouchableOpacity
-                                    onPress={() => { }} >
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   }>
                                     <View
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
@@ -56,7 +56,7 @@ export default function CrearLote({ navigation }) {
      
                        <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <TouchableOpacity
-                                    onPress={() => { }} >
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   }>
                                     <View
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
@@ -75,7 +75,7 @@ export default function CrearLote({ navigation }) {
      
                        <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <TouchableOpacity
-                                    onPress={() => { }} >
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   } >
                                     <View
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
@@ -94,7 +94,7 @@ export default function CrearLote({ navigation }) {
      
                        <View style={[styles.box, styles.box4],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <TouchableOpacity
-                                    onPress={() => { }} >
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   } >
                                     <View
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
@@ -111,14 +111,8 @@ export default function CrearLote({ navigation }) {
                         <Divider orientation="horizontal" width={2} />
                        </View>
                                           
-                       <View style={[styles.box, styles.box5],{ marginTop: 25, marginBottom: 20, marginLeft: 8,  alignItems: 'center'}}>
-                       <TouchableOpacity
-                              style={styleButton.base}
-                              onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   }
-                        >
-                              <Text style={styleText.whiteText}>Crear</Text>
-                        </TouchableOpacity> 
-                        </View>
+                       <View style={[styles.box, styles.box5]}></View>
+                       
 
                         
                        

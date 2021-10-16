@@ -74,7 +74,7 @@ export default function PuntMenuScreen({ navigation }) {
                         }>Mis Lotes                                        </Text>
                     </View>
                 </TouchableOpacity>
-
+                              
             </View>
 
 
