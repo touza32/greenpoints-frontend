@@ -16,7 +16,7 @@ import Header from '../../components/Header';
 export default function CatalogoPremios({ navigation }) {
 
     const [premios, setPremios] = useState([]);
-    const [filtro, setFiltro] = useState({ id: 0, type: 'description' });
+    const [filtro, setFiltro] = useState({ id: 0, type: 'nombre' });
     const [query, setQuery] = useState('');
     const [resultado, setResultado] = useState([]);
     const [puntos, setPuntos] = useState(0);
@@ -45,7 +45,7 @@ export default function CatalogoPremios({ navigation }) {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 15 }}>
                     <TouchableOpacity
                         onPress={() => {
-                            setFiltro({ id: 0, type: 'description' })
+                            setFiltro({ id: 0, type: 'nombre' })
                             setResultado(premios)
                             setQuery('')
                         }}

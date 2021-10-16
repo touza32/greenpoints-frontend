@@ -8,7 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 
 export default function HeaderComponent({ navigation, title, leftComponent }) {
 
-    const { rol } = useContext(AuthContext);
+    const { nombre } = useContext(AuthContext);
 
     return (
         <>
@@ -31,9 +31,9 @@ export default function HeaderComponent({ navigation, title, leftComponent }) {
                     source={logo}
                     style={{ width: 40, height: 40, borderRadius: 20 }}
                 />
-                {rol === 1 ? (<Text style={styleText.button}>
-                    
-                </Text>) : null}
+                <Text style={styleText.button}>
+                    { nombre }
+                </Text>
             </Header>
         </>
     )

@@ -23,6 +23,7 @@ export const authReducer = (state, action) => {
                 token: action.payload.token,
                 rol: action.payload.rol,
                 id: action.payload.id,
+                nombre: action.payload.nombre,
                 errorMessage: ''
             }
         case 'logout':
