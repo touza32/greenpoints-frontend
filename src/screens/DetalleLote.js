@@ -12,13 +12,13 @@ var box_count = 8;
 var box_height = height / box_count;
 
 
-export default function ActualizacionLote({ route, navigation }) {
+export default function DetalleLote({ navigation }) {
     
       return (
            
             <View style={[styleContainer.main], { flex: 1, backgroundColor: "#FFFF",  alignItems: 'center' }}>
      
-            <Header navigation={navigation} title="ACTUALIZAR LOTE" />   
+            <Header navigation={navigation} title="DETALLE" />   
 
                  <View style={[styles.container ,{ marginTop: 30}]}>
      
@@ -32,14 +32,22 @@ export default function ActualizacionLote({ route, navigation }) {
                        </View>
      
                        <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <Text style={styleText.blackTextleft}>Fecha de creación</Text>  
+                       <Text style={styleText.blackTextleft}>Fecha  de creación</Text>  
+                       <TextInput
+                        style={[styleTextInput.large, { marginBottom: 10 }]}
+                        placeholder='01/06/2021'
+                        />    
+                       </View>
+
+                       <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
+                       <Text style={styleText.blackTextleft}>Fecha  de cierre</Text>  
                        <TextInput
                         style={[styleTextInput.large, { marginBottom: 10 }]}
                         placeholder='01/06/2021'
                         />    
                        </View>
      
-                       <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
+                       <View style={[styles.box, styles.box4],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <Text style={styleText.blackTextleft}>Planta Recicladora</Text>
                        <TextInput
                         style={[styleTextInput.large, { marginBottom: 10 }]}
@@ -49,16 +57,7 @@ export default function ActualizacionLote({ route, navigation }) {
      
                        <View style={[styles.box, styles.box4]}></View>
                                       
-                       <View style={[styles.box, styles.box5],{ marginTop: 25, marginBottom: 20, marginLeft: 8}}>
-                       <TouchableOpacity
-                              style={styleButton.base}
-                              onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote cerrado exitosamente' })   }
-                        >
-                              <Text style={styleText.whiteText}>Cerrar Lote</Text>
-                        </TouchableOpacity> 
-                        </View>
-
-                        <View style={[styles.box, styles.box6]}></View>                  
+                       <View style={[styles.box, styles.box5]}></View>                  
                        
                        
                  </View>
