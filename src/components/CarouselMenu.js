@@ -1,114 +1,67 @@
-import React,   {useState,useEffect, Component} from "react";
-import {StyleSheet,View,Image,Dimensions,Text} from "react-native"
-import Carousel from "react-native-snap-carousel";
+import React, { useState } from "react";
+import { StyleSheet, View, Image, Dimensions, TouchableOpacity } from "react-native"
+import Carousel, { Pagination } from "react-native-snap-carousel";
 
-const {width} = Dimensions.get('window'); 
-const ITEM_WIDTH = Math.round(width*0.7);
+const { width } = Dimensions.get('window');
+const ITEM_WIDTH = Math.round(width * 0.7);
 
-export default function CarouselMenu (props) {
-    const{data} = props;  
-/*export class CarouselMenu extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            entries: [
-                {title: "Cuentos de hadas de Andersen"},
-                {title: "Green's Fairy Tales"},
-                {title: "Mi cuento de hadas"}
+export default function CarouselMenu(props) {
+    const { data, navigation, puntos } = props;
+    const [activeSlide, setActiveSlide] = useState(0);
 
-
-
-            ]
-
-        }
-
-
-
-    }
-
-    _renderItem ({item, index}) {
-        return (
-            <View style={styles.slide}>
-                <Text style={styles.title}>{ item.title }</Text>
-            </View>
-        );
-    }   
- 
-    render () {
-        return (
+    return (
+        <View style={{ flex: 1 }}>
             <Carousel
-              data={this.state.entries}
-              renderItem={this._renderItem}
-              sliderWidth={width}
-              itemWidth={itemWidth}
+                Layout={'default'}
+                data={data}
+                renderItem={item =>
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('DetalleDePremio', { premioId: item.item.id, puntos: puntos })}
+                        >
+
+                            <Image style={Styles.Image} source={{ uri: item.item.imagen }} />
+                        </TouchableOpacity>
+                    </View>
+
+                }
+                sliderWidth={width}
+                itemWidth={ITEM_WIDTH}
+                itemHeight={150}
+                onSnapToItem={index => setActiveSlide(index)}
+                loop={true}
             />
-        );
-    }
-
-    */
-    return(
-        <Carousel
-            Layout={'default'}
-            data={data}
-            renderItem={(item)=> <RenderItem data={item} />}
-            sliderWidth = {width}
-            itemWidth={ITEM_WIDTH}
-
-        />
-
+            <Pagination
+                dotsLength={data.length}
+                activeDotIndex={activeSlide}
+                containerStyle={{ marginTop: -70 }}
+                dotStyle={{
+                    width: 15,
+                    height: 15,
+                    borderRadius: 7.5,
+                    marginHorizontal: 8,
+                    backgroundColor: 'white'
+                }}
+                inactiveDotOpacity={0.4}
+                inactiveDotScale={0.6}
+            />
+        </View>
     )
 
 }
-    function RenderItem(props){
-        const{data} =props;
-        const {fuente} = data.item;
-    
-        return(
-            <View style = {Styles.card}>
-                <Image style= {Styles.Image} source ={fuente}></Image> 
-            </View>
-    
 
-        );
-
-        }
-
-    const Styles = StyleSheet.create({
-        card: {
-            shadowColor: '#000' ,
-            shadowOffset: {
-                width:0,
-                height:50,
-
-            },
-            shadowOpacity: 100,
-            shadowRadius:50,
-
-
-        },
-        Image: {
-           width:"108%"
-
-
-        }
-
-
-
-
-
-
+const Styles = StyleSheet.create({
+    Image: {
+        width: "108%",
+        height: '100%'
     }
+}
+)
 
 
 
 
 
-    )   
-        
-    
-
-
-    
 
 
 
