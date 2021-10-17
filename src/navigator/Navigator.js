@@ -36,6 +36,8 @@ import CrearLote from '../screens/CrearLote';
 import ActualizacionLote from '../screens/ActualizacionLote';
 import DetalleLote from '../screens/DetalleLote';
 
+import Contacto from '../screens/Contacto';
+
 import styleText from '../styles/Text';
 
 const Stack = createStackNavigator();
@@ -61,6 +63,7 @@ export const Navigator = () => {
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR MATERIALES", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
+              
             </>
           )
           : (rol === 3)
@@ -79,6 +82,8 @@ export const Navigator = () => {
                   <Stack.Screen name="CrearLote" component={CrearLote} options={{ headerShown: false }} />
                   <Stack.Screen name="ActualizacionLote" component={ActualizacionLote} options={{ headerShown: false }} />
                   <Stack.Screen name="DetalleLote" component={DetalleLote} options={{ headerShown: false }} />
+                  <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
+                  
                 </>
               )
               : (rol === 1)
@@ -94,6 +99,7 @@ export const Navigator = () => {
                   <Stack.Screen name="CanjeResultado" component={CanjeResultado} options={{ headerShown: false }} />
                   <Stack.Screen name="MisPremios" component={MisPremios} options={{ headerShown: false }} />
                   <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
+                  <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
