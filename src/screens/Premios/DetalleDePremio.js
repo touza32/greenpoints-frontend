@@ -13,12 +13,10 @@ import { AuthContext } from '../../context/AuthContext';
 import Header from '../../components/Header';
 
 export default function DetalleDePremio({ route, navigation }) {
-
-    //llamada a la API para consultar premio por id y traer la data (detalle, direcciones, puntos, vigencia)
     
     const [suficiente, setSuficiente] = useState(true)
     const [premio, setPremio] = useState({id: 0, observacion: '', puntos: 0, imagen: '0', description: '', hasta: '' })
-    const { premioId, puntos } = route.params
+    const { premioId, puntos, backToMenu } = route.params
     const { id } = useContext(AuthContext);
 
     useEffect(()=>{
@@ -40,7 +38,7 @@ export default function DetalleDePremio({ route, navigation }) {
             });
 
             if(codigo && codigo.data) {
-                navigation.navigate('CanjeResultado', { codigo: codigo.data });
+                navigation.navigate('CanjeResultado', { codigo: codigo.data, backToMenu: backToMenu ? true : false });
             };
             
         } catch (e) {
@@ -67,6 +65,10 @@ export default function DetalleDePremio({ route, navigation }) {
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>Vigente hasta</Text>
                     <Text>{ Moment(premio.hasta).format('DD/MM/yyyy') }</Text>
+                </View>
+                <View style={{ alignItems: 'flex-start' }}>
+                    <Text style={styles.Text.titleList}>Puntos necesarios</Text>
+                    <Text>{ premio.puntos }</Text>
                 </View>
             </View>
             <View style={{ flex: 0.2, justifyContent: 'center' }}>

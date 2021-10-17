@@ -20,18 +20,7 @@ export default function SocioMenuScreen({ navigation }) {
     const { id } = useContext(AuthContext);
 
     const [puntos, setPuntos] = useState(0);
-
-    const Newdata = [
-        {
-            fuente: require('../../assets/PremioCine.png')
-        },
-        {
-            fuente: require('../../assets/PremioBurger.png')
-        },
-        {
-            fuente: require('../../assets/PremioLatte.png')
-        }
-    ];
+    const [premios, setPremios] = useState([])
 
     useEffect(() => {
         navigation.addListener('focus', () => {
@@ -42,6 +31,14 @@ export default function SocioMenuScreen({ navigation }) {
             })();
         })
     }, [navigation]);
+
+    useEffect(() => {
+        (async () => {
+            const premiosData = await greenPointsApi.get('/premio/top');
+            const premios = await premiosData.data;
+            setPremios(premios);
+        })();
+    }, []);
 
     return (
 
@@ -59,7 +56,7 @@ export default function SocioMenuScreen({ navigation }) {
                 </View>
             </View>
             <View style={[styleContainer.main, { flex: 5, marginTop: 20 }]}>
-                <CarouselMenu data={Newdata} />
+                <CarouselMenu data={premios} navigation={navigation} puntos={puntos}/>
             </View>
 
             <View
