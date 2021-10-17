@@ -17,7 +17,7 @@ export default function CarouselMenu(props) {
                 renderItem={item =>
                     <View>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('DetalleDePremio', { premioId: item.item.id, puntos: puntos })}
+                            onPress={() => navigation.navigate('DetalleDePremio', { premioId: item.item.id, puntos: puntos, backToMenu: true })}
                         >
 
                             <Image style={Styles.Image} source={{ uri: item.item.imagen }} />
