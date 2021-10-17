@@ -12,7 +12,7 @@ var box_count = 8;
 var box_height = height / box_count;
 
 
-export default function ActualizacionLote({ navigation }) {
+export default function ActualizacionLote({ route, navigation }) {
     
       return (
            

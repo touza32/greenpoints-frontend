@@ -32,6 +32,7 @@ import CanjeResultado from '../screens/Premios/CanjeResultado';
 import MisPremios from '../screens/Premios/MisPremios';
 import DetalleDeMiPremio from '../screens/Premios/DetalleDeMiPremio';
 
+import MisLotes from '../screens/Lote/MisLotes';
 import CrearLote from '../screens/CrearLote';
 import ActualizacionLote from '../screens/ActualizacionLote';
 
@@ -75,6 +76,7 @@ export const Navigator = () => {
                   <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }}/>
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
+                  <Stack.Screen name="MisLotes" component={MisLotes} options={{ headerShown: false }} />
                   <Stack.Screen name="CrearLote" component={CrearLote} options={{ headerShown: false }} />
                   <Stack.Screen name="ActualizacionLote" component={ActualizacionLote} options={{ headerShown: false }} />
                 </>
