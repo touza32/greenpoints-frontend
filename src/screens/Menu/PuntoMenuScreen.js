@@ -51,7 +51,7 @@ export default function PuntMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { navigation.navigate('CrearLote')}} >
+                    onPress={() => { navigation.navigate('CrearLote') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
@@ -63,7 +63,7 @@ export default function PuntMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => { navigation.navigate('MisLotes') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row", marginBottom: 120 }]}>
                         <Image
@@ -74,7 +74,7 @@ export default function PuntMenuScreen({ navigation }) {
                         }>Mis Lotes                                        </Text>
                     </View>
                 </TouchableOpacity>
-
+                              
             </View>
 
 

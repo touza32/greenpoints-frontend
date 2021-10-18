@@ -8,32 +8,32 @@ import { AuthContext } from '../context/AuthContext';
 
 export default function HeaderComponent({ navigation, title, leftComponent }) {
 
-    const { rol } = useContext(AuthContext);
+    const { nombre, rol, status } = useContext(AuthContext);
 
     return (
         <>
             <Header
                 backgroundColor="#69A03A"
-                leftContainerStyle={{flex:1,justifyContent:'center',marginTop:-10}}
-                centerContainerStyle={{ flex: 1, justifyContent:'center', marginTop:-10 }}
-                rightContainerStyle={{flex:1, justifyContent:'center',marginTop:-10}}
-                >
-                {leftComponent ? leftComponent : <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                leftContainerStyle={{ flex: 1, justifyContent: 'center', marginTop: -10 }}
+                centerContainerStyle={{ flex: 1, justifyContent: 'center', marginTop: -10 }}
+                rightContainerStyle={{ flex: 1, justifyContent: 'center', marginTop: -10 }}
+            >
+                {leftComponent ? leftComponent : <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                     <TouchableOpacity
-                    style={{marginLeft:-10}}
+                        style={{ marginLeft: -10 }}
                         onPress={() => { navigation.goBack(); }}>
-                        <Ionicons name="chevron-back" size={35} color="white"/>
+                        <Ionicons name="chevron-back" size={35} color="white" />
                     </TouchableOpacity>
-                    <Text 
-                        style={[styleText.button, { width: '90%'}]}>{title}</Text>
+                    <Text
+                        style={[styleText.button, { width: '90%' }]}>{title}</Text>
                 </View>}
                 <Image
                     source={logo}
                     style={{ width: 40, height: 40, borderRadius: 20 }}
                 />
-                {rol === 1 ? (<Text style={styleText.button}>
-                    
-                </Text>) : null}
+                <Text style={styleText.button}>
+                    {status === 'authenticated' && (rol === 3) ? "Administrador" : nombre}
+                </Text>
             </Header>
         </>
     )

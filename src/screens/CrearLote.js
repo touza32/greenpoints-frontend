@@ -1,75 +1,120 @@
 import React from 'react';
 import styleText from '../styles/Text';
 import styleButton from '../styles/Button';
-import { Divider } from 'react-native-elements';
 import Header from '../components/Header'; 
 import styleContainer from '../styles/Container';
+import { Divider } from 'react-native-elements';
 import { View, Text, Image, TouchableHighlight, StyleSheet, TouchableOpacity, Dimensions} from 'react-native'; 
 
 var { height } = Dimensions.get('window');
-var box_count = 8;
+var box_count = 6;
 var box_height = height / box_count;
 
+const styleImage = StyleSheet.create({
+      container: {
+        paddingTop: 50,
+      },
+      stretch: {
+        width: 50,
+        height: 50,
+        resizeMode: 'stretch',
+      },
+    });
 
 export default function CrearLote({ navigation }) {
     
       return (
            
-            <View style={[styleContainer.main], { flex: 1, backgroundColor: "#FFFF",  alignItems: 'center' }}>
+            <View style={[styleContainer.main], { flex: 1, backgroundColor: "#FFFF" }}>
      
             <Header navigation={navigation} title="CREAR LOTE" />   
 
                  <View style={[styles.container ,{ marginTop: 30}]}>
-     
+                        
                        <View style={[styles.box, styles.box1],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <TouchableOpacity
-                              style={styleButton.crearLote}
-                              onPress={() => {}}
-                        >
-                              <Text style={styleText.blackText}>PLÁSTICO</Text>
-                        </TouchableOpacity>
+                             
+                              <TouchableOpacity
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   }>
+                                    <View
+                                          style={[styleContainer.main, { flexDirection: "row" }]}>
+                                          <Image
+                                          style={styleImage.stretch}
+                                          source={require('../assets/Plastico.png')}
+                                          >
+                                          </Image>
+                                          < Text style={[styleText.blackText, { marginLeft: 20 }]}>PLÁSTICO</Text>
+
+                                    </View>
+                                    
+                              </TouchableOpacity>
+                             
+                       </View>
+
+                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
+                        <Divider orientation="horizontal" width={2} />
                        </View>
      
                        <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <TouchableOpacity
-                              style={styleButton.crearLote}
-                              onPress={() => {}}
-                        >
-                              <Text style={styleText.blackText}>CARTÓN/PAPEL</Text>
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   }>
+                                    <View
+                                          style={[styleContainer.main, { flexDirection: "row" }]}>
+                                          <Image
+                                          style={styleImage.stretch}
+                                          source={require('../assets/Carton.png')}
+                                          >
+                                          </Image>
+                                          < Text style={[styleText.blackText, { marginLeft: 20 }]}>CARTÓN/PAPEL</Text>
+                                    </View>
                         </TouchableOpacity>
+                       </View>
+
+                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
+                        <Divider orientation="horizontal" width={2} />
                        </View>
      
                        <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <TouchableOpacity
-                              style={styleButton.crearLote}
-                              onPress={() => {}}
-                        >
-                              <Text style={styleText.blackText}>VIDRIO</Text>
-                        </TouchableOpacity>            
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   } >
+                                    <View
+                                          style={[styleContainer.main, { flexDirection: "row" }]}>
+                                          <Image
+                                          style={styleImage.stretch}
+                                          source={require('../assets/Vidrio.png')}
+                                          >
+                                          </Image>
+                                          < Text style={[styleText.blackText, { marginLeft: 20 }]}>VIDRIO</Text>
+                                    </View>
+                        </TouchableOpacity>          
+                       </View>
+
+                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
+                        <Divider orientation="horizontal" width={2} />
                        </View>
      
                        <View style={[styles.box, styles.box4],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
                        <TouchableOpacity
-                              style={styleButton.crearLote}
-                              onPress={() => {}}
-                        >
-                              <Text style={styleText.blackText}>METAL</Text>
-                        </TouchableOpacity> 
+                                    onPress={() => navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Lote creado exitosamente' })   } >
+                                    <View
+                                          style={[styleContainer.main, { flexDirection: "row" }]}>
+                                          <Image
+                                          style={styleImage.stretch}
+                                          source={require('../assets/Aluminio.png')}
+                                          >
+                                          </Image>
+                                          < Text style={[styleText.blackText, { marginLeft: 20 }]}>METAL</Text>
+                                    </View>
+                        </TouchableOpacity>          
                        </View>
 
+                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
+                        <Divider orientation="horizontal" width={2} />
+                       </View>
+                                          
                        <View style={[styles.box, styles.box5]}></View>
-                    
-                       <View style={[styles.box, styles.box6],{ marginTop: 25, marginBottom: 20, marginLeft: 8}}>
-                       <TouchableOpacity
-                              style={styleButton.base}
-                              onPress={() => {}}
-                        >
-                              <Text style={styleText.whiteText}>Crear</Text>
-                        </TouchableOpacity> 
-                        </View>
-
-                        <View style={[styles.box, styles.box6]}></View>                  
                        
+
+                        
                        
                  </View>
             

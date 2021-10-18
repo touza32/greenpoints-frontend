@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function CanjeResultado({ route, navigation }) {
 
-    const { codigo } = route.params;
+    const { codigo, backToMenu } = route.params;
 
     return (
         <View style={{ alignItems: 'center', flex: 1 }}>
@@ -21,7 +21,7 @@ export default function CanjeResultado({ route, navigation }) {
                 <Text style={[styles.Text.titleList, { fontWeight: 'normal', marginHorizontal: 50, marginBottom: 50 }]}>Canjealo en cualquiera de los locales adheridos</Text>
                 <TouchableOpacity
                     style={styles.Button.base}
-                    onPress={() => navigation.navigate('CatalogoPremios')}
+                    onPress={() => backToMenu ? navigation.navigate('SocioMenuScreen') : navigation.navigate('CatalogoPremios')}
                 >
                     <Text style={styles.Text.button}>VOLVER</Text>
                 </TouchableOpacity>

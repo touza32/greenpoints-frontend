@@ -33,7 +33,12 @@ import MisPremios from '../screens/Premios/MisPremios';
 import DetalleDeMiPremio from '../screens/Premios/DetalleDeMiPremio';
 import DonacionDeMisPuntos from '../screens/Donacion/DonacionDeMisPuntos';
 
+import MisLotes from '../screens/Lote/MisLotes';
 import CrearLote from '../screens/CrearLote';
+import ActualizacionLote from '../screens/ActualizacionLote';
+import DetalleLote from '../screens/DetalleLote';
+
+import Contacto from '../screens/Contacto';
 
 import styleText from '../styles/Text';
 
@@ -60,6 +65,7 @@ export const Navigator = () => {
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR MATERIALES", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
+              
             </>
           )
           : (rol === 3)
@@ -75,7 +81,12 @@ export const Navigator = () => {
                   <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }}/>
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
+                  <Stack.Screen name="MisLotes" component={MisLotes} options={{ headerShown: false }} />
                   <Stack.Screen name="CrearLote" component={CrearLote} options={{ headerShown: false }} />
+                  <Stack.Screen name="ActualizacionLote" component={ActualizacionLote} options={{ headerShown: false }} />
+                  <Stack.Screen name="DetalleLote" component={DetalleLote} options={{ headerShown: false }} />
+                  <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
+                  
                 </>
               )
               : (rol === 1)
@@ -92,6 +103,7 @@ export const Navigator = () => {
                   <Stack.Screen name="MisPremios" component={MisPremios} options={{ headerShown: false }} />
                   <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
                   <Stack.Screen name="DonacionDeMisPuntos" component={DonacionDeMisPuntos} options={{ headerShown: false }} />
+                  <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />

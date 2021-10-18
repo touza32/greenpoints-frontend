@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 //styles
 import * as styles from '../../styles';
@@ -12,35 +12,22 @@ import { AuthContext } from '../../context/AuthContext';
 
 import Header from '../../components/Header';
 
-const data = {
-    detalle: 'Aqui va a ir el texto con el detalle del premio. Por ejemplo: una rica hamburguesa con queso',
-    direcciones: [
-        'Av. 9 de Julio 145, CABA',
-        'Córdoba 25, CABA',
-        'Av. San Martín 1200, CABA',
-    ],
-    puntos: 150,
-    vigencia: '31/12/2021'
-}
-
-
-
 export default function DetalleDePremio({ route, navigation }) {
-
-    //llamada a la API para consultar premio por id y traer la data (detalle, direcciones, puntos, vigencia)
     
-    const [suficiente, setSuficiente] = useState(false)
-    const [premio, setPremio] = useState({})
-    const { premioId, puntos } = route.params
+    const [suficiente, setSuficiente] = useState(true)
+    const [premio, setPremio] = useState({id: 0, observacion: '', puntos: 0, imagen: '0', description: '', hasta: '' })
+    const { premioId, puntos, backToMenu } = route.params
     const { id } = useContext(AuthContext);
-    
+
     useEffect(()=>{
         (async () => {
             const premioData = await greenPointsApi.get(`/premio/${ premioId }`);
-            setPremio(premioData.data)
+            const premio = await premioData.data;
+            setPremio(premio)
+            setSuficiente(puntos >= premio.puntos)
         })();
 
-        setSuficiente(puntos >= data.puntos)
+        
     },[]);
 
     const canjearPremio = async () => {
@@ -51,7 +38,7 @@ export default function DetalleDePremio({ route, navigation }) {
             });
 
             if(codigo && codigo.data) {
-                navigation.navigate('CanjeResultado', { codigo: codigo.data });
+                navigation.navigate('CanjeResultado', { codigo: codigo.data, backToMenu: backToMenu ? true : false });
             };
             
         } catch (e) {
@@ -73,20 +60,15 @@ export default function DetalleDePremio({ route, navigation }) {
                 </View>
                 <View style={{ maxHeight: '50%', alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>¿En dónde lo uso?</Text>
-                    <FlatList
-                        data={data.direcciones}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={item => (
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 50 }}>
-                                <View style={{ padding: 4, borderRadius: 4, backgroundColor: 'black', marginRight: 5 }} />
-                                <Text>{item.item}</Text>
-                            </View>
-                        )}
-                    />
+                    <Text>{ premio.observacion }</Text>
                 </View>
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>Vigente hasta</Text>
-                    <Text>{ Moment(premio.desde).format('DD/MM/yyyy') }</Text>
+                    <Text>{ Moment(premio.hasta).format('DD/MM/yyyy') }</Text>
+                </View>
+                <View style={{ alignItems: 'flex-start' }}>
+                    <Text style={styles.Text.titleList}>Puntos necesarios</Text>
+                    <Text>{ premio.puntos }</Text>
                 </View>
             </View>
             <View style={{ flex: 0.2, justifyContent: 'center' }}>
