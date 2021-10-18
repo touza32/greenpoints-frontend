@@ -31,6 +31,7 @@ import DetalleDePremio from '../screens/Premios/DetalleDePremio';
 import CanjeResultado from '../screens/Premios/CanjeResultado';
 import MisPremios from '../screens/Premios/MisPremios';
 import DetalleDeMiPremio from '../screens/Premios/DetalleDeMiPremio';
+import DonacionDeMisPuntos from '../screens/Donacion/DonacionDeMisPuntos';
 
 import CrearLote from '../screens/CrearLote';
 
@@ -90,6 +91,7 @@ export const Navigator = () => {
                   <Stack.Screen name="CanjeResultado" component={CanjeResultado} options={{ headerShown: false }} />
                   <Stack.Screen name="MisPremios" component={MisPremios} options={{ headerShown: false }} />
                   <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
+                  <Stack.Screen name="DonacionDeMisPuntos" component={DonacionDeMisPuntos} options={{ headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
