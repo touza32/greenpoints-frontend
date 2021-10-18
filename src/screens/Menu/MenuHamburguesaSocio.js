@@ -57,7 +57,7 @@ export default function MenuHamburguesaSocio({navigation}) {
                   </View>
 
                   <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                  <TouchableOpacity  onPress={() => {}} >
+                  <TouchableOpacity  onPress={() => navigation.navigate('Contacto')} >
                               <View
                                   style={[{flexDirection: "row"}]}>
                                   <FAIcon name='question-circle' size={45} style={{ color: "#FFFF" }} />  
