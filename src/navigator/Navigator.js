@@ -104,6 +104,7 @@ export const Navigator = () => {
                   <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
                   <Stack.Screen name="DonacionDeMisPuntos" component={DonacionDeMisPuntos} options={{ headerShown: false }} />
                   <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
+                  <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                 </>
               )
               : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
