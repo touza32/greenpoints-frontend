@@ -15,61 +15,41 @@ import Header from '../../components/Header';
 
 export default function MisPremios({ props, navigation }) {
 
-    //const { id } = useContext(AuthContext);
-    //const [newPremios, setnewPremios] = useState(null);
-    //const [UnPremio,setPremio] = useState(null);
-
-    const newPremios = [
-        {   
-            id: 1,
-            nombre: 'Doble Deluxe',
-            vigencia_hasta: '2021-12-01',
-            fecha_obtencion: '2021-08-01' 
-        },
-        {   
-            id: 2,
-            nombre: 'Triple Deluxe',
-            vigencia_hasta: '2022-01-18',
-            fecha_obtencion: '2021-08-15' 
-        },
-        {
-            id: 3,
-            nombre: 'Deluxe',
-            vigencia_hasta: '2021-12-15',
-            fecha_obtencion: '2021-09-14' 
+    const { token, id } = useContext(AuthContext);
+    const [Premios,setPremios] = useState(null);
+  
+    const getMisPremios = async id => {
+        try {
+            const response = await greenPointsApi.
+                get('/usuario/socio-reciclador/premios?socioId='+id, { headers: { Authorization: token } })
+                setPremios(response.data)
+        } catch (e) {
+            console.error(e)
         }
-    ];
+    }
 
-    
-   
-    /*useEffect(() => {
-        async function fetchData() {
-            const data = await greenPointsApi.get('/intercambio?socioId=' + id);
-            setnewIntercambios(data.data);
-
-        }
-        fetchData();
-
-    }, []);*/
+    useEffect(() => {
+        getMisPremios(id)
+    }, [])
 
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <Header navigation={navigation} title="MIS PREMIOS" />
-            <View style={[styleContainer.main, { marginTop: 10, alignItems: 'stretch' }]}>
+            <View style={[styleContainer.main,{ marginTop: 10,alignItems: 'stretch' ,flex:1}]}>
                 <FlatList
-                    data={newPremios}
+                    data={Premios}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => {navigation.navigate('DetalleDeMiPremio',{id:item.id})}}>
                             <View style={styles.premio}>
-                                <Image source={require('../../assets/PremioBigMac.png')}
+                                <Image source={{ uri: item.imagen }}
                                        style={styles.image}>
                                 </Image> 
                                 <View>
-                                    <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.nombre}</Text>
-                                    <Text style={styles.fechaObtencion}>{item.fecha_obtencion}</Text>
-                                    <Text style={styles.fechavig}>{'Vigente hasta ' + item.vigencia_hasta}</Text>
+                                    <Text style={styles.name}>{item.nombre}</Text>
+                                    <Text style={styles.fechaObtencion}>{item.obtencion.substring(0, 10)}</Text>
+                                    <Text style={styles.fechavig}>{'Vigente hasta ' + item.hasta.substring(0, 10)}</Text>
 
                                 </View>
                                 <View style={styles.icon}>
@@ -106,12 +86,15 @@ const styles = StyleSheet.create({
     premio:{
         marginBottom: 10,
         marginTop:10,
-        flexDirection: "row"
+        flexDirection: "row",
+        paddingRight: 2,
+        paddingLeft: 2
     },
     fechavig:{
         color: 'black',
         textAlign: 'center',
-        fontSize: 18
+        fontSize: 18,
+        //marginTop: -5
 
     },
     icon:{
@@ -120,7 +103,14 @@ const styles = StyleSheet.create({
     fechaObtencion:{
         color: '#B2B2B2',
         textAlign: 'left',
-        fontWeight: 'bold'
-    }
+        fontWeight: 'bold',
+        marginTop: -3
+    },
+    name: {
+        color: 'black',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+
 
 })

@@ -15,81 +15,57 @@ import Header from '../../components/Header';
 
 export default function DetalleDeMiPremio({ route, navigation }) {
 
-    //const [UnPremio, setPremio] = useState(null);
-    //const [Direcciones, setDirecciones] = useState(null);
     const {id} = route.params
+    const [Premio, setPremio] = useState(null);
 
-    const UnPremio = {
-        detalle: 'Aqui va a ir el texto con el detalle del premio. Por ejemplo: una rica hamburguesa con queso',
-        direcciones: [
-            'Av. 9 de Julio 145, CABA',
-            'Córdoba 25, CABA',
-            'Av. San Martín 1200, CABA',
-        ],
-        codigo: 'ABCD1234',
-        vigencia: '31/12/2021'
+    const getMiPremio = async id => {
+        try {
+            const response = await greenPointsApi.
+                get('/usuario/socio-reciclador/premio?socioPremioId=' +id)
+                setPremio(response.data)
+        } catch (e) {
+            console.error(e)
+        }
     }
-   
 
-   /* useEffect(() => {
-        async function fetchData(){
-        const data = await greenPointsApi.get('/intercambio/' + id);
-        setPremio(data.data);
-        setDirecciones(data.data.detail);
-       
-    }
-    fetchData();
+    useEffect(() => {
+        getMiPremio(id)
+    }, [])
+
     
-},[]); */
-
 return (
     
-    <View style={[{ flex: 1 }]}>
+    <View style={{ flex: 1 }}>
         <Header navigation={navigation} title="DETALLE" />
-        {UnPremio && (
-        <View>
-            <Image
-                source={require('../../assets/PremioBigMac.png')}
-                style={styles.image}>
-            </Image>
-            <View style={styles.item}>
-            <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Detalle</Text>
-            <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{UnPremio.detalle}</Text>
+        {Premio && (
+        <View style={{ flex: 1 }}>
+            <View style={{ flex: 0.35 ,justifyContent: 'center'}}>
+                <Image
+                    source={{ uri: Premio.imagen }}
+                    style={styles.image}>
+                </Image>
             </View>
-
-            <View style={styles.item}>
-                <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>¿Dónde lo uso?</Text>
-                <FlatList
-                    data={UnPremio.direcciones}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={item  => (
-                        <View style={{marginLeft:25, flexDirection: "row"}}>
-                            <Icon name="location" size={25}  color= "#CC7D00"/>
-                            <Text style={styles.direccion}>{item.item}</Text>
-                        </View>
-
-                    )}
-
-                /*ItemSeparatorComponent={() => { return <Divider orientation="horizontal" /> }}*/
-                />                  
-            </View>
-            
-            <View style={styles.item}>
-                        
-                <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Vigente hasta</Text>
-                <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{UnPremio.vigencia}</Text>
-            
-            </View>
-            <View style={styles.item}>
-                <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Mi Código</Text>
-                <View style={{ alignItems: 'center'}}>
-                    <Text style={styles.codigo}>{UnPremio.codigo}</Text>
+            <View style={{ flex: 0.65 }}>
+                <View style={styles.item}>
+                    <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Detalle</Text>
+                    <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{Premio.descripcion}</Text>
                 </View>
-            </View>
-
+                <View style={styles.item}>
+                    <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>¿Dónde lo uso?</Text>
+                    <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{Premio.observacion}</Text>             
+                </View>
+                <View style={styles.item}>    
+                    <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Vigente hasta</Text>
+                    <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{Premio.hasta.substring(0, 10)}</Text>
+                </View>
+                <View style={styles.item}>
+                    <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Mi Código</Text>
+                    <View style={{ alignItems: 'center',marginTop:15}}>
+                        <Text style={styles.codigo}>{Premio.codigo}</Text>
+                    </View>
+                </View>
+            </View>   
         </View>
-         
-
         )}
 
         
@@ -112,8 +88,8 @@ return (
 
 const styles = StyleSheet.create({
     image: {
-        width: 200,
-        height: 200,
+        width: 260,
+        height: 180,
         alignSelf: 'center'
     },
     item: {
