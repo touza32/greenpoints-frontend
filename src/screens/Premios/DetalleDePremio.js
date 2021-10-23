@@ -32,7 +32,7 @@ export default function DetalleDePremio({ route, navigation }) {
 
     const canjearPremio = async () => {
         try {
-            const codigo = await greenPointsApi.post('/premio/exchange', {
+            const codigo = await greenPointsApi.post('/canje', {
                 premioId: premio.id,
                 socioId: id
             });

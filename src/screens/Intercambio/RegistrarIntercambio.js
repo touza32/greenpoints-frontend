@@ -54,7 +54,7 @@ export default function RegistrarIntercambio({ route, navigation }) {
         setLoading(true)
         try {
             const response = await greenPointsApi.
-                get('/usuario/socio-reciclador', { headers: { Authorization: token } })
+                get('/socio-reciclador', { headers: { Authorization: token } })
             setLoading(false)
             setSociosAll(response.data)
         } catch (e) {

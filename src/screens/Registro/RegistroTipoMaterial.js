@@ -28,7 +28,7 @@ export default function RegistroTipoMaterial({ route, navigation }) {
             reduce((previous, current) => [...previous, current.id], [])
         if (alos) return errmsg
         try {
-            await greenPointsApi.post('/usuario/punto-reciclaje', {
+            await greenPointsApi.post('/punto-reciclaje', {
                 username: route.params.userName,
                 customerName: route.params.customerName,
                 document: route.params.document,

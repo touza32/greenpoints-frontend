@@ -21,7 +21,7 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
 
     useEffect(() => {
         (async () => {
-            const puntosData = await greenPointsApi.get('/usuario/punto-reciclaje');
+            const puntosData = await greenPointsApi.get('/punto-reciclaje');
             setPuntos(puntosData.data);
             const tiposReciclableData = await greenPointsApi.get('/tipo-reciclable');
             setTiposReciclable(tiposReciclableData.data);
@@ -39,7 +39,7 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
     }
 
     const filterTipo = async (tipoId) => {
-        const puntosData = await greenPointsApi.get('/usuario/punto-reciclaje?tipoId=' + tipoId );
+        const puntosData = await greenPointsApi.get('/punto-reciclaje?tipoId=' + tipoId );
         setPuntos(puntosData.data);
     }
 

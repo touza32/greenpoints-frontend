@@ -21,7 +21,7 @@ export default function MisPremios({ props, navigation }) {
     const getMisPremios = async id => {
         try {
             const response = await greenPointsApi.
-                get('/usuario/socio-reciclador/premios?socioId='+id, { headers: { Authorization: token } })
+                get('/socio-reciclador/premios?socioId='+id, { headers: { Authorization: token } })
                 setPremios(response.data)
         } catch (e) {
             console.error(e)

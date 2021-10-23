@@ -27,7 +27,7 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
     const getSocios = async () => {
         setLoading(true)
         try {
-            const response = await greenPointsApi.get('/usuario/socio-reciclador', { headers: { Authorization: token } })
+            const response = await greenPointsApi.get('/socio-reciclador', { headers: { Authorization: token } })
             setLoading(false)
             setSociosAll(response.data)
         } catch (e) {
@@ -38,7 +38,7 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
     const getPuntos = async id => {
         setLoading(true)
         try {
-            const response = await greenPointsApi.get('/usuario/socio-reciclador/puntos?socioId=' + id, { headers: { Authorization: token } })
+            const response = await greenPointsApi.get('/socio-reciclador/puntos?socioId=' + id, { headers: { Authorization: token } })
             setLoading(false)
             setPuntos(response.data)
         } catch (e) {

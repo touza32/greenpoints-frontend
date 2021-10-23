@@ -31,7 +31,7 @@ export default function CatalogoPremios({ navigation }) {
             setResultado(premios);
         })();
         (async () => {
-            const puntosData = await greenPointsApi.get('/usuario/socio-reciclador/puntos?socioId='+id);
+            const puntosData = await greenPointsApi.get('/socio-reciclador/puntos?socioId='+id);
             const puntos = await puntosData.data;
             setPuntos(puntos)
         })();

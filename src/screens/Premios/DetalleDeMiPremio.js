@@ -21,7 +21,7 @@ export default function DetalleDeMiPremio({ route, navigation }) {
     const getMiPremio = async id => {
         try {
             const response = await greenPointsApi.
-                get('/usuario/socio-reciclador/premio?socioPremioId=' +id)
+                get('/socio-reciclador/premio?socioPremioId=' +id)
                 setPremio(response.data)
         } catch (e) {
             console.error(e)

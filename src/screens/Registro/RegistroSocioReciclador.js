@@ -44,7 +44,7 @@ export default function RegistroSocioReciclador({ navigation }) {
     });
 
     const onSubmit = async data => {
-        await greenPointsApi.post('/usuario/socio-reciclador', {
+        await greenPointsApi.post('/socio-reciclador', {
             birthDate: data.birthDate,
             email: data.email,
             firstName: data.firstName,
