@@ -25,10 +25,8 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
     const [enabled, setEnabled] = useState(false)
 
     const getSocios = async () => {
-        setLoading(true)
         try {
             const response = await greenPointsApi.get('/socio-reciclador', { headers: { Authorization: token } })
-            setLoading(false)
             setSociosAll(response.data)
         } catch (e) {
             console.error(e)
@@ -36,10 +34,8 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
     }
 
     const getPuntos = async id => {
-        setLoading(true)
         try {
             const response = await greenPointsApi.get('/socio-reciclador/puntos?socioId=' + id, { headers: { Authorization: token } })
-            setLoading(false)
             setPuntos(response.data)
         } catch (e) {
             console.error(e)
@@ -67,18 +63,21 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
         }
     };
 
-
     useEffect(() => {
+        setLoading(true)
         getSocios()
         getPuntos(id)
         checkDisable(puntos)
-    }, [])
+        setLoading(false)
+    },[puntos] )
 
     const slideBool = id !== 0 && socio.socioId > 0 && SlideValue > 0;
 
     useEffect(() => {
         setEnabled(slideBool)
     }, [slideBool])
+
+    if (loading) return <View></View>
 
     return (
         socioFocus ? (
@@ -137,62 +136,61 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
                 <View style={[{ flex: 1 }]}>
 
                     <Header navigation={navigation} title="DONAR MIS PUNTOS" />
-                    {puntos && (
-                        <View>
-                            <Image
-                                source={require('../../assets/DonacionPuntos.png')}
-                                style={styles.image}>
-                            </Image>
-                            <Text style={styles.title}>Socio Reciclador</Text>
-                            <TextInput
-                                style={styles.inputboxfilled}
-                                placeholder="socio@correo.com"
-                                value={socio.email}
-                                onFocus={() => setSocioFocus(true)}
 
-                            >
-                            </TextInput>
-                            <Text style={styles.title}>Puntos</Text>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <View>
+                        <Image
+                            source={require('../../assets/DonacionPuntos.png')}
+                            style={styles.image}>
+                        </Image>
+                        <Text style={styles.title}>Socio Reciclador</Text>
+                        <TextInput
+                            style={styles.inputboxfilled}
+                            placeholder="socio@correo.com"
+                            value={socio.email}
+                            onFocus={() => setSocioFocus(true)}
 
-                                <Slider
-                                    style={{ width: 300, height: 30 }}
-                                    value={SlideValue}
-                                    onValueChange={(value) => setSlideValue(value)}
-                                    minimumValue={0}
-                                    maximumValue={puntos}
-                                    step={1}
-                                    maximumTrackTintColor='gray'
-                                    minimumTrackTintColor='#CC7D00'
-                                    thumbTintColor='#CC7D00'
-                                    thumbStyle={{ height: 25, width: 25 }}
-                                />
-                                <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-                                    <Text style={styles.pointsnumber}> {SlideValue}</Text>
-                                    <View>
-                                        <Text style={styles.points}>Green</Text>
-                                        <Text style={styles.points}>Points</Text>
-                                    </View>
+                        >
+                        </TextInput>
+                        <Text style={styles.title}>Puntos</Text>
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+
+                            <Slider
+                                style={{ width: 300, height: 30 }}
+                                value={SlideValue}
+                                onValueChange={(value) => setSlideValue(value)}
+                                minimumValue={0}
+                                maximumValue={puntos}
+                                step={1}
+                                maximumTrackTintColor='gray'
+                                minimumTrackTintColor='#CC7D00'
+                                thumbTintColor='#CC7D00'
+                                thumbStyle={{ height: 25, width: 25 }}
+                            />
+                            <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+                                <Text style={styles.pointsnumber}> {SlideValue}</Text>
+                                <View>
+                                    <Text style={styles.points}>Green</Text>
+                                    <Text style={styles.points}>Points</Text>
                                 </View>
                             </View>
-                            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 80 }}>
-                                {enabled ?
-                                    (<TouchableOpacity
-                                        style={styleButton.base}
-                                        onPress={() => { sendPoints() }}
-                                    >
-                                        <Text style={styleText.button}>DONAR</Text>
-                                    </TouchableOpacity>)
-                                    : (<TouchableOpacity
-                                        style={[styleButton.base, { backgroundColor: 'gray' }]}
-                                        disabled={true}
-                                    >
-                                        <Text style={styleText.button}>DONAR</Text>
-                                    </TouchableOpacity>)
-                                }
-                            </View>
                         </View>
-                    )}
+                        <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 80 }}>
+                            {enabled ?
+                                (<TouchableOpacity
+                                    style={styleButton.base}
+                                    onPress={() => { sendPoints() }}
+                                >
+                                    <Text style={styleText.button}>DONAR</Text>
+                                </TouchableOpacity>)
+                                : (<TouchableOpacity
+                                    style={[styleButton.base, { backgroundColor: 'gray' }]}
+                                    disabled={true}
+                                >
+                                    <Text style={styleText.button}>DONAR</Text>
+                                </TouchableOpacity>)
+                            }
+                        </View>
+                    </View>
                 </View>
             )
         )
