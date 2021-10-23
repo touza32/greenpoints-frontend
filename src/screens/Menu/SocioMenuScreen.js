@@ -49,14 +49,16 @@ export default function SocioMenuScreen({ navigation }) {
                     <Ionicons name="menu" size={40} color="white" />
                 </TouchableOpacity>
             } />
-            <View style={{ marginTop: 20, backgroundColor: '#CC7D00', borderRadius: 30, alignItems: 'center', flexDirection: 'row', justifyContent: 'space-evenly', height: 40, width: '60%' }}>
-                <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>MIS PUNTOS</Text>
-                <View style={{ backgroundColor: 'white', height: 25, paddingHorizontal: 10, justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#CC7D00' }}>{puntos}</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('MisPuntos')}>
+                <View style={{ marginTop: 20, backgroundColor: '#CC7D00', borderRadius: 30, alignItems: 'center', flexDirection: 'row', justifyContent: 'space-evenly', height: 40, width: '60%' }}>
+                    <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>MIS PUNTOS</Text>
+                    <View style={{ backgroundColor: 'white', height: 25, paddingHorizontal: 10, justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#CC7D00' }}>{puntos}</Text>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
             <View style={[styleContainer.main, { flex: 5, marginTop: 20 }]}>
-                <CarouselMenu data={premios} navigation={navigation} puntos={puntos}/>
+                <CarouselMenu data={premios} navigation={navigation} puntos={puntos} />
             </View>
 
             <View
@@ -109,7 +111,7 @@ export default function SocioMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => {navigation.navigate('DonacionDeMisPuntos')}} >
+                    onPress={() => { navigation.navigate('DonacionDeMisPuntos') }} >
                     <View
                         style={[styleContainer.main, { marginBottom: 30, flexDirection: "row" }]}>
                         <Image
@@ -120,7 +122,7 @@ export default function SocioMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
 
-                
+
 
             </View>
 

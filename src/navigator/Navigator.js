@@ -14,6 +14,7 @@ import PuntoMenuScreen from '../screens/Menu/PuntoMenuScreen';
 import SocioMenuScreen from '../screens/Menu/SocioMenuScreen';
 import MenuHamburguesaSocio from '../screens/Menu/MenuHamburguesaSocio';
 import MenuHamburguesaPunto from '../screens/Menu/MenuHamburguesaPunto';
+import MisPuntos from '../screens/Menu/MisPuntos';
 
 import SeleccionRol from '../screens/Registro/SeleccionRol';
 import RegistroSocioReciclador from '../screens/Registro/RegistroSocioReciclador';
@@ -104,6 +105,7 @@ export const Navigator = () => {
                   <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
                   <Stack.Screen name="DonacionDeMisPuntos" component={DonacionDeMisPuntos} options={{ headerShown: false }} />
                   <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
+                  <Stack.Screen name="MisPuntos" component={MisPuntos} options={{ headerShown: false }} />
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                 </>
               )
