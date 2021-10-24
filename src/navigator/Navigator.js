@@ -35,9 +35,9 @@ import DetalleDeMiPremio from '../screens/Premios/DetalleDeMiPremio';
 import DonacionDeMisPuntos from '../screens/Donacion/DonacionDeMisPuntos';
 
 import MisLotes from '../screens/Lote/MisLotes';
-import CrearLote from '../screens/CrearLote';
-import ActualizacionLote from '../screens/ActualizacionLote';
-import DetalleLote from '../screens/DetalleLote';
+import CrearLote from '../screens/Lote/CrearLote';
+import ActualizacionLote from '../screens/Lote/ActualizacionLote';
+import DetalleLote from '../screens/Lote/DetalleLote';
 
 import Contacto from '../screens/Contacto';
 

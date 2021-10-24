@@ -58,8 +58,7 @@ export default function MisLotes({ props, navigation }) {
                     data={ resultado }
                     keyExtractor={(lote) => lote.id.toString()}
                     renderItem={({ item }) =>
-                        // <TouchableOpacity onPress={() => { navigation.navigate('ActualizacionLote', { loteId: item.id }) }}>
-                        <TouchableOpacity onPress={() => { }}>
+                        <TouchableOpacity onPress={() => { filtro.id===0 ? navigation.navigate('ActualizacionLote', { loteId: item.id }) : navigation.navigate('DetalleLote', { loteId: item.id })}}>
                             <View style={ styles.lote }>
                             <Image source={{ uri: item.imagen }}
                                         style={styles.image}>

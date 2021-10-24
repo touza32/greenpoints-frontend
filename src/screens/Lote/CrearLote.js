@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
-import Header from '../components/Header'; 
-import styleContainer from '../styles/Container';
+import Header from '../../components/Header'; 
+import styleContainer from '../../styles/Container';
 import { Divider } from 'react-native-elements';
 import { View, Text, Image, TouchableHighlight, StyleSheet, TouchableOpacity, Dimensions, FlatList, Alert } from 'react-native'; 
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 //api
-import greenPointsApi from '../api/greenPointsApi';
+import greenPointsApi from '../../api/greenPointsApi';
 
 var { height } = Dimensions.get('window');
 var box_count = 6;
@@ -72,7 +70,7 @@ export default function CrearLote({ navigation }) {
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
                                           style={styleImage.stretch}
-                                          source={require('../assets/Plastico.png')}
+                                          source={require('../../assets/Plastico.png')}
                                           >
                                           </Image>
                                           < Text style={[styles.textBody, { marginLeft: 20 }]}>PLÁSTICO</Text>
@@ -94,7 +92,7 @@ export default function CrearLote({ navigation }) {
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
                                           style={styleImage.stretch}
-                                          source={require('../assets/Carton.png')}
+                                          source={require('../../assets/Carton.png')}
                                           >
                                           </Image>
                                           < Text style={[styles.textBody, { marginLeft: 20 }]}>CARTÓN/PAPEL</Text>
@@ -113,7 +111,7 @@ export default function CrearLote({ navigation }) {
                                           style={[styleContainer.main, { flexDirection: "row" }]}>
                                           <Image
                                           style={styleImage.stretch}
-                                          source={require('../assets/Vidrio.png')}
+                                          source={require('../../assets/Vidrio.png')}
                                           >
                                           </Image>
                                           < Text style={[styles.textBody, { marginLeft: 20 }]}>VIDRIO</Text>
