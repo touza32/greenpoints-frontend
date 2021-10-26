@@ -39,6 +39,9 @@ import CrearLote from '../screens/Lote/CrearLote';
 import ActualizacionLote from '../screens/Lote/ActualizacionLote';
 import DetalleLote from '../screens/Lote/DetalleLote';
 
+import AdministrarPremios from '../screens/Administracion/AdministrarPremios';
+import AgregarPremio from '../screens/Administracion/AgregarPremio';
+
 import Contacto from '../screens/Contacto';
 
 import styleText from '../styles/Text';
@@ -73,6 +76,8 @@ export const Navigator = () => {
             ? (
               <>
                 <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} options={{ headerShown: false }}/>
+                <Stack.Screen name="AdministrarPremios" component={AdministrarPremios} options={{ headerShown: false }}/>
+                <Stack.Screen name="AgregarPremio" component={AgregarPremio} options={{ headerShown: false }}/>
               </>
             )
             : (rol === 2)

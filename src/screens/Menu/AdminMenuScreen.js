@@ -36,7 +36,7 @@ export default function AdminMenuScreen({ navigation }) {
                 style={{ flex: 0.5, alignItems: 'center', justifyContent: 'space-between', marginVertical: 50 }} >
 
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => { navigation.navigate('AdministrarPremios')}} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
