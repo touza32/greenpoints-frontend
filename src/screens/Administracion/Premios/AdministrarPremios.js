@@ -3,12 +3,12 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from "react
 import { Divider, Input } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 //styles
-import styleText from "../../styles/Text";
-import styleButton from '../../styles/Button';
+import styleText from "../../../styles/Text";
+import styleButton from '../../../styles/Button';
 //api
-import greenPointsApi from '../../api/greenPointsApi';
+import greenPointsApi from '../../../api/greenPointsApi';
 // components
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 
 export default function AdministrarPremios({ navigation }) {
 
