@@ -28,9 +28,11 @@ const schema = yup.object().shape({
         required('Requerido'),
     firstName: yup.
         string().
+        matches(/^[^!$%^&@*()_+|~=`{}\[\]:";'<>?,.\/0-9]+$/, 'Nombre inválido').
         required('Requerido'),
     lastName: yup.
         string().
+        matches(/^[^!$%^&@*()_+|~=`{}\[\]:";'<>?,.\/0-9]+$/, 'Nombre inválido').
         required('Requerido'),
     birthDate: yup.
         mixed().transform(e => e.toISOString().slice(8, 10) + e.toISOString().slice(4, 8) + e.toISOString().slice(0, 4)).
@@ -56,11 +58,11 @@ export default function RegistroSocioReciclador({ navigation }) {
 
 
     return (
-        
+
         <KeyboardAwareScrollView
             contentContainerStyle={[styleContainer.main, { padding: 20, paddingTop: 5 }]}
         >
-            <Text style={{marginVertical: 10, textDecorationLine: 'underline'}}>Todos los campos son requeridos</Text>
+            <Text style={{ marginVertical: 10, textDecorationLine: 'underline' }}>Todos los campos son requeridos</Text>
             <InputForm
                 control={control}
                 errors={errors}
@@ -103,6 +105,9 @@ export default function RegistroSocioReciclador({ navigation }) {
                 errors={errors}
                 name="birthDate"
                 title="Fecha de nacimiento"
+                defaultDate="1999-01-01"
+                minDate="1908-01-01"
+                maxDate="2008-01-01"
             />
             <TouchableOpacity style={[styleButton.base, { alignSelf: 'center' }]} onPress={handleSubmit(onSubmit)}>
                 <Text style={styleText.button}>FINALIZAR</Text>

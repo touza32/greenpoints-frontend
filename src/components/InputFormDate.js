@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from "react-native";
 import { Controller } from 'react-hook-form';
 import styleTextInput from '../styles/TextInput';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Moment from 'moment';
 import * as styles from '../styles';
 
-export default function InputForm({ control, errors, name, title }) {
+export default function InputForm( props ) {
 
-    const [date, setDate] = useState(new Date(1999, 0, 1));
+    const { control, errors, name, title, defaultDate, minDate, maxDate } = props
+
+    const [date, setDate] = useState(new Date(Moment(defaultDate).subtract(3, 'hours')));
     const [show, setShow] = useState(false);
 
     const onChangeDate = (event, selectedDate) => {
@@ -34,14 +37,14 @@ export default function InputForm({ control, errors, name, title }) {
                                     value.toISOString().slice(4, 8) +
                                     value.toISOString().slice(0, 4)
                                     :
-                                    <Text style={{ color: 'gray' }}>01-01-99</Text>}
+                                    <Text style={{ color: 'gray' }}>{Moment(defaultDate).format('DD-MM-yyyy')}</Text>}
                             </Text>
                         </TouchableOpacity>
                         {show && (
                             <DateTimePicker
                                 value={date}
-                                minimumDate={new Date(1908, 0, 3)}
-                                maximumDate={new Date(2008, 0, 1)}
+                                minimumDate={new Date(Moment(minDate||'1900-01-01'))}
+                                maximumDate={new Date(Moment(maxDate||'2050-01-01'))}
                                 onChange={(e, s) => {
                                     onChangeDate(e, s)
                                     onChange(s)

@@ -18,7 +18,7 @@ export default function ImgPicker(props) {
             return;
         }
 
-        let _pickerResult = await ImagePicker.launchImageLibraryAsync();
+        let _pickerResult = await ImagePicker.launchImageLibraryAsync({ base64: true });
 
         handleImage(_pickerResult);
 
