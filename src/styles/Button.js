@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         
     },
-
     google: {
         borderWidth:1,
         backgroundColor: "#FFFFFF",
@@ -20,7 +19,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         
     },
-
     crearLote: {
         borderWidth:1,
         backgroundColor: "#FFFFFF",

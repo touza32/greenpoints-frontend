@@ -5,25 +5,8 @@ import { Divider } from 'react-native-elements';
 import { View, Text, Image, TouchableHighlight, StyleSheet, TouchableOpacity, Dimensions, FlatList, Alert } from 'react-native'; 
 import { AuthContext } from '../../context/AuthContext';
 
-//api
+// api
 import greenPointsApi from '../../api/greenPointsApi';
-
-var { height } = Dimensions.get('window');
-var box_count = 6;
-var box_height = height / box_count;
-
-const styleImage = StyleSheet.create({
-      container: {
-        paddingTop: 50,
-      },
-      stretch: {
-        width: 75,
-        height: 75,
-        resizeMode: 'stretch',
-        borderRadius: 150 / 2,
-        overflow: "hidden"
-      },
-    });
 
 export default function CrearLote({ navigation }) {
     
@@ -54,98 +37,70 @@ export default function CrearLote({ navigation }) {
             }
         };
 
+      useEffect(() => {
+          (async () => {
+            const tipoReciclableData = await greenPointsApi.get(`/tipo-reciclable/${ id }?onlyOpenedLote=false`);
+            const tipoReciclables = await tipoReciclableData.data;
+            setTipoReciclables(tipoReciclables);
+          })();
+      }, []);
+
       return (
-           
-            <View style={[styleContainer.main], { flex: 1, backgroundColor: "#FFFF" }}>
-     
-            <Header navigation={navigation} title="CREAR LOTE" />   
-
-                 <View style={[styles.container ,{ marginTop: 30}]}>
-                        
-                       <View style={[styles.box, styles.box1],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                             
-                              <TouchableOpacity
-                                    onPress={() => createLote(1) }>
-                                    <View
-                                          style={[styleContainer.main, { flexDirection: "row" }]}>
-                                          <Image
-                                          style={styleImage.stretch}
-                                          source={require('../../assets/Plastico.png')}
-                                          >
+           <View style={{ flex: 1 }}>
+                 <Header navigation={navigation} title="CREAR LOTE" />   
+                  <View style={{ flex: 0.8 }}>
+                        <FlatList
+                              data={tipoReciclables}
+                              keyExtractor={(tipoReciclable) => tipoReciclable.id.toString()}
+                              renderItem={({ item }) =>
+                                  <TouchableOpacity onPress={() => createLote(item.id)} 
+                                    style={ item.hasActiveLote ? thisStyle.disabledButton : thisStyle.containerButton } disabled={ item.hasActiveLote }>
+                                          <Image source={{ uri: item.imagen }}
+                                              style={ thisStyle.image} >
                                           </Image>
-                                          < Text style={[styles.textBody, { marginLeft: 20 }]}>PLÁSTICO</Text>
-
-                                    </View>
-                                    
-                              </TouchableOpacity>
-                             
-                       </View>
-
-                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
-                        <Divider orientation="horizontal" width={2} />
-                       </View>
-     
-                       <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <TouchableOpacity
-                                    onPress={() => createLote(3) }>
-                                    <View
-                                          style={[styleContainer.main, { flexDirection: "row" }]}>
-                                          <Image
-                                          style={styleImage.stretch}
-                                          source={require('../../assets/Carton.png')}
-                                          >
-                                          </Image>
-                                          < Text style={[styles.textBody, { marginLeft: 20 }]}>CARTÓN/PAPEL</Text>
-                                    </View>
-                        </TouchableOpacity>
-                       </View>
-
-                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
-                        <Divider orientation="horizontal" width={2} />
-                       </View>
-     
-                       <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <TouchableOpacity
-                                    onPress={() => createLote(2) }>
-                                    <View
-                                          style={[styleContainer.main, { flexDirection: "row" }]}>
-                                          <Image
-                                          style={styleImage.stretch}
-                                          source={require('../../assets/Vidrio.png')}
-                                          >
-                                          </Image>
-                                          < Text style={[styles.textBody, { marginLeft: 20 }]}>VIDRIO</Text>
-                                    </View>
-                        </TouchableOpacity>          
-                       </View>
-
-                       <View style={{ flex: 0.1, justifyContent: 'center', marginHorizontal: '5%' }}>
-                        <Divider orientation="horizontal" width={2} />
-                       </View>
-
-                       <View style={[styles.box, styles.box5]}></View>
-                 </View>
-            
+                                          <Text style={ thisStyle.buttonText }>{ item.nombre }</Text>
+                                  </TouchableOpacity>
+                              }
+                              ItemSeparatorComponent={() => { return <Divider color='#B2B2B2' /> }}>
+                        </FlatList>
+                  </View>
            </View>
-     
+            
          );
        }
 
-       const styles = StyleSheet.create({
-            container: { flex: 1, flexDirection: 'column' },
-            textBody: {
-              color: 'black',
-              textAlign: 'center',
-              fontSize: 20
-            },
-            box: { height: box_height },
-            box0: { backgroundColor: '#FFFF' },
-            box1: { backgroundColor: '#FFFF' },
-            box2: { backgroundColor: '#FFFF' },
-            box3: { backgroundColor: '#FFFF' },
-            box4: { backgroundColor: '#FFFF' },
-            box5: { backgroundColor: '#FFFF' },
-            box6: { backgroundColor: '#FFFF' },
-            box7: { backgroundColor: '#FFFF' },
-            box8: { backgroundColor: '#FFFF' }
-          }); 
+const thisStyle = StyleSheet.create({
+      image: {
+            width: 110,
+            height: 80,
+            marginLeft: 25,
+            marginRight: 10,
+            borderRadius: 10,
+            overflow: "hidden"
+      },
+      containerButton: {
+            backgroundColor: "#69A03A",
+            borderRadius: 10,
+            margin: 10,
+            padding: 10,
+            flexDirection: 'row',
+            alignItems: 'center'
+      },
+      disabledButton: {
+        backgroundColor: 'gray',
+        borderRadius: 10,
+        margin: 10,
+        padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
+      },
+      buttonText: {
+            fontSize: 30,
+            color: "#FFFFFF",
+            fontWeight: "bold",
+            alignSelf: 'center'
+      },
+      containerText: {
+            alignSelf: 'center'
+      }
+}); 
