@@ -17,6 +17,7 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
     const { hasLocation, initialPosition } = useLocation();
     const [ puntos, setPuntos ] = useState([]);
     const [ tiposReciclable, setTiposReciclable ] = useState([]);
+    const [ selectedTipoReciclableId, setSelectedTipoReciclableId ] = useState(0);
     const [ market, setMarket ] = useState(null);
 
     useEffect(() => {
@@ -24,6 +25,16 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
             const puntosData = await greenPointsApi.get('/punto-reciclaje');
             setPuntos(puntosData.data);
             const tiposReciclableData = await greenPointsApi.get('/tipo-reciclable');
+            
+            tiposReciclableData.data.unshift({
+                hasActiveLote: false,
+                id: 0,
+                imagen: null,
+                nombre: 'Todos',
+                points: null
+            });
+
+
             setTiposReciclable(tiposReciclableData.data);
           })();
     }, [])
@@ -39,8 +50,14 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
     }
 
     const filterTipo = async (tipoId) => {
-        const puntosData = await greenPointsApi.get('/punto-reciclaje?tipoId=' + tipoId );
-        setPuntos(puntosData.data);
+        if(tipoId === 0) {
+            const puntosData = await greenPointsApi.get('/punto-reciclaje');
+            setPuntos(puntosData.data);
+        } else {
+            const puntosData = await greenPointsApi.get('/punto-reciclaje?tipoId=' + tipoId );
+            setPuntos(puntosData.data);
+        }
+        setSelectedTipoReciclableId(tipoId);
     }
 
     return (
@@ -74,7 +91,9 @@ export default function MapaPuntosReciclaje({ route, navigation }) {
                 height={ 50 }
                 style={ styles.chipsScrollView }>
                     { tiposReciclable.map((tipoReciclable) => (
-                        <TouchableOpacity key={ tipoReciclable.id } style={ styles.chipsItem } onPress={() => filterTipo(tipoReciclable.id)}>
+                        <TouchableOpacity key={ tipoReciclable.id } 
+                                style={ (tipoReciclable.id === selectedTipoReciclableId) ? styles.selectedChipItem : styles.chipsItem } 
+                                onPress={() => filterTipo(tipoReciclable.id)}>
                             <Text>{ tipoReciclable.nombre }</Text>
                         </TouchableOpacity>
                     )) }
@@ -142,6 +161,24 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.5,
         shadowRadius: 5,
-        elevation: 10
+        elevation: 10,
+        alignItems: 'center'
+    },
+    selectedChipItem: {
+        borderColor: "#FF0000",
+        borderWidth: 2,
+        flexDirection: 'row',
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        padding: 8,
+        paddingHorizontal: 20,
+        marginHorizontal: 10,
+        height: 35,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 10,
+        alignItems: 'center'
     }
   });   
