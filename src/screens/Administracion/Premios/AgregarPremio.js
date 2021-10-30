@@ -72,11 +72,19 @@ export default function AgregarPremio({ route, navigation }) {
             codigos: codigos,
             image: image
         }
-        console.log(objData)
-        // await greenPointsApi.post('/alta-premio', {
-        //     nombre: data.nombre,
-        // })
-        //navigation.navigate('Confirmacion', { nextScreen: 'AgregarPremio', message: 'Su registro ha sido exitoso' })
+        
+        await greenPointsApi.post('/premio', {
+            nombre: objData.nombre,
+            sponsor: objData.sponsor,
+            puntos: objData.puntos,
+            descripcion: objData.descripcion,
+            observacion: objData.observacion,
+            fechaInicio: objData.fechaInicio,
+            fechaVto: objData.fechaVto,
+            image: objData.image,
+            codigos: objData.codigos
+        });
+        navigation.navigate('Confirmacion', { nextScreen: 'AgregarPremio', message: 'Su registro ha sido exitoso' })
     }
 
     return (
