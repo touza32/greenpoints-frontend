@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, TouchableOpacity, TextInput, Animated } from "react-native";
+import { Text, View, TouchableOpacity, TextInput, Animated, FlatList } from "react-native";
+import { Input } from 'react-native-elements';
 import { useForm } from "react-hook-form";
 import InputForm from "../../../components/InputForm";
 import InputFormDate from "../../../components/InputFormDate";
@@ -8,6 +9,7 @@ import styleText from "../../../styles/Text";
 import styleTextInput from "../../../styles/TextInput";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { Ionicons } from '@expo/vector-icons';
 import greenPointsApi from '../../../api/greenPointsApi';
 import Header from '../../../components/Header';
 import ImagePicker from '../../../components/ImagePicker';
@@ -16,9 +18,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 const schema = yup.object().shape({
     nombre: yup.
-        mixed().
-        required('Requerido'),
-    sponsor: yup.
         mixed().
         required('Requerido'),
     descripcion: yup.
@@ -65,14 +64,43 @@ export default function AgregarPremio({ route, navigation }) {
     const [codigos, setCodigos] = useState([]);
     const [errorCodigo, setErrorCodigo] = useState(false);
 
+    const [sponsorFocus, setSponsorFocus] = useState(false);
+    const [sponsorsAll, setSponsorsAll] = useState([]);
+    const [sponsor, setSponsor] = useState({ id: 0, nombre: '' });
+    const [sponsors, setSponsors] = useState([]);
+    const [query, setQuery] = useState('');
+    const [errorSponsor, setErrorSponsor] = useState(false);
+
+    useEffect(() => {
+        const dataSponsor = [
+            {
+                id: 1,
+                nombre: 'Mostaza'
+            },
+            {
+                id: 2,
+                nombre: 'Mc Donalds'
+            },
+            {
+                id: 3,
+                nombre: 'Starbucks'
+            }
+        ]
+        setSponsorsAll(dataSponsor)
+    }, [])
+
     const onSubmit = async data => {
-        if (codigos.length === 0) return setErrorCodigo(true)
+        if (codigos.length === 0) setErrorCodigo(true)
+        if (sponsor.nombre == '') setErrorSponsor(true)
+        console.log("hola")
+        if (codigos.length === 0 || sponsor.nombre === '') return
         const objData = {
             ...data,
             codigos: codigos,
-            image: image
+            image: image,
+            sponsor: sponsor.nombre
         }
-        
+
         await greenPointsApi.post('/premio', {
             nombre: objData.nombre,
             sponsor: objData.sponsor,
@@ -84,128 +112,180 @@ export default function AgregarPremio({ route, navigation }) {
             image: objData.image,
             codigos: objData.codigos
         });
-        navigation.navigate('Confirmacion', { nextScreen: 'AgregarPremio', message: 'Su registro ha sido exitoso' })
+        navigation.navigate('Confirmacion', { nextScreen: 'AgregarPremio', message: 'Se agregó exitosamente' })
     }
 
     return (
-        <KeyboardAwareScrollView
-            stickyHeaderIndices={[0]}
-        >
-            <Header navigation={navigation} title="NUEVO PREMIO" />
-            <View style={{ flex: 1, paddingBottom: 100 }}>
-                <ImagePicker
-                    handleImage={(image) => setImage(image)}
-                    marginVertical={25}
-                />
-                <InputForm
-                    control={control}
-                    errors={errors}
-                    name="nombre"
-                    title="Nombre (*)"
-                    placeholder="Nombre"
-                />
-                <InputForm
-                    control={control}
-                    errors={errors}
-                    name="sponsor"
-                    title="Sponsor (*)"
-                    placeholder="Sponsor"
-                />
-                <InputForm
-                    control={control}
-                    errors={errors}
-                    name="descripcion"
-                    title="Descripción (*)"
-                    placeholder="Descripción"
-                    style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
-                    multiline
-                    editable
-                    numberOfLines={5}
-                    maxLength={180}
-                />
-                <InputForm
-                    control={control}
-                    errors={errors}
-                    name="observacion"
-                    title="Observación"
-                    placeholder="Disponible en todos los locales"
-                    style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
-                    multiline
-                    editable
-                    numberOfLines={5}
-                    maxLength={180}
-                />
-                <InputForm
-                    control={control}
-                    errors={errors}
-                    name="puntos"
-                    title="Puntos para obtenerlo (*)"
-                    placeholder="0"
-                    style={[styleTextInput.small]}
-                    containerStyle={{ marginRight: 116 }}
-                    keyboardType="numeric"
-                />
-                <InputFormDate
-                    control={control}
-                    errors={errors}
-                    name="fechaInicio"
-                    title="Fecha de inicio (*)"
-                />
-                <InputFormDate
-                    control={control}
-                    errors={errors}
-                    name="fechaVto"
-                    title="Fecha de caducidad"
-                    minDate={Moment().format('yyyy-MM-DD')}
-                />
-                <View style={{ alignSelf: 'center', flexDirection: 'row' }}>
-                    <View>
-                        <Text style={styleTextInput.title}>Código (*)</Text>
-                        <TextInput
-                            placeholder="Código"
-                            style={[styleTextInput.medium, { width: 200 }]}
-                            value={codigo}
-                            onChangeText={setCodigo}
-                        />
-                        <Animated.Text style={{ opacity: fadeAnim, color: 'orange', fontWeight: 'bold' }}>Código añadido</Animated.Text>
-                        <Text>Códigos activos: {codigos.length}</Text>
+        <View style={{ flex: 1 }}>
+            {sponsorFocus ? (
+                <View style={{ flex: 1 }}>
+                    <Header navigation={navigation} title="NUEVO PREMIO" />
+                    <View style={{ flex: 1 }}>
+                        <Text style={[styleTextInput.title, { marginLeft: 10 }]}>Sponsor (*)</Text>
+                        <Input
+                            inputContainerStyle={styleTextInput.large}
+                            style={{ fontSize: 15 }}
+                            placeholder="Sponsor"
+                            leftIcon={
+                                <TouchableOpacity onPress={() => setSponsorFocus(false)}>
+                                    <Ionicons name='chevron-back' size={20} style={{ marginLeft: -10 }} />
+                                </TouchableOpacity>
+                            }
+                            onChangeText={value => {
+                                setQuery(value)
+                                setSponsors(sponsorsAll.filter(item => item.nombre.toUpperCase().indexOf(value.toUpperCase()) > -1))
+                            }}
+                            value={query}
+                            autoFocus={true}
+                        >
+                        </Input>
+                        <View>
+                            <FlatList
+                                style={{ marginLeft: 20, marginTop: -10 }}
+                                data={sponsors}
+                                keyExtractor={item => item.id.toString()}
+                                renderItem={({ item }) =>
+                                    <View>
+                                        {console.log(item.nombre)}
+                                        <Text onPress={() => {
+                                            setSponsor(item)
+                                            setQuery(item.nombre)
+                                            setSponsorFocus(false)
+                                            setErrorSponsor(false)
+                                        }}
+                                        >{item.nombre}
+                                        </Text>
+                                    </View>
+                                }
+                            />
+                        </View>
                     </View>
-                    {codigo !== ''
-                        ?
-                        <TouchableOpacity
-                            style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60 }]}
-                            onPress={() => {
-                                fadeOut()
-                                setCodigos([...codigos, codigo])
-                                errorCodigo && setErrorCodigo(false)
-                                setCodigo('')
-                            }
-                            }
-                        >
-                            <Text style={[styleText.button, { fontSize: 30 }]}>+</Text>
-                        </TouchableOpacity>
-                        :
-                        <TouchableOpacity
-                            style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60, backgroundColor: 'gray' }]}
-                        >
-                            <Text style={[styleText.button, { fontSize: 30 }]}>+</Text>
-                        </TouchableOpacity>
-                    }
                 </View>
-                {errorCodigo && <Text style={{ textAlign: 'center', marginRight: 55, color: 'red' }}>Debe poseer al menos un código activo</Text>}
-                <TouchableOpacity
-                    style={{ marginVertical: 20 }}
-                    onPress={() => navigation.navigate('VerCodigos', { codigos })}
+            ) : (
+                <KeyboardAwareScrollView
+                    stickyHeaderIndices={[0]}
                 >
-                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'blue', textDecorationLine: 'underline' }}>
-                        VER CÓDIGOS
-                    </Text>
-                </TouchableOpacity>
+                    <Header navigation={navigation} title="NUEVO PREMIO" />
+                    <View style={{ flex: 1, paddingBottom: 100 }}>
+                        <ImagePicker
+                            handleImage={(image) => setImage(image)}
+                            marginVertical={25}
+                        />
+                        <InputForm
+                            control={control}
+                            errors={errors}
+                            name="nombre"
+                            title="Nombre (*)"
+                            placeholder="Nombre"
+                        />
+                        <View style={{ alignSelf: 'center' }}>
+                            <Text style={styleTextInput.title}>Sponsor (*)</Text>
+                            <TextInput style={styleTextInput.large}
+                                onChangeText={setSponsor}
+                                value={sponsor.nombre}
+                                placeholder="Sponsor"
+                                onFocus={() => setSponsorFocus(true)}
+                            />
+                            <View style={{ width: '80%' }}>
+                                {errorSponsor ? <Text style={{ color: 'red' }}>Requerido</Text> : <Text></Text>}
+                            </View>
+                        </View>
+                        <InputForm
+                            control={control}
+                            errors={errors}
+                            name="descripcion"
+                            title="Descripción (*)"
+                            placeholder="Descripción"
+                            style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
+                            multiline
+                            editable
+                            numberOfLines={5}
+                            maxLength={180}
+                        />
+                        <InputForm
+                            control={control}
+                            errors={errors}
+                            name="observacion"
+                            title="Observación"
+                            placeholder="Disponible en todos los locales"
+                            style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
+                            multiline
+                            editable
+                            numberOfLines={5}
+                            maxLength={180}
+                        />
+                        <InputForm
+                            control={control}
+                            errors={errors}
+                            name="puntos"
+                            title="Puntos para obtenerlo (*)"
+                            placeholder="0"
+                            style={[styleTextInput.small]}
+                            containerStyle={{ marginRight: 116 }}
+                            keyboardType="numeric"
+                        />
+                        <InputFormDate
+                            control={control}
+                            errors={errors}
+                            name="fechaInicio"
+                            title="Fecha de inicio (*)"
+                        />
+                        <InputFormDate
+                            control={control}
+                            errors={errors}
+                            name="fechaVto"
+                            title="Fecha de caducidad"
+                            minDate={Moment().format('yyyy-MM-DD')}
+                        />
+                        <View style={{ alignSelf: 'center', flexDirection: 'row' }}>
+                            <View>
+                                <Text style={styleTextInput.title}>Código (*)</Text>
+                                <TextInput
+                                    placeholder="Código"
+                                    style={[styleTextInput.medium, { width: 200 }]}
+                                    value={codigo}
+                                    onChangeText={setCodigo}
+                                />
+                                <Animated.Text style={{ opacity: fadeAnim, color: 'orange', fontWeight: 'bold' }}>Código añadido</Animated.Text>
+                                <Text>Códigos activos: {codigos.length}</Text>
+                            </View>
+                            {codigo !== ''
+                                ?
+                                <TouchableOpacity
+                                    style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60 }]}
+                                    onPress={() => {
+                                        fadeOut()
+                                        setCodigos([...codigos, codigo])
+                                        errorCodigo && setErrorCodigo(false)
+                                        setCodigo('')
+                                    }
+                                    }
+                                >
+                                    <Text style={[styleText.button, { fontSize: 30 }]}>+</Text>
+                                </TouchableOpacity>
+                                :
+                                <TouchableOpacity
+                                    style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60, backgroundColor: 'gray' }]}
+                                >
+                                    <Text style={[styleText.button, { fontSize: 30 }]}>+</Text>
+                                </TouchableOpacity>
+                            }
+                        </View>
+                        {errorCodigo && <Text style={{ textAlign: 'center', marginRight: 55, color: 'red' }}>Debe poseer al menos un código activo</Text>}
+                        <TouchableOpacity
+                            style={{ marginVertical: 20 }}
+                            onPress={() => navigation.navigate('VerCodigos', { codigos })}
+                        >
+                            <Text style={{ textAlign: 'center', fontSize: 20, color: 'blue', textDecorationLine: 'underline' }}>
+                                VER CÓDIGOS
+                            </Text>
+                        </TouchableOpacity>
 
-                <TouchableOpacity style={[styleButton.base, { alignSelf: 'center' }]} onPress={handleSubmit(onSubmit)}>
-                    <Text style={styleText.button}>AGREGAR</Text>
-                </TouchableOpacity>
-            </View>
-        </KeyboardAwareScrollView>
+                        <TouchableOpacity style={[styleButton.base, { alignSelf: 'center' }]} onPress={handleSubmit(onSubmit)}>
+                            <Text style={styleText.button}>AGREGAR</Text>
+                        </TouchableOpacity>
+                    </View>
+                </KeyboardAwareScrollView>)}
+        </View>
     );
 }
