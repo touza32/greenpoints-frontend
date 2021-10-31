@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     blueTextUnderlined: {
         color: 'blue',
         textAlign: 'center',
-        marginTop: 5,
+        marginTop: 10,
+        fontSize: 18,
         textDecorationLine: 'underline'
     },
 
