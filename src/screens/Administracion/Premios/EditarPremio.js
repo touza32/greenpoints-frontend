@@ -122,24 +122,16 @@ export default function AgregarPremio({ route, navigation }) {
             image: image,
             sponsor: sponsor.id
         }
-        console.log({name: objData.nombre,
-            sponsorId: objData.sponsor,
-            puntos: objData.puntos,
-            description: objData.descripcion,
-            observacion: objData.observacion,
-            desde: objData.fechaInicio,
-            hasta: objData.fechaVto,
-            imageData: objData.image,
-            codigos: objData.codigos})
-            
+
         await greenPointsApi.put('/premio', {
+            id: premio.id,
             name: objData.nombre,
             sponsorId: objData.sponsor,
             puntos: objData.puntos,
             description: objData.descripcion,
             observacion: objData.observacion,
-            desde: objData.fechaInicio,
-            hasta: objData.fechaVto,
+            desde: objData.fechaInicio ? Moment(objData.fechaInicio, 'DD-MM-YYYY') : null,
+            hasta: objData.fechaVto ? Moment(objData.fechaVto, 'DD-MM-YYYY') : null,
             imageData: objData.image,
             codigos: objData.codigos
         });

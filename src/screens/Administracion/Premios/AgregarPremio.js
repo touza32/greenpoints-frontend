@@ -85,12 +85,12 @@ export default function AgregarPremio({ route, navigation }) {
             ...data,
             codigos: codigos,
             image: image,
-            sponsor: sponsor.id.toString()
+            sponsor: sponsor.id
         }
 
         await greenPointsApi.post('/premio', {
             nombre: objData.nombre,
-            sponsor: objData.sponsor,
+            sponsorId: objData.sponsor,
             puntos: objData.puntos,
             descripcion: objData.descripcion,
             observacion: objData.observacion,
