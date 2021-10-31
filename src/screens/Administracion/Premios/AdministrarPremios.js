@@ -17,13 +17,15 @@ export default function AdministrarPremios({ navigation }) {
     const [resultado, setResultado] = useState([]);
 
     useEffect(() => {
-        (async () => {
-            const premiosData = await greenPointsApi.get('/premio');
-            const premios = await premiosData.data;
-            setPremios(premios);
-            setResultado(premios);
-        })();
-    }, []);
+        navigation.addListener('focus', () => {
+            (async () => {
+                const premiosData = await greenPointsApi.get('/premio');
+                const premios = await premiosData.data;
+                setPremios(premios);
+                setResultado(premios);
+            })();
+        })
+    }, [navigation]);
 
     return (
         <View style={{ flex: 1 }}>
@@ -53,7 +55,7 @@ export default function AdministrarPremios({ navigation }) {
                     data={resultado}
                     keyExtractor={(premio) => premio.id.toString()}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => { navigation.navigate('AgregarPremio', { premioId: item.id }) }}>
+                        <TouchableOpacity onPress={() => { navigation.navigate('EditarPremio', { premioId: item.id }) }}>
                             <View style={styles.premio}>
                                 <View style={{ flexDirection: "row" }}>
                                     <Image source={{ uri: item.imagen }}
