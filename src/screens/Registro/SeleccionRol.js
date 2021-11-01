@@ -4,11 +4,26 @@ import styleText from '../../styles/Text';
 import styleButton from '../../styles/Button';
 import { Divider } from 'react-native-elements';
 import Header from '../../components/Header';  
+import { Ionicons } from '@expo/vector-icons';
 
 export default function SeleccionRol({ navigation }) {
       return (
             <View style={{ flex: 1 }}>
-                  <Header navigation={navigation} title="" />
+                     <Header
+                        leftComponent={
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <TouchableOpacity
+                                    style={{ marginLeft: -10 }}
+                                    onPress={() => { navigation.navigate('LoginScreen') }}>
+                                    <Ionicons name="chevron-back" size={35} color="white" />
+                                </TouchableOpacity>
+                                <Text
+                                    style={[styleText.button, { width: '90%' }]}>SELECCIÓN DE ROL</Text>
+                            </View>
+                        }
+                        navigation={navigation}
+                    />
+            
                   
                   <View style={{ flex: 0.45, justifyContent: 'space-around', alignItems: 'center', marginTop: '5%' }}>
                         <View>

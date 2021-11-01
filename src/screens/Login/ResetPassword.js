@@ -9,6 +9,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import greenPointsApi from '../../api/greenPointsApi';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Header from '../../components/Header';
+import { Ionicons } from '@expo/vector-icons';
 
 const schema = yup.object().shape({
     email: yup.
@@ -32,9 +34,24 @@ export default function ResetPassword({ navigation }) {
 
     return (
         <KeyboardAwareScrollView
-                contentContainerStyle={[styleContainer.main, { padding: 20, paddingTop: 5 }]}
+                contentContainerStyle={[styleContainer.main, {  paddingTop: 10 }]}
         >
-            <View style={[styleContainer.main, { marginTop: 10, marginBottom: 40 }]}>
+              <Header
+                        leftComponent={
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <TouchableOpacity
+                                    style={{ marginLeft: -10 }}
+                                    onPress={() => { navigation.navigate('LoginScreen') }}>
+                                    <Ionicons name="chevron-back" size={35} color="white" />
+                                </TouchableOpacity>
+                                <Text
+                                    style={[styleText.button, { width: '90%' }]}>REESTABLECER CONTRASEÑA</Text>
+                            </View>
+                        }
+                        navigation={navigation}
+                    />
+            
+            <View style={[styleContainer.main, { marginTop: 40, marginBottom: 40 }]}>
                 <Image
                     source={require('../../assets/icon.png')}
                     style={{

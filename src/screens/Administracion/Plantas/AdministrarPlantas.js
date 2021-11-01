@@ -55,7 +55,7 @@ export default function AdministrarPlantas({ navigation }) {
                     data={resultado}
                     keyExtractor={(planta) => planta.id.toString()}
                     renderItem={({ item }) =>
-                    <TouchableOpacity onPress={() => { navigation.navigate('EditarPlanta', { premioId: item.id }) }}>
+                    <TouchableOpacity onPress={() => { navigation.navigate('EditarPlanta', { plantaId: item.id }) }}>
                             <View style={styles.planta}>
                                 <View style={{ flexDirection: "row" }}>
                                     <Image source={{ uri: item.imagen }}
