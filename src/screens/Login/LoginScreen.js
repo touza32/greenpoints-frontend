@@ -86,8 +86,12 @@ export default function LoginScreen({ navigation }) {
                     <TouchableOpacity
                         onPress={() => navigation.navigate('SeleccionRol')}
                     >
-                        <Text style={styleText.blueTextUnderlined
-                        }>Regístrate</Text>
+                        <Text style={styleText.blueTextUnderlined}>Regístrate</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ResetPassword')}
+                    >
+                        <Text style={styleText.blueTextUnderlined}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
 
                    

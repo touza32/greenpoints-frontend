@@ -8,6 +8,7 @@ import LoadingScreen from '../screens/LoadingScreen';
 import Confirmacion from '../screens/Confirmacion';
 
 import LoginScreen from '../screens/Login/LoginScreen';
+import ResetPassword from '../screens/Login/ResetPassword';
 
 import AdminMenuScreen from '../screens/Menu/AdminMenuScreen';
 import PuntoMenuScreen from '../screens/Menu/PuntoMenuScreen';
@@ -40,8 +41,13 @@ import ActualizacionLote from '../screens/Lote/ActualizacionLote';
 import DetalleLote from '../screens/Lote/DetalleLote';
 
 import AdministrarPremios from '../screens/Administracion/Premios/AdministrarPremios';
-import AgregarPremio from '../screens/Administracion//Premios/AgregarPremio';
-import VerCodigos from '../screens/Administracion//Premios/VerCodigos';
+import AgregarPremio from '../screens/Administracion/Premios/AgregarPremio';
+import EditarPremio from '../screens/Administracion/Premios/EditarPremio';
+import VerCodigos from '../screens/Administracion/Premios/VerCodigos';
+
+import AdministrarPlantas from '../screens/Administracion/Plantas/AdministrarPlantas';
+//import EditarPlanta from '../screens/Administracion/Plantas/EditarPlanta';
+import AgregarPlanta from '../screens/Administracion/Plantas/AgregarPlanta';
 
 import AdministrarSponsors from '../screens/Administracion/Sponsors/AdministrarSponsors';
 import AgregarSponsor from '../screens/Administracion/Sponsors/AgregarSponsor';
@@ -68,13 +74,13 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="SeleccionRol" component={SeleccionRol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' }, headerShown: false }} />
               <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" , headerShown: false }} />
+              <Stack.Screen name="SeleccionRol" component={SeleccionRol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' }, headerShown: false }} />
+              <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ title: "" , headerShown: false }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroTipoMaterial" component={RegistroTipoMaterial} options={{ title: "SELECCIONAR MATERIALES", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
-              
             </>
           )
           : (rol === 3)
@@ -83,10 +89,14 @@ export const Navigator = () => {
                 <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} options={{ headerShown: false }}/>
                 <Stack.Screen name="AdministrarPremios" component={AdministrarPremios} options={{ headerShown: false }}/>
                 <Stack.Screen name="AgregarPremio" component={AgregarPremio} options={{ headerShown: false }}/>
+                <Stack.Screen name="EditarPremio" component={EditarPremio} options={{ headerShown: false }}/>
                 <Stack.Screen name="VerCodigos" component={VerCodigos} options={{ headerShown: false }}/>
                 <Stack.Screen name="AdministrarSponsors" component={AdministrarSponsors} options={{ headerShown: false }}/>
                 <Stack.Screen name="AgregarSponsor" component={AgregarSponsor} options={{ headerShown: false }}/>
                 <Stack.Screen name="ActualizarSponsor" component={ActualizarSponsor} options={{ headerShown: false }}/>
+                <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
+                <Stack.Screen name="AdministrarPlantas" component={AdministrarPlantas} options={{ headerShown: false }}/>
+                <Stack.Screen name="AgregarPlanta" component={AgregarPlanta} options={{ headerShown: false }}/>
               </>
             )
             : (rol === 2)

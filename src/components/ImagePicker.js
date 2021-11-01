@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function ImgPicker(props) {
 
-    const { handleImage } = props;
+    const { handleImage, defaultValue } = props;
 
     const [pickerResult, setPickerResult] = useState({ uri: '' });
 
@@ -20,9 +20,13 @@ export default function ImgPicker(props) {
 
         let _pickerResult = await ImagePicker.launchImageLibraryAsync({ base64: true });
 
-        handleImage(_pickerResult);
+        if (_pickerResult.uri !== undefined) {
+            let format = _pickerResult.uri.substr(-3)
+            if (format !== 'jpg' & format !== 'png') return alert("Solo se admite formato .jpg o .png")
+        }
 
-        setPickerResult(_pickerResult);
+        handleImage(_pickerResult);
+        _pickerResult.cancelled === false && setPickerResult(_pickerResult);
 
     }
 
@@ -30,25 +34,30 @@ export default function ImgPicker(props) {
         <View style={{ flex: 1, alignItems: 'center', ...props }}>
             <TouchableOpacity onPress={openImagePickerAsync}
                 style={styles.box}>
-                {pickerResult.uri === ''
+                {defaultValue !== undefined & (pickerResult.uri === '')
                     ?
-                    <Text
-                        style={styles.text}>
-                        {`Seleccione\nuna\nimagen`}
-                    </Text>
-                    :
                     <Image
                         style={styles.box}
-                        source={{ uri: pickerResult.uri }}
-
+                        source={{ uri: defaultValue }}
                     />
+                    :
+                    defaultValue === undefined & (pickerResult.uri === '')
+                        ?
+                        <Text
+                            style={styles.text}>
+                            {`Seleccione\nuna\nimagen`}
+                        </Text>
+                        :
+                        <Image
+                            style={styles.box}
+                            source={{ uri: pickerResult.uri }}
+                        />
                 }
                 <Ionicons
                     style={styles.icon}
                     name='create-outline'
                     size={30}
                     color='gray'
-
                 />
             </TouchableOpacity>
         </View>

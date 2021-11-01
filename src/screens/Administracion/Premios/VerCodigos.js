@@ -11,6 +11,8 @@ export default function VerCodigos({ route, navigation }) {
 
     const [codigo, setCodigo] = useState('')
     const [codigos, setCodigos] = useState(route.params.codigos)
+    const { backToAgregar } = route.params
+    const previousScreen = backToAgregar ? 'AgregarPremio' : 'EditarPremio'
 
     return (
         <View>
@@ -19,7 +21,7 @@ export default function VerCodigos({ route, navigation }) {
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                         <TouchableOpacity
                             style={{ marginLeft: -10 }}
-                            onPress={() => { navigation.navigate({ name: 'AgregarPremio', params: { codigos: codigos }, merge: true }) }}>
+                            onPress={() => { navigation.navigate({ name: previousScreen, params: { codigos: codigos }, merge: true }) }}>
                             <Ionicons name="chevron-back" size={35} color="white" />
                         </TouchableOpacity>
                         <Text

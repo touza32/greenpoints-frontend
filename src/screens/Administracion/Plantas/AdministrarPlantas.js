@@ -10,26 +10,26 @@ import greenPointsApi from '../../../api/greenPointsApi';
 // components
 import Header from '../../../components/Header';
 
-export default function AdministrarPremios({ navigation }) {
+export default function AdministrarPlantas({ navigation }) {
 
-    const [premios, setPremios] = useState([]);
+    const [plantas, setPlantas] = useState([]);
     const [query, setQuery] = useState('');
     const [resultado, setResultado] = useState([]);
 
     useEffect(() => {
         navigation.addListener('focus', () => {
             (async () => {
-                const premiosData = await greenPointsApi.get('/premio');
-                const premios = await premiosData.data;
-                setPremios(premios);
-                setResultado(premios);
+                const plantasData = await greenPointsApi.get('/planta');
+                const plantas = await plantasData.data;
+                setPlantas(plantas);
+                setResultado(plantas);
             })();
         })
     }, [navigation]);
 
     return (
         <View style={{ flex: 1 }}>
-            <Header navigation={navigation} title="PREMIOS" />
+            <Header navigation={navigation} title="PLANTAS RECICLADORAS" />
             <View style={{ flex: 0.1 }}>
                 <Input
                     inputContainerStyle={{ marginHorizontal: 10, marginTop: 10, borderWidth: 1, borderColor: '#DDDDDD', borderRadius: 10, height: 40 }}
@@ -44,7 +44,7 @@ export default function AdministrarPremios({ navigation }) {
                     }
                     onChangeText={value => {
                         setQuery(value)
-                        setResultado(premios.filter(item => item.nombre.toUpperCase().indexOf(value.toUpperCase()) > -1))
+                        setResultado(plantas.filter(item => item.nombre.toUpperCase().indexOf(value.toUpperCase()) > -1))
                     }}
                     value={query}
                 />
@@ -53,18 +53,18 @@ export default function AdministrarPremios({ navigation }) {
             <View style={{ flex: 0.8 }}>
                 <FlatList
                     data={resultado}
-                    keyExtractor={(premio) => premio.id.toString()}
+                    keyExtractor={(planta) => planta.id.toString()}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => { navigation.navigate('EditarPremio', { premioId: item.id }) }}>
-                            <View style={styles.premio}>
+                    <TouchableOpacity onPress={() => { navigation.navigate('EditarPlanta', { premioId: item.id }) }}>
+                            <View style={styles.planta}>
                                 <View style={{ flexDirection: "row" }}>
                                     <Image source={{ uri: item.imagen }}
                                         style={styles.image}>
                                     </Image>
-                                    <View style={styles.premioDetail}>
+                                    <View style={styles.plantaDetail}>
                                         <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.nombre}</Text>
-                                        <Text style={styles.sponsor}>{item.sponsorName}</Text>
-                                        <Text style={styles.sponsor}>{item.points} puntos</Text>
+                                        <Text style={styles.direccion}>{item.direccion}</Text>
+                                        
                                     </View>
                                 </View>
                             </View>
@@ -74,7 +74,7 @@ export default function AdministrarPremios({ navigation }) {
                 </FlatList>
                 <View style={{ flex: 0.1, alignItems: 'center', marginTop: 20 }}>
                     <TouchableOpacity style={[styleButton.base]}
-                        onPress={() => navigation.navigate('AgregarPremio')}
+                        onPress={() => navigation.navigate('AgregarPlanta')}
                     >
                         <Text style={styleText.button}>AGREGAR NUEVO</Text>
                     </TouchableOpacity>
@@ -92,19 +92,19 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10
     },
-    sponsor: {
+    direccion: {
         color: '#827C7B',
         textAlign: 'left',
         fontSize: 15
     },
-    premio: {
+    planta: {
         marginBottom: 10,
         marginTop: 10,
         flexDirection: "row",
         paddingRight: 2,
         paddingLeft: 2
     },
-    premioDetail: {
+    plantaDetail: {
         flexDirection: "column",
         width: 170
     },

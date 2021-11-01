@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, TouchableOpacity, TextInput, Animated, FlatList } from "react-native";
+import { Text, View, TouchableOpacity, TextInput, Animated, FlatList, Alert } from "react-native";
 import { Input } from 'react-native-elements';
 import { useForm } from "react-hook-form";
 import InputForm from "../../../components/InputForm";
@@ -38,7 +38,7 @@ const schema = yup.object().shape({
 
 export default function AgregarPremio({ route, navigation }) {
 
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -59,6 +59,8 @@ export default function AgregarPremio({ route, navigation }) {
         });
     };
 
+    const [premio, setPremio] = useState({});
+
     const [image, setImage] = useState({});
     const [codigo, setCodigo] = useState('');
     const [codigos, setCodigos] = useState([]);
@@ -72,15 +74,48 @@ export default function AgregarPremio({ route, navigation }) {
     const [errorSponsor, setErrorSponsor] = useState(false);
 
     useEffect(() => {
+
         (async () => {
             const sponsorsData = await greenPointsApi.get('/sponsor');
             const sponsors = await sponsorsData.data;
             setSponsorsAll(sponsors);
         })()
+
+        const { premioId } = route.params;
+
+        (async () => {
+            const premioData = await greenPointsApi.get(`/premio/${premioId}?admin=true`);
+            const premio = await premioData.data;
+            setPremio({
+                ...premio,
+                puntos: premio.puntos.toString(),
+                desde: new Date(premio.desde),
+                hasta: new Date(premio.hasta),
+            })
+            setCodigos(premio.codigos)
+        })()
     }, [])
 
+    useEffect(() => {
+        const sponsor = sponsorsAll.filter(item => item.id === premio.sponsorId)
+        if (sponsor[0] !== undefined) {
+            setSponsor(sponsor[0])
+        }
+    }, [sponsorsAll, premio])
+
+    useEffect(() => {
+        reset({
+            nombre: premio.name,
+            descripcion: premio.description,
+            observacion: premio.observacion,
+            puntos: premio.puntos,
+            fechaInicio: premio.desde,
+            fechaVto: premio.hasta,
+        })
+    }, [premio])
+
     const onSubmit = async data => {
-        if (codigos.length === 0 || sponsor.nombre === undefined) return
+        if (codigos.length === 0 || sponsor.nombre === '') return
         const objData = {
             ...data,
             codigos: codigos,
@@ -88,18 +123,38 @@ export default function AgregarPremio({ route, navigation }) {
             sponsor: sponsor.id
         }
 
-        await greenPointsApi.post('/premio', {
-            nombre: objData.nombre,
+        await greenPointsApi.put('/premio', {
+            id: premio.id,
+            name: objData.nombre,
             sponsorId: objData.sponsor,
             puntos: objData.puntos,
-            descripcion: objData.descripcion,
+            description: objData.descripcion,
             observacion: objData.observacion,
-            fechaInicio: objData.fechaInicio,
-            fechaVto: objData.fechaVto,
-            image: objData.image,
+            desde: objData.fechaInicio ? Moment(objData.fechaInicio, 'DD-MM-YYYY') : null,
+            hasta: objData.fechaVto ? Moment(objData.fechaVto, 'DD-MM-YYYY') : null,
+            imageData: objData.image,
             codigos: objData.codigos
         });
-        navigation.navigate('Confirmacion', { nextScreen: 'AdministrarPremios', message: 'Se agregó exitosamente' })
+        navigation.navigate('Confirmacion', { nextScreen: 'AdministrarPremios', message: 'Se actualizó exitosamente' })
+    }
+
+    const eliminarPremio = () => {
+        Alert.alert(
+            'Eliminar premio',
+            '¿Estas seguro que deseas eliminar este premio?',
+            [
+                {
+                    text: 'NO'
+                },
+                {
+                    text: 'SI',
+                    onPress: async () => {
+                        await greenPointsApi.delete('/premio/' + premio.id)
+                        navigation.navigate('Confirmacion', { nextScreen: 'AdministrarPremios', message: 'Se eliminó exitosamente' })
+                    }
+                }
+            ]
+        )
     }
 
     return (
@@ -151,12 +206,25 @@ export default function AgregarPremio({ route, navigation }) {
                 <KeyboardAwareScrollView
                     stickyHeaderIndices={[0]}
                 >
-                    <Header navigation={navigation} title="NUEVO PREMIO" />
+                    <Header
+                        leftComponent={
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <TouchableOpacity
+                                    style={{ marginLeft: -10 }}
+                                    onPress={() => { navigation.navigate('AdministrarPremios') }}>
+                                    <Ionicons name="chevron-back" size={35} color="white" />
+                                </TouchableOpacity>
+                                <Text
+                                    style={[styleText.button, { width: '90%' }]}>NUEVO PREMIO</Text>
+                            </View>
+                        }
+                        navigation={navigation}
+                    />
                     <View style={{ flex: 1, paddingBottom: 100 }}>
                         <ImagePicker
                             handleImage={(image) => setImage(image)}
                             marginVertical={25}
-                        //defaultValue={image.uri}
+                            defaultValue={premio.imagen}
                         />
                         <InputForm
                             control={control}
@@ -172,6 +240,7 @@ export default function AgregarPremio({ route, navigation }) {
                                 value={sponsor.nombre}
                                 placeholder="Sponsor"
                                 onFocus={() => setSponsorFocus(true)}
+                                defaultValue={sponsor.nombre}
                             />
                             <View style={{ width: '80%' }}>
                                 {errorSponsor ? <Text style={{ color: 'red' }}>Requerido</Text> : <Text></Text>}
@@ -261,7 +330,7 @@ export default function AgregarPremio({ route, navigation }) {
                         {errorCodigo && <Text style={{ textAlign: 'center', marginRight: 55, color: 'red' }}>Debe poseer al menos un código activo</Text>}
                         <TouchableOpacity
                             style={{ marginVertical: 20 }}
-                            onPress={() => navigation.navigate('VerCodigos', { codigos, backToAgregar: true })}
+                            onPress={() => navigation.navigate('VerCodigos', { codigos, backToAgregar: false })}
                         >
                             <Text style={{ textAlign: 'center', fontSize: 20, color: 'blue', textDecorationLine: 'underline' }}>
                                 VER CÓDIGOS
@@ -277,7 +346,13 @@ export default function AgregarPremio({ route, navigation }) {
                                 if (image === undefined || image === null || Object.keys(image).length === 0) setImage(null)
                             }}
                         >
-                            <Text style={styleText.button}>AGREGAR</Text>
+                            <Text style={styleText.button}>ACTUALIZAR</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styleButton.base, { alignSelf: 'center', backgroundColor: 'red', marginTop: 20 }]}
+                            onPress={() => eliminarPremio()}
+                        >
+                            <Text style={styleText.button}>ELIMINAR</Text>
                         </TouchableOpacity>
                     </View>
                 </KeyboardAwareScrollView>)}

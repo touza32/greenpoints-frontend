@@ -71,7 +71,7 @@ export default function AdminMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => { navigation.navigate('AdministrarPlantas')}} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image

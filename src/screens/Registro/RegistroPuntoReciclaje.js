@@ -100,9 +100,10 @@ function getCuilCuit(document_number, gender) {
 }
 
 const schema = yup.object().shape({
-  userName: yup.
-    string().
-    required('Requerido'),
+  email: yup.
+      string().
+      email('Correo electrónico inválido').
+      required('Requerido'),
   password: yup.
     string().
     required('Requerido').
@@ -134,11 +135,11 @@ export default function RegistroPuntoReciclaje({ navigation }) {
     >
       <Text style={{marginVertical: 10, textDecorationLine: 'underline'}}>Todos los campos son requeridos</Text>
       <InputForm
-        control={control}
-        errors={errors}
-        name="userName"
-        title="Nombre de usuario"
-        placeholder="usuario"
+          control={control}
+          errors={errors}
+          name="email"
+          title="Correo electrónico"
+          placeholder="ejemplo@dominio.com"
       />
       <InputForm
         control={control}
