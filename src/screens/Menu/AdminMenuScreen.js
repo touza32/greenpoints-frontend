@@ -60,7 +60,7 @@ export default function AdminMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => {navigation.navigate('AdministrarSponsors') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image

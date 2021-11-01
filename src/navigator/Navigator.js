@@ -43,6 +43,10 @@ import AdministrarPremios from '../screens/Administracion/Premios/AdministrarPre
 import AgregarPremio from '../screens/Administracion//Premios/AgregarPremio';
 import VerCodigos from '../screens/Administracion//Premios/VerCodigos';
 
+import AdministrarSponsors from '../screens/Administracion/Sponsors/AdministrarSponsors';
+import AgregarSponsor from '../screens/Administracion/Sponsors/AgregarSponsor';
+import ActualizarSponsor from '../screens/Administracion/Sponsors/ActualizarSponsor';
+
 import Contacto from '../screens/Contacto';
 
 import styleText from '../styles/Text';
@@ -80,6 +84,9 @@ export const Navigator = () => {
                 <Stack.Screen name="AdministrarPremios" component={AdministrarPremios} options={{ headerShown: false }}/>
                 <Stack.Screen name="AgregarPremio" component={AgregarPremio} options={{ headerShown: false }}/>
                 <Stack.Screen name="VerCodigos" component={VerCodigos} options={{ headerShown: false }}/>
+                <Stack.Screen name="AdministrarSponsors" component={AdministrarSponsors} options={{ headerShown: false }}/>
+                <Stack.Screen name="AgregarSponsor" component={AgregarSponsor} options={{ headerShown: false }}/>
+                <Stack.Screen name="ActualizarSponsor" component={ActualizarSponsor} options={{ headerShown: false }}/>
               </>
             )
             : (rol === 2)
