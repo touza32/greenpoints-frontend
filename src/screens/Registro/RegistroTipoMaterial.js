@@ -29,7 +29,7 @@ export default function RegistroTipoMaterial({ route, navigation }) {
         if (alos) return errmsg
         try {
             await greenPointsApi.post('/punto-reciclaje', {
-                username: route.params.userName,
+                email: route.params.email,
                 customerName: route.params.customerName,
                 document: route.params.document,
                 latitud: route.params.latitud,
