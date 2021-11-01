@@ -44,6 +44,10 @@ import AgregarPremio from '../screens/Administracion/Premios/AgregarPremio';
 import EditarPremio from '../screens/Administracion/Premios/EditarPremio';
 import VerCodigos from '../screens/Administracion/Premios/VerCodigos';
 
+import AdministrarPlantas from '../screens/Administracion/Plantas/AdministrarPlantas';
+//import EditarPlanta from '../screens/Administracion/Plantas/EditarPlanta';
+import AgregarPlanta from '../screens/Administracion/Plantas/AgregarPlanta';
+
 import Contacto from '../screens/Contacto';
 
 import styleText from '../styles/Text';
@@ -83,6 +87,8 @@ export const Navigator = () => {
                 <Stack.Screen name="EditarPremio" component={EditarPremio} options={{ headerShown: false }}/>
                 <Stack.Screen name="VerCodigos" component={VerCodigos} options={{ headerShown: false }}/>
                 <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
+                <Stack.Screen name="AdministrarPlantas" component={AdministrarPlantas} options={{ headerShown: false }}/>
+                <Stack.Screen name="AgregarPlanta" component={AgregarPlanta} options={{ headerShown: false }}/>
               </>
             )
             : (rol === 2)
