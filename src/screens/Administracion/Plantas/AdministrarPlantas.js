@@ -58,10 +58,8 @@ export default function AdministrarPlantas({ navigation }) {
                     <TouchableOpacity onPress={() => { navigation.navigate('EditarPlanta', { plantaId: item.id }) }}>
                             <View style={styles.planta}>
                                 <View style={{ flexDirection: "row" }}>
-                                    <Image source={{ uri: item.imagen }}
-                                        style={styles.image}>
-                                    </Image>
-                                    <View style={styles.plantaDetail}>
+                                    
+                                    <View style={styles.plantaDetail, {marginLeft: 50}}>
                                         <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.nombre}</Text>
                                         <Text style={styles.direccion}>{item.direccion}</Text>
                                         

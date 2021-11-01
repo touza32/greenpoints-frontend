@@ -100,11 +100,8 @@ export default function EditarPlanta({ route, navigation }) {
         <View style={{ flex: 1 }}>
             <KeyboardAwareScrollView stickyHeaderIndices={[0]}>
                    <Header navigation={navigation} title="EDITAR PLANTA" />
-                    <View style={{ flex: 1, paddingBottom: 100 }}>
-                        <ImagePicker
-                           handleImage={(image) => setImage(image)}
-                           marginVertical={25}
-                        /> 
+                    <View style={{ flex: 1, paddingBottom: 100, marginTop: 30 }}>
+                       
                         <InputForm
                             control={control}
                             errors={errors}
