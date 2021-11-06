@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, TouchableOpacity, TextInput, Animated, FlatList } from "react-native";
+import { Text, View, TouchableOpacity, TextInput, Animated, FlatList, Alert } from "react-native";
 import { Input } from 'react-native-elements';
 import { useForm } from "react-hook-form";
 import InputForm from "../../../components/InputForm";
@@ -79,6 +79,8 @@ export default function AgregarPremio({ route, navigation }) {
         })()
     }, [])
 
+    useEffect(() => { if (codigos.length > 0) setErrorCodigo(false) }, [codigos])
+
     const onSubmit = async data => {
         if (codigos.length === 0 || sponsor.nombre === undefined) return
         const objData = {
@@ -156,7 +158,7 @@ export default function AgregarPremio({ route, navigation }) {
                         <ImagePicker
                             handleImage={(image) => setImage(image)}
                             marginVertical={25}
-                        //defaultValue={image.uri}
+                            defaultValue={image.uri}
                         />
                         <InputForm
                             control={control}
@@ -241,9 +243,9 @@ export default function AgregarPremio({ route, navigation }) {
                                 <TouchableOpacity
                                     style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60 }]}
                                     onPress={() => {
+                                        if (!codigos.every(item => item !== codigo)) return Alert.alert("Error", "El código ya ha sido ingresado")
                                         fadeOut()
                                         setCodigos([...codigos, codigo])
-                                        errorCodigo && setErrorCodigo(false)
                                         setCodigo('')
                                     }
                                     }

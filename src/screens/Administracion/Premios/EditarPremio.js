@@ -114,6 +114,8 @@ export default function AgregarPremio({ route, navigation }) {
         })
     }, [premio])
 
+    useEffect(() => { if (codigos.length > 0) setErrorCodigo(false) }, [codigos])
+
     const onSubmit = async data => {
         if (codigos.length === 0 || sponsor.nombre === '') return
         const objData = {
@@ -310,9 +312,9 @@ export default function AgregarPremio({ route, navigation }) {
                                 <TouchableOpacity
                                     style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60 }]}
                                     onPress={() => {
+                                        if (!codigos.every(item => item !== codigo)) return Alert.alert("Error", "El código ya ha sido ingresado")
                                         fadeOut()
                                         setCodigos([...codigos, codigo])
-                                        errorCodigo && setErrorCodigo(false)
                                         setCodigo('')
                                     }
                                     }

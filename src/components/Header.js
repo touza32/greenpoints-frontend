@@ -32,7 +32,7 @@ export default function HeaderComponent({ navigation, title, leftComponent }) {
                     style={{ width: 40, height: 40, borderRadius: 20 }}
                 />
                 <Text style={styleText.button}>
-                    {status === 'authenticated' && (rol === 3) ? "Administrador" : nombre}
+                    {status === 'authenticated' ? rol === 3 ? 'Administrador' : nombre : ''}
                 </Text>
             </Header>
         </>

@@ -42,10 +42,12 @@ return (
             <View style={{ flex: 0.35 ,justifyContent: 'center'}}>
                 <Image
                     source={{ uri: Premio.imagen }}
-                    style={styles.image}>
+                    style={styles.image}
+                    resizeMode="contain"
+                    >
                 </Image>
             </View>
-            <View style={{ flex: 0.65 }}>
+            <View style={{ flex: 0.65, width:'90%' }}>
                 <View style={styles.item}>
                     <Text style={[styleText.titleLayout, { textAlign: 'left'}]}>Detalle</Text>
                     <Text style={[styleText.blackText, {marginLeft: 30, textAlign: 'left'}]}>{Premio.descripcion}</Text>

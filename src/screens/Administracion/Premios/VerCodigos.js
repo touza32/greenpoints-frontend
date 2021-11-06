@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, FlatList, Alert } from 'react-native'
 import { Divider } from 'react-native-elements';
 import styleButton from "../../../styles/Button";
 import styleText from "../../../styles/Text";
@@ -41,6 +41,7 @@ export default function VerCodigos({ route, navigation }) {
                     <TouchableOpacity
                         style={[styleButton.base, styleButton.plus, { marginTop: 32, marginLeft: 60 }]}
                         onPress={() => {
+                            if (!codigos.every(item => item !== codigo)) return Alert.alert("Error", "El código ya ha sido ingresado")
                             setCodigos([...codigos, codigo])
                             setCodigo('')
                         }

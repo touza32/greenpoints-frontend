@@ -15,6 +15,7 @@ export default function AdministrarPremios({ navigation }) {
     const [premios, setPremios] = useState([]);
     const [query, setQuery] = useState('');
     const [resultado, setResultado] = useState([]);
+    const [filtro, setFiltro] = useState({ id: 0, type: 'nombre' });
 
     useEffect(() => {
         navigation.addListener('focus', () => {
@@ -30,27 +31,47 @@ export default function AdministrarPremios({ navigation }) {
     return (
         <View style={{ flex: 1 }}>
             <Header navigation={navigation} title="PREMIOS" />
-            <View style={{ flex: 0.1 }}>
+            <View style={{ flex: 0.2 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 15 }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setFiltro({ id: 0, type: 'nombre' })
+                            setResultado(premios)
+                            setQuery('')
+                        }}
+                        style={filtro.id === 0 ? styles.filtroBotonE : styles.filtroBotonD}>
+                        <Text style={filtro.id === 0 ? styles.filtroTextoE : styles.filtroTextoD}>Producto</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setFiltro({ id: 1, type: 'sponsorName' })
+                            setResultado(premios)
+                            setQuery('')
+                        }}
+                        style={filtro.id === 1 ? styles.filtroBotonE : styles.filtroBotonD}>
+                        <Text style={filtro.id === 1 ? styles.filtroTextoE : styles.filtroTextoD}>Sponsor</Text>
+                    </TouchableOpacity>
+                </View>
                 <Input
-                    inputContainerStyle={{ marginHorizontal: 10, marginTop: 10, borderWidth: 1, borderColor: '#DDDDDD', borderRadius: 10, height: 40 }}
+                    inputContainerStyle={{ marginHorizontal: 10, borderWidth: 1, borderColor: '#DDDDDD', borderRadius: 10, height: 40 }}
                     style={{ fontSize: 15 }}
                     placeholder="Buscar"
                     leftIcon={
                         <TouchableOpacity
                             style={{ marginLeft: 5 }}
-                        >
+                            onPress={() => setSocioFocus(false)}>
                             <Ionicons name='search' size={20} color='gray' />
                         </TouchableOpacity>
                     }
                     onChangeText={value => {
                         setQuery(value)
-                        setResultado(premios.filter(item => item.nombre.toUpperCase().indexOf(value.toUpperCase()) > -1))
+                        setResultado(premios.filter(item => item[filtro.type].toUpperCase().indexOf(value.toUpperCase()) > -1))
                     }}
                     value={query}
                 />
-                <Divider orientation='horizontal' width={1} color='#DDDDDD' style={{ marginTop: -15 }} />
+                <Divider orientation='horizontal' width={1} color='#DDDDDD' style={{ marginTop: -10 }} />
             </View>
-            <View style={{ flex: 0.8 }}>
+            <View style={{ flex: 0.7 }}>
                 <FlatList
                     data={resultado}
                     keyExtractor={(premio) => premio.id.toString()}
