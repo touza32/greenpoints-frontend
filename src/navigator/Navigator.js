@@ -53,6 +53,10 @@ import AdministrarSponsors from '../screens/Administracion/Sponsors/AdministrarS
 import AgregarSponsor from '../screens/Administracion/Sponsors/AgregarSponsor';
 import ActualizarSponsor from '../screens/Administracion/Sponsors/ActualizarSponsor';
 
+import AdministrarTipos from '../screens/Administracion/TiposReciclables/AdministrarTipos';
+import AgregarTipo from '../screens/Administracion/TiposReciclables/AgregarTipo';
+import EditarTipo from '../screens/Administracion/TiposReciclables/EditarTipo';
+
 import Contacto from '../screens/Contacto';
 
 import styleText from '../styles/Text';
@@ -95,6 +99,9 @@ export const Navigator = () => {
                 <Stack.Screen name="AgregarSponsor" component={AgregarSponsor} options={{ headerShown: false }}/>
                 <Stack.Screen name="ActualizarSponsor" component={ActualizarSponsor} options={{ headerShown: false }}/>
                 <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
+                <Stack.Screen name="AdministrarTipos" component={AdministrarTipos} options={{ headerShown: false }}/>
+                <Stack.Screen name="EditarTipo" component={EditarTipo} options={{ headerShown: false }}/>
+                <Stack.Screen name="AgregarTipo" component={AgregarTipo} options={{ headerShown: false }}/>
                 <Stack.Screen name="AdministrarPlantas" component={AdministrarPlantas} options={{ headerShown: false }}/>
                 <Stack.Screen name="AgregarPlanta" component={AgregarPlanta} options={{ headerShown: false }}/>
                 <Stack.Screen name="EditarPlanta" component={EditarPlanta} options={{ headerShown: false }}/>

@@ -42,7 +42,7 @@ export default function RegistrarIntercambio({ route, navigation }) {
         setLoading(true)
         try {
             const response = await greenPointsApi.
-                get('/tipo-reciclable/' + id, { headers: { Authorization: token } })
+                get('/punto-reciclaje/tipo-reciclables?puntoId=' + id, { headers: { Authorization: token } })
             setLoading(false)
             setMaterials(response.data)
         } catch (e) {

@@ -39,7 +39,7 @@ export default function CrearLote({ navigation }) {
 
       useEffect(() => {
           (async () => {
-            const tipoReciclableData = await greenPointsApi.get(`/tipo-reciclable/${ id }?onlyOpenedLote=false`);
+            const tipoReciclableData = await greenPointsApi.get(`/punto-reciclaje/tipo-reciclables?puntoId=${ id }&onlyOpenedLote=false`);
             const tipoReciclables = await tipoReciclableData.data;
             setTipoReciclables(tipoReciclables);
           })();

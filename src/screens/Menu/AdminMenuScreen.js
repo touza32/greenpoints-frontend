@@ -48,7 +48,7 @@ export default function AdminMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { }} >
+                    onPress={() => { navigation.navigate('AdministrarTipos')}} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
