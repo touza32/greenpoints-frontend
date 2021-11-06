@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 //styles
 import styleText from "../../../styles/Text";
 import styleButton from '../../../styles/Button';
+import styleContainer from "../../../styles/Container";
 //api
 import greenPointsApi from '../../../api/greenPointsApi';
 // components
@@ -50,23 +51,27 @@ export default function AdministrarPlantas({ navigation }) {
                 />
                 <Divider orientation='horizontal' width={1} color='#DDDDDD' style={{ marginTop: -15 }} />
             </View>
-            <View style={{ flex: 0.8 }}>
+            <View style={[styleContainer.main,{ marginTop: -5,alignItems: 'stretch' ,flex:0.8}]}>
                 <FlatList
                     data={resultado}
                     keyExtractor={(planta) => planta.id.toString()}
                     renderItem={({ item }) =>
-                    <TouchableOpacity onPress={() => { navigation.navigate('EditarPlanta', { plantaId: item.id }) }}>
-                            <View style={styles.planta}>
-                                <View style={{ flexDirection: "row" }}>
-                                    
-                                    <View style={styles.plantaDetail, {marginLeft: 50}}>
-                                        <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.nombre}</Text>
-                                        <Text style={styles.direccion}>{item.direccion}</Text>
-                                        
-                                    </View>
-                                </View>
+                         <TouchableOpacity onPress={() => {navigation.navigate('EditarPlanta',{  plantaId: item.id })}}>
+                         <View style={item.activo ? styles.planta : styles.plantaDisabled}>
+                            <Image source={require('../../../assets/MisIntercambiosList.png')}
+                                style={{
+                                    width: 87,
+                                    height: 69,
+                                    marginLeft:10,
+                                    marginRight:10
+                                }}>
+                            </Image> 
+                            <View>
+                                <Text style={[styleText.titleList, { textAlign: 'left' }]}>{item.nombre}</Text>
+                                <Text style={styles.direccion}>{item.direccion}</Text>
                             </View>
-                        </TouchableOpacity>
+                         </View>
+                     </TouchableOpacity>
                     }
                     ItemSeparatorComponent={() => { return <Divider color='#B2B2B2' /> }}>
                 </FlatList>
@@ -91,16 +96,29 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     direccion: {
-        color: '#827C7B',
+        color: 'black',
         textAlign: 'left',
         fontSize: 15
     },
     planta: {
-        marginBottom: 10,
-        marginTop: 10,
+        width:"95%",
+        alignSelf:"center",
+        marginBottom: 5,
+        marginTop:5,
         flexDirection: "row",
         paddingRight: 2,
         paddingLeft: 2
+    },
+    plantaDisabled:{
+        width:"95%",
+        alignSelf:"center",
+        backgroundColor: "gray",
+        marginBottom: 5,
+        marginTop:5,
+        flexDirection: "row",
+        paddingRight: 2,
+        paddingLeft: 2,
+        padding: 5
     },
     plantaDetail: {
         flexDirection: "column",

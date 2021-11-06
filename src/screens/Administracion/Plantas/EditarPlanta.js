@@ -46,6 +46,7 @@ export default function EditarPlanta({ route, navigation }) {
 
     useEffect(() => {
         const { plantaId } = route.params;
+        console.log(plantaId);
         (async () => {
             const plantaData = await greenPointsApi.get('/planta/' + plantaId);
             const planta = await plantaData.data;
@@ -80,7 +81,7 @@ export default function EditarPlanta({ route, navigation }) {
     const eliminarPlanta = () => {
         Alert.alert(
             'Eliminar planta',
-            '¿Estas seguro que deseas eliminar esta planta?',
+            '¿Estas seguro que deseas desactivar esta planta?',
             [
                 {
                     text: 'NO'
@@ -118,7 +119,7 @@ export default function EditarPlanta({ route, navigation }) {
                             style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
                             multiline
                             editable
-                            numberOfLines={5}
+                            numberOfLines={3}
                             maxLength={180}
                         />
                         <InputForm
@@ -137,13 +138,17 @@ export default function EditarPlanta({ route, navigation }) {
                             style={[styleButton.base, { alignSelf: 'center' }]}
                             onPress={handleSubmit(onSubmit)}
                         >
-                            <Text style={styleText.button}>ACTUALIZAR</Text>
+                            <Text style={styleText.button}>{ planta.activo ? 'ACTUALIZAR' : 'ACTIVAR' }</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={[styleButton.base, { alignSelf: 'center', backgroundColor: 'red', marginTop: 20 }]}
+                            style={
+                                planta.activo ?
+                                    [styleButton.base, { alignSelf: 'center', backgroundColor: 'red', marginTop: 20 }] : 
+                                    [styleButton.base, { alignSelf: 'center', backgroundColor: 'gray', marginTop: 20 }]}
+                            disabled={ planta.activo ? false: true }
                             onPress={() => eliminarPlanta()}
                         >
-                            <Text style={styleText.button}>ELIMINAR</Text>
+                            <Text style={styleText.button}>DESACTIVAR</Text>
                         </TouchableOpacity>
                     </View>
                 </KeyboardAwareScrollView>
