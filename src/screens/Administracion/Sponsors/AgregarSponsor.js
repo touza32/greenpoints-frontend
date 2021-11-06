@@ -2,16 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { Text, View, TouchableOpacity, TextInput, Animated } from "react-native";
 import { useForm } from "react-hook-form";
 import InputForm from "../../../components/InputForm";
-//import InputFormDate from "../../../components/InputFormDate";
 import styleButton from "../../../styles/Button";
 import styleText from "../../../styles/Text";
-import styleTextInput from "../../../styles/TextInput";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import greenPointsApi from '../../../api/greenPointsApi';
 import Header from '../../../components/Header';
 import ImagePicker from '../../../components/ImagePicker';
-import Moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const schema = yup.object().shape({
@@ -26,41 +23,21 @@ export default function AgregarSponsor({ route, navigation }) {
         resolver: yupResolver(schema)
     });
 
-    //useEffect(() => route.params?.codigos && setCodigos(route.params?.codigos), [route.params?.codigos])
-
-    /*const fadeAnim = useRef(new Animated.Value(0)).current;
-    const fadeOut = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 0,
-            useNativeDriver: false
-        }).start(() => {
-            Animated.timing(fadeAnim, {
-                toValue: 0,
-                duration: 5000,
-                useNativeDriver: false
-            }).start();
-        });
-    };*/
-
     const [image, setImage] = useState({});
-    const [codigo, setCodigo] = useState('');
-    const [codigos, setCodigos] = useState([]);
-    const [errorCodigo, setErrorCodigo] = useState(false);
-
+    
     const onSubmit = async data => {
-        if (codigos.length === 0) return setErrorCodigo(true)
+        if (image === null) return
         const objData = {
             ...data,
-            codigos: codigos,
-            image: image
+               image: image
         }
         console.log(objData)
-        // await greenPointsApi.post('/alta-premio', {
-        //     nombre: data.nombre,
-        // })
-        //navigation.navigate('Confirmacion', { nextScreen: 'AgregarPremio', message: 'Su registro ha sido exitoso' })
-    }
+        await greenPointsApi.post('/sponsor', {
+            nombre: objData.nombre,
+            image: objData.image
+    });
+    navigation.navigate('Confirmacion', { nextScreen: 'AdministrarSponsors', message: 'Se agregó exitosamente' })
+}
 
     return (
         <KeyboardAwareScrollView
@@ -72,6 +49,9 @@ export default function AgregarSponsor({ route, navigation }) {
                     handleImage={(image) => setImage(image)}
                     marginVertical={25}
                 />
+                <View style={{ width: '80%', marginTop:-20,marginBottom:25,alignItems:'center' }}>
+                    {image===null ? <Text style={{ color: 'red' }}>Imagen Requerida</Text> : <Text></Text>}
+                </View>
                 <InputForm
                     control={control}
                     errors={errors}
@@ -80,7 +60,12 @@ export default function AgregarSponsor({ route, navigation }) {
                     placeholder="Nombre"
                 />
                 
-                <TouchableOpacity style={[styleButton.base, {marginTop:150, alignSelf: 'center' }]} onPress={handleSubmit(onSubmit)}>
+                <TouchableOpacity style={[styleButton.base, {marginTop:150, alignSelf: 'center' }]} 
+                                  onPress={handleSubmit(onSubmit)}
+                                  onPressIn={() => {
+                                      if (image === undefined || image === null || Object.keys(image).length === 0) setImage(null)
+                                  }}
+                >
                     <Text style={styleText.button}>AGREGAR</Text>
                 </TouchableOpacity>
             </View>

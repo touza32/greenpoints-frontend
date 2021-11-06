@@ -1,18 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, TouchableOpacity, TextInput, Image,StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, TextInput, Image,StyleSheet,Alert} from "react-native";
 import { useForm } from "react-hook-form";
 import InputForm from "../../../components/InputForm";
-//import InputFormDate from "../../../components/InputFormDate";
 import styleButton from "../../../styles/Button";
 import styleText from "../../../styles/Text";
-import styleTextInput from "../../../styles/TextInput";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import greenPointsApi from '../../../api/greenPointsApi';
 import Header from '../../../components/Header';
 import ImagePicker from '../../../components/ImagePicker';
-import Moment from 'moment';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Ionicons } from '@expo/vector-icons';
 
 
 const schema = yup.object().shape({
@@ -21,98 +19,160 @@ const schema = yup.object().shape({
         required('Requerido')
 });
 
-export default function AgregarSponsor({ route, navigation }) {
+export default function ActualizarSponsor({ route, navigation }) {
 
-    const {id} = route.params
-    console.log(id);
-    const [Sponsor, setSponsor] = useState(null);
-    const [SponsorName, setSponsorName] = useState(null);
-
-    const { control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
+    const [Sponsor, setSponsor] = useState({});
+    const [image, setImage] = useState({});
+    const [ErrorImagen, setErrorImagen] = useState(false);
+    
+
     useEffect(()=>{
+        const {id} = route.params
+        console.log(id);
+
         (async () => {
             const SponsorData = await greenPointsApi.get(`/sponsor/${ id }`);
             const Sponsor = await SponsorData.data;
             setSponsor(Sponsor)
-            console.log(Sponsor)
-            setSponsorName(Sponsor.nombre)
+            
         })();
-
-        
     },[]);
 
-    //useEffect(() => route.params?.codigos && setCodigos(route.params?.codigos), [route.params?.codigos])
-
-    /*const fadeAnim = useRef(new Animated.Value(0)).current;
-    const fadeOut = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 0,
-            useNativeDriver: false
-        }).start(() => {
-            Animated.timing(fadeAnim, {
-                toValue: 0,
-                duration: 5000,
-                useNativeDriver: false
-            }).start();
-        });
-    };*/
-
-    const [image, setImage] = useState({});
-    const [codigo, setCodigo] = useState('');
-    const [codigos, setCodigos] = useState([]);
-    const [errorCodigo, setErrorCodigo] = useState(false);
+    useEffect(() => {
+        reset({
+            nombre: Sponsor.nombre,
+            activo: Sponsor.activo
+        })
+    }, [Sponsor])
 
     const onSubmit = async data => {
-        if (codigos.length === 0) return setErrorCodigo(true)
         const objData = {
             ...data,
-            codigos: codigos,
-            image: image
+               image: image
         }
         console.log(objData)
-        // await greenPointsApi.post('/alta-premio', {
-        //     nombre: data.nombre,
-        // })
-        //navigation.navigate('Confirmacion', { nextScreen: 'AgregarPremio', message: 'Su registro ha sido exitoso' })
+        
+        await greenPointsApi.put('/sponsor', {
+            id: Sponsor.id,
+            nombre: objData.nombre,
+            imageData: objData.image,
+            activo: objData.activo
+
+        });
+        {Sponsor.activo ?
+            navigation.navigate('Confirmacion', { nextScreen: 'AdministrarSponsors', message: 'Se actualizó exitosamente' })
+        :
+            navigation.navigate('Confirmacion', { nextScreen: 'AdministrarSponsors', message: 'Se activó exitosamente' })
+        }
+    }
+
+    const desactivarSponsor = () => {
+        Alert.alert(
+            'Desactivar Sponsor',
+            '¿Estas seguro que deseas desactivar este sponsor?',
+            [
+                {
+                    text: 'NO'
+                },
+                {
+                    text: 'SI',
+                    onPress: async () => {
+                        await greenPointsApi.delete('/sponsor/' + Sponsor.id)
+                        navigation.navigate('Confirmacion', { nextScreen: 'AdministrarSponsors', message: 'Se desactivó exitosamente' })
+                    }
+                }
+            ]
+        )
     }
 
     return (
         <KeyboardAwareScrollView
             stickyHeaderIndices={[0]}
         >
-            <Header navigation={navigation} title="ACTUALIZAR SPONSOR" />
-            {Sponsor && (
-            <View style={{ flex: 1,alignItems:"center"}}>
-                <View style={{ flex: 0.35 ,justifyContent: 'center'}}>
-                    <Image
-                        source={{ uri: Sponsor.imagen }}
-                        style={styles.image}>
-                    </Image>
+            <Header
+            leftComponent={
+                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity
+                        style={{ marginLeft: -10 }}
+                        onPress={() => { navigation.navigate('AdministrarSponsors') }}>
+                        <Ionicons name="chevron-back" size={35} color="white" />
+                    </TouchableOpacity>
+                    <Text
+                        style={[styleText.button, { width: '90%' }]}>NUEVO SPONSOR</Text>
                 </View>
-                {/*<ImagePicker
-                    handleImage={(image) => setImage(image)}
-                    marginVertical={25}
-                />*/}
-                <View style={{ flex: 0.30 }}>
-                    <Text style={[styles.TextInput, { marginRight: 'auto' }]}>Nombre</Text>
-                    <TextInput style={styles.TextInput}
-                               value={SponsorName}
-                               editable={true}
-                               //onFocus={() => setSponsorName('')}
+            }
+            navigation={navigation}
+        /> 
+            {/*{Sponsor && (*/}
+            <View style={{ flex: 1, paddingBottom: 100 }}>
+                {Sponsor.activo ?
+                    <View>
+                        <ImagePicker
+                        handleImage={(image) => setImage(image)}
+                        marginVertical={25}
+                        defaultValue={Sponsor.imagen}
                     />
-                </View>
-                
-                
-                <TouchableOpacity style={[styleButton.base, {marginTop:150, alignSelf: 'center' }]} onPress={handleSubmit(onSubmit)}>
-                    <Text style={styleText.button}>AGREGAR</Text>
-                </TouchableOpacity>
-                
+                        <InputForm
+                        control={control}
+                        errors={errors}
+                        name="nombre"
+                        title="Nombre (*)"
+                        placeholder="Nombre"
+                    
+                        />
+            
+                        <TouchableOpacity
+                        style={[styleButton.base, { alignSelf: 'center' }]}
+                        onPress={handleSubmit(onSubmit)}
+                        onPressIn={() => {
+                        if (image === undefined || image === null || Object.keys(image).length === 0) setImage(null)
+                        }}
+                        >
+                            <Text style={styleText.button}>ACTUALIZAR</Text>  
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        style={[styleButton.base, { alignSelf: 'center', backgroundColor: 'red', marginTop: 20 }]}
+                        onPress={() => desactivarSponsor()}
+                        >
+                            <Text style={styleText.button}>DESACTIVAR</Text>
+                        </TouchableOpacity>
+                    </View>
+                :
+                    <View style={{ alignItems: 'center'}}>
+                        <Image
+                        style={styles.box}
+                        source={{ uri: Sponsor.imagen }}
+                        />
+                        <InputForm
+                        control={control}
+                        errors={errors}
+                        name="nombre"
+                        title="Nombre"
+                        placeholder="Nombre"
+                        editable={false}  
+                        />
+                        <TouchableOpacity
+                        style={[styleButton.base, { alignSelf: 'center' }]}
+                        onPress={handleSubmit(onSubmit)}
+                        onPressIn={() => {
+                        if (image === undefined || image === null || Object.keys(image).length === 0) setImage(null)
+                        }}
+                        >
+                            <Text style={styleText.button}>ACTIVAR</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        style={[styleButton.base, { alignSelf: 'center', backgroundColor: 'gray', marginTop: 20 }]}
+                        disabled={true}
+                        >
+                            <Text style={styleText.button}>DESACTIVAR</Text>
+                        </TouchableOpacity>
+                    </View>
+            }
             </View>
-            )}
         </KeyboardAwareScrollView>
     );
 }
@@ -123,6 +183,17 @@ const styles = StyleSheet.create({
         height: 180,
         alignSelf: 'center',
         marginTop: 10
+    },
+    box: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 30,
+        height: 200,
+        width: 200,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginVertical: 25
     },
     TextInput: {
         height:40,

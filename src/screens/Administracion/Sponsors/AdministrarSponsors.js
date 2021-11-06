@@ -19,17 +19,16 @@ export default function AdministrarSponsors({ navigation }) {
     const [query, setQuery] = useState('');
     const [resultado, setResultado] = useState([]);
 
-    //const ImgSponsors = [{nombre:'Mc Donalds',premios:'5 premios'},{nombre:'KFC',premios:'3 premios'},{nombre:'Sturbucks',premios:'8 premios'}]
-  
-
     useEffect(() => {
+        navigation.addListener('focus', () => {
         (async () => {
             const sponsorsData = await greenPointsApi.get('/sponsor');
             const sponsors = await sponsorsData.data;
             setSponsors(sponsors);
             setResultado(sponsors);
         })();
-    }, []);
+    })
+    }, [navigation]);
 
     
     return (

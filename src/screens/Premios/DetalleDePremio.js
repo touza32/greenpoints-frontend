@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
 
 //styles
 import * as styles from '../../styles';
@@ -31,6 +31,8 @@ export default function DetalleDePremio({ route, navigation }) {
     },[]);
 
     const canjearPremio = async () => {
+        /*
+
         try {
             const codigo = await greenPointsApi.post('/canje', {
                 premioId: premio.id,
@@ -44,7 +46,30 @@ export default function DetalleDePremio({ route, navigation }) {
         } catch (e) {
             console.error(e)
         }
-    };
+    };*/
+    Alert.alert(
+        'Canjear premio',
+        '¿Estas seguro que deseas canjear este premio?',
+        [
+            {
+                text: 'NO'
+            },
+            {
+                text: 'SI',
+                onPress: async () => {
+                    const codigo = await greenPointsApi.post('/canje', {
+                        premioId: premio.id,
+                        socioId: id
+                    })
+
+                    if(codigo && codigo.data) {
+                        navigation.navigate('CanjeResultado', { codigo: codigo.data, backToMenu: backToMenu ? true : false });
+                    }
+                }
+            }
+        ]
+    )
+    }
     
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>

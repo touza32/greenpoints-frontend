@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Text, View, Image, TouchableOpacity, StyleSheet, TextInput, FlatList } from "react-native";
+import { Text, View, Image, TouchableOpacity, StyleSheet, TextInput, FlatList, Alert } from "react-native";
 import styleText from "../../styles/Text";
 import styleButton from '../../styles/Button';
 import Header from '../../components/Header';
@@ -49,7 +49,7 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
     }
 
     const sendPoints = async () => {
-        try {
+        /*try {
             const donacion = await greenPointsApi.post('/donacion', {
                 socioOrigenId: id,
                 socioDestinoId: socio.socioId,
@@ -60,7 +60,29 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
 
         } catch (e) {
             console.error(e)
-        }
+        }*/
+        Alert.alert(
+            'Donar puntos',
+            '¿Estas seguro que deseas donar ' + SlideValue + ' puntos a '+ socio.email + ' ?',
+            [
+                {
+                    text: 'NO'
+                },
+                {
+                    text: 'SI',
+                    onPress: async () => {
+                        const donacion = await greenPointsApi.post('/donacion', {
+                            socioOrigenId: id,
+                            socioDestinoId: socio.socioId,
+                            puntos: SlideValue
+                        });
+                        donacion &&
+                            navigation.navigate('Confirmacion', { nextScreen: 'SocioMenuScreen', message: 'Su donación ha sido exitosa' });
+                    }
+                }
+            ]
+        )
+
     };
 
     useEffect(() => {
