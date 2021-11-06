@@ -47,12 +47,8 @@ export default function AgregarPlanta({ route, navigation }) {
             <KeyboardAwareScrollView stickyHeaderIndices={[0]}
             >
                     <Header navigation={navigation} title="NUEVA PLANTA" />
-                    <View style={{ flex: 1, paddingBottom: 100 }}>
-                        <ImagePicker
-                            handleImage={(image) => setImage(image)}
-                            marginVertical={25}
-                        //defaultValue={image.uri}
-                        />
+                    <View style={{ flex: 1, paddingBottom: 100, marginTop: 30 }}>
+                        
                         <InputForm
                             control={control}
                             errors={errors}

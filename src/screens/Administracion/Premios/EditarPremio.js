@@ -215,7 +215,7 @@ export default function AgregarPremio({ route, navigation }) {
                                     <Ionicons name="chevron-back" size={35} color="white" />
                                 </TouchableOpacity>
                                 <Text
-                                    style={[styleText.button, { width: '90%' }]}>NUEVO PREMIO</Text>
+                                    style={[styleText.button, { width: '90%' }]}>EDITAR PREMIO</Text>
                             </View>
                         }
                         navigation={navigation}
