@@ -45,7 +45,7 @@ export default function SocioMenuScreen({ navigation }) {
         <View style={[styleContainer.main, { flex: 1 }]}>
 
             <Header navigation={navigation} leftComponent={
-                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesaSocio'); }}>
+                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesa'); }}>
                     <Ionicons name="menu" size={40} color="white" />
                 </TouchableOpacity>
             } />

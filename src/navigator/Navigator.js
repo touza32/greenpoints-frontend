@@ -13,12 +13,12 @@ import ResetPassword from '../screens/Login/ResetPassword';
 import AdminMenuScreen from '../screens/Menu/AdminMenuScreen';
 import PuntoMenuScreen from '../screens/Menu/PuntoMenuScreen';
 import SocioMenuScreen from '../screens/Menu/SocioMenuScreen';
-import MenuHamburguesaSocio from '../screens/Menu/MenuHamburguesaSocio';
-import MenuHamburguesaPunto from '../screens/Menu/MenuHamburguesaPunto';
+import MenuHamburguesa from '../screens/Menu/MenuHamburguesa';
 import MisPuntos from '../screens/Menu/MisPuntos';
 import SocioActualizar from '../screens/Menu/SocioActualizar';
 import PuntoActualizar from '../screens/Menu/PuntoActualizar';
 import ActualizarTipoMaterial from '../screens/Menu/ActualizarTipoMaterial';
+import ActualizarPassword from '../screens/Menu/ActualizarPassword';
 
 import SeleccionRol from '../screens/Registro/SeleccionRol';
 import RegistroSocioReciclador from '../screens/Registro/RegistroSocioReciclador';
@@ -60,7 +60,7 @@ import AdministrarTipos from '../screens/Administracion/TiposReciclables/Adminis
 import AgregarTipo from '../screens/Administracion/TiposReciclables/AgregarTipo';
 import EditarTipo from '../screens/Administracion/TiposReciclables/EditarTipo';
 
-import Contacto from '../screens/Contacto';
+import Contacto from '../screens/Menu/Contacto';
 
 import styleText from '../styles/Text';
 
@@ -116,7 +116,7 @@ export const Navigator = () => {
                   <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ headerShown: false }} />
                   <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }} />
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
-                  <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
+                  <Stack.Screen name="MenuHamburguesa" component={MenuHamburguesa} options={{ headerShown: false }} />
                   <Stack.Screen name="MisLotes" component={MisLotes} options={{ headerShown: false }} />
                   <Stack.Screen name="CrearLote" component={CrearLote} options={{ headerShown: false }} />
                   <Stack.Screen name="ActualizacionLote" component={ActualizacionLote} options={{ headerShown: false }} />
@@ -125,6 +125,7 @@ export const Navigator = () => {
                   <Stack.Screen name="PuntoActualizar" component={PuntoActualizar} options={{ headerShown: false }} />
                   <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ headerShown: false }} />
                   <Stack.Screen name="ActualizarTipoMaterial" component={ActualizarTipoMaterial} options={{ headerShown: false }} />
+                  <Stack.Screen name="ActualizarPassword" component={ActualizarPassword} options={{ headerShown: false }} />
                 </>
               )
               : (rol === 1)
@@ -133,7 +134,7 @@ export const Navigator = () => {
                     <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ headerShown: false }} />
                     <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} options={{ headerShown: false }} />
-                    <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ headerShown: false }} />
+                    <Stack.Screen name="MenuHamburguesa" component={MenuHamburguesa} options={{ headerShown: false }} />
                     <Stack.Screen name="MapaPuntosReciclaje" component={MapaPuntosReciclaje} options={{ title: "PUNTOS DE RECICLAJE" }, { headerShown: false }} />
                     <Stack.Screen name="CatalogoPremios" component={CatalogoPremios} options={{ title: "PREMIOS" }, { headerShown: false }} />
                     <Stack.Screen name="DetalleDePremio" component={DetalleDePremio} options={{ headerShown: false }} />
@@ -145,6 +146,7 @@ export const Navigator = () => {
                     <Stack.Screen name="MisPuntos" component={MisPuntos} options={{ headerShown: false }} />
                     <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                     <Stack.Screen name="SocioActualizar" component={SocioActualizar} options={{ headerShown: false }} />
+                    <Stack.Screen name="ActualizarPassword" component={ActualizarPassword} options={{ headerShown: false }} />
                   </>
                 )
                 : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />

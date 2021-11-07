@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import styleText from '../styles/Text';
-import styleButton from '../styles/Button';
-import { Divider } from 'react-native-elements';
-import Header from '../components/Header';
-import FAIcon from 'react-native-vector-icons/FontAwesome';  
+import styleText from '../../styles/Text';
+import Header from '../../components/Header';
 
 
 const styleImage = StyleSheet.create({
@@ -39,18 +36,18 @@ export default function Contacto({ navigation }) {
 
                    <View style={{flexDirection: "row",justifyContent: 'space-around', alignItems: 'center'}}>
                    
-                   <Image style={styleImage.stretch} source={require('../assets/Whatsapp.png')}>
+                   <Image style={styleImage.stretch} source={require('../../assets/Whatsapp.png')}>
                    </Image> 
-                   <Image style={styleImage.stretch} source={require('../assets/Twitter.png')}>
+                   <Image style={styleImage.stretch} source={require('../../assets/Twitter.png')}>
                    </Image> 
                    
                    </View> 
 
                    <View style={{flexDirection: "row",justifyContent: 'space-around', alignItems: 'center',  marginTop: '10%' }}>
                    
-                   <Image style={styleImage.stretch} source={require('../assets/Instagram.png')}>
+                   <Image style={styleImage.stretch} source={require('../../assets/Instagram.png')}>
                    </Image> 
-                   <Image style={styleImage.stretch} source={require('../assets/Facebook.png')}>
+                   <Image style={styleImage.stretch} source={require('../../assets/Facebook.png')}>
                    </Image> 
                    
                    </View> 

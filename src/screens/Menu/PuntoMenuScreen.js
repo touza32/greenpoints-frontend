@@ -20,7 +20,7 @@ export default function PuntMenuScreen({ navigation }) {
     return (
         <View style={[styleContainer.main, { flex: 1 }]}>
             <Header navigation={navigation} leftComponent={
-                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesaPunto'); }}>
+                <TouchableOpacity onPress={() => { navigation.navigate('MenuHamburguesa'); }}>
                     <Ionicons name="menu" size={40} color="white" />
                 </TouchableOpacity>
             } />

@@ -4,9 +4,9 @@ import { Header } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function MenuHamburguesaSocio({ navigation }) {
+export default function MenuHamburguesa({ navigation }) {
 
-  const { logOut } = useContext(AuthContext);
+  const { logOut, rol } = useContext(AuthContext);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#69A03A' }}>
@@ -16,7 +16,7 @@ export default function MenuHamburguesaSocio({ navigation }) {
         rightContainerStyle={{ flex: 1 }}
         backgroundColor="#69A03A"
         leftComponent={
-          <TouchableOpacity onPress={() => { navigation.navigate('SocioMenuScreen'); }}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name='chevron-back' size={35} style={{ color: 'white' }} />
           </TouchableOpacity>
         }
@@ -24,13 +24,23 @@ export default function MenuHamburguesaSocio({ navigation }) {
       />
       <View style={{ flex: 0.4, justifyContent: 'space-evenly', backgroundColor: '#69A03A', marginLeft: 10 }}>
         <TouchableOpacity
-          onPress={() => { navigation.navigate('SocioActualizar')}}
+          onPress={() => { rol === 1 ? navigation.navigate('SocioActualizar') : navigation.navigate('PuntoActualizar') }}
         >
           <View style={{ flexDirection: "row", alignItems: 'center' }}>
             <View style={styles.iconContainer}>
               <Ionicons name='person-circle' size={50} style={{ color: 'white', marginLeft: 4 }} />
             </View>
             <Text style={styles.textOption}>Actualizar Datos</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ActualizarPassword')}
+        >
+          <View style={{ flexDirection: "row", alignItems: 'center' }}>
+            <View style={styles.iconContainer}>
+              <Ionicons name='key' size={45} style={{ color: 'white', marginLeft: 5 }} />
+            </View>
+            <Text style={styles.textOption}>Cambiar contraseña</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Contacto')} >
@@ -44,7 +54,7 @@ export default function MenuHamburguesaSocio({ navigation }) {
         <TouchableOpacity onPress={logOut} >
           <View style={{ flexDirection: "row", alignItems: 'center' }}>
             <View style={styles.iconContainer}>
-              <Ionicons name='exit' size={50} style={{ color: 'white', marginLeft: 9 }} />
+              <Ionicons name='exit' size={47} style={{ color: 'white', marginLeft: 10 }} />
             </View>
             <Text style={styles.textOption}>Salir</Text>
           </View>
