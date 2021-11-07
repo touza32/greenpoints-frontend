@@ -54,8 +54,8 @@ export default function ConfirmarDireccion({ route, navigation }) {
             <MapView
                 style={{ flex: 1 }}
                 initialRegion={{
-                    latitude: initialPosition.latitude,
-                    longitude: initialPosition.longitude,
+                    latitude: puntoActualizar ? route.params.latitud : initialPosition.latitude,
+                    longitude: puntoActualizar? route.params.longitud : initialPosition.longitude,
                     latitudeDelta: 0.015,
                     longitudeDelta: 0.0121
                 }}
@@ -64,8 +64,12 @@ export default function ConfirmarDireccion({ route, navigation }) {
                 <Marker
                     title="Mi ubicación"
                     coordinate={{
-                        latitude: (currentMarket.latitude === 0) ? initialPosition.latitude : currentMarket.latitude,
-                        longitude: (currentMarket.longitude === 0) ? initialPosition.longitude : currentMarket.longitude
+                        latitude: (currentMarket.latitude === 0) ? 
+                            (puntoActualizar ? route.params.latitud : initialPosition.latitude )
+                            : currentMarket.latitude,
+                        longitude: (currentMarket.longitude === 0) ? 
+                            (puntoActualizar ? route.params.longitud : initialPosition.longitude )
+                            : currentMarket.longitude
                     }}
                 />
             </MapView>

@@ -31,14 +31,14 @@ export default function ActualizarTipoMaterial({ route, navigation }) {
             reduce((previous, current) => [...previous, current.id], [])
         if (alos) return errmsg
         try {
-            // await greenPointsApi.post('/punto-reciclaje', {
-            //     email: route.params.correo,
-            //     document: route.params.documento,
-            //     latitud: route.params.latitud,
-            //     longitud: route.params.longitud,
-            //     materials: materials
-            // })
-            //navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Tu registro ha sido exitoso' })
+             await greenPointsApi.put('/punto-reciclaje', {
+                id: id,
+                nombre: route.params.nombre,
+                latitud: route.params.latitud,
+                longitud: route.params.longitud,
+                materials: materials
+             })
+            navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Datos actualizados con éxito' })
         } catch (e) {
             console.error(e)
         }

@@ -6,16 +6,23 @@ import { AuthContext } from '../../context/AuthContext';
 import styleTextInput from '../../styles/TextInput';
 import styleButton from '../../styles/Button';
 import styleText from '../../styles/Text'
+//api
+import greenPointsApi from '../../api/greenPointsApi';
 
 export default function SocioActualizar({ navigation }) {
 
     const { logOut } = useContext(AuthContext);
+    const { token, id } = useContext(AuthContext);
+    const [ punto, setPunto ] = useState({});
 
-    const data = {
-        nombre: 'Empresa Holandesa',
-        correo: 'empresaholandesa@gmail.com',
-        documento: '30-50279317-5'
-    }
+
+    useEffect(() => {
+        (async () => {
+            const puntoData = await greenPointsApi.get('/punto-reciclaje/' + id);
+            const punto = await puntoData.data;
+            setPunto(punto);
+        })();
+    }, [])
 
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
@@ -24,27 +31,27 @@ export default function SocioActualizar({ navigation }) {
                 <View style={{ marginVertical: 20 }}>
                     <Text style={styleTextInput.title}>Correo electrónico</Text>
                     <TextInput style={styleTextInput.large}
-                        value={data.correo}
+                        value={punto.email}
                         editable={false}
                     />
                 </View>
                 <View style={{ marginBottom: 20 }}>
                     <Text style={styleTextInput.title}>Nombre</Text>
                     <TextInput style={styleTextInput.large}
-                        value={data.nombre}
+                        value={punto.nombre}
                         editable={false}
                     />
                 </View>
                 <View style={{ marginBottom: 40 }}>
                     <Text style={styleTextInput.title}>CUIT</Text>
                     <TextInput style={styleTextInput.large}
-                        value={data.documento}
+                        value={punto.cuit}
                         editable={false}
                     />
                 </View>
                 <TouchableOpacity
                     style={[styleButton.base]}
-                    onPress={() => navigation.navigate('ConfirmarDireccion', { ...data, puntoActualizar: true })}
+                    onPress={() => navigation.navigate('ConfirmarDireccion', { ...punto, puntoActualizar: true })}
                 >
                     <Text style={styleText.button}>SIGUIENTE</Text>
                 </TouchableOpacity>
@@ -61,7 +68,8 @@ export default function SocioActualizar({ navigation }) {
                             },
                             {
                                 text: 'SI',
-                                onPress: () => {
+                                onPress: async () => {
+                                    await greenPointsApi.delete('/punto-reciclaje/' + id)
                                     Alert.alert('Confirmación', 'La baja fue procesada correctamente')
                                     logOut()
                                 }
