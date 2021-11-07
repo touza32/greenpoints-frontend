@@ -16,6 +16,7 @@ export default function ActualizacionLote({ route, navigation }) {
       const [plantasAll, setPlantasAll] = useState([])
       const [planta, setPlanta] = useState({})
       const [plantas, setPlantas] = useState([])
+      const [errorPlanta, setErrorPlanta] = useState(false)
       const [query, setQuery] = useState('')
 
 
@@ -38,6 +39,8 @@ export default function ActualizacionLote({ route, navigation }) {
                   setPlanta(plantaLote[0])
             }
       }, [lote, plantasAll]);
+
+      useEffect(() => { if (lote.plantaId !== '') setErrorPlanta(false) },[planta])
 
       const cerrarLote = async () => {
             try {
@@ -112,18 +115,22 @@ export default function ActualizacionLote({ route, navigation }) {
                                           />
                                     </View>
                                     <View>
-                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Planta recicladora</Text>
+                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Planta recicladora (*)</Text>
                                           <TextInput
                                                 style={styles.TextInput.large}
                                                 value={(lote.plantaId !== undefined || (planta && planta.id !== undefined)) ? planta.nombre : ''}
                                                 placeholder="Planta"
                                                 onFocus={() => setPlantaFocus(true)}
                                           />
+                                          {errorPlanta && <Text style={{ color: 'red' }}>Requerido</Text>}
                                     </View>
                               </View>
                               <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'flex-start' }}>
                                     <TouchableOpacity style={[styles.Button.base]}
-                                          onPress={() => cerrarLote()}
+                                          onPress={() => {
+                                                if (planta === undefined) return setErrorPlanta(true)
+                                                cerrarLote()
+                                          }}
                                     >
                                           <Text style={styles.Text.button}>CERRAR LOTE</Text>
                                     </TouchableOpacity>
