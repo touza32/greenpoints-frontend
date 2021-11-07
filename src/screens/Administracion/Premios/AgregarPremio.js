@@ -155,11 +155,11 @@ export default function AgregarPremio({ route, navigation }) {
                 >
                     <Header navigation={navigation} title="NUEVO PREMIO" />
                     <View style={{ flex: 1, paddingBottom: 100 }}>
-                        <ImagePicker
+                        {image !== null && <ImagePicker
                             handleImage={(image) => setImage(image)}
                             marginVertical={25}
                             defaultValue={image.uri}
-                        />
+                        />}
                         <InputForm
                             control={control}
                             errors={errors}
