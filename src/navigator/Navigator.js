@@ -16,6 +16,9 @@ import SocioMenuScreen from '../screens/Menu/SocioMenuScreen';
 import MenuHamburguesaSocio from '../screens/Menu/MenuHamburguesaSocio';
 import MenuHamburguesaPunto from '../screens/Menu/MenuHamburguesaPunto';
 import MisPuntos from '../screens/Menu/MisPuntos';
+import SocioActualizar from '../screens/Menu/SocioActualizar';
+import PuntoActualizar from '../screens/Menu/PuntoActualizar';
+import ActualizarTipoMaterial from '../screens/Menu/ActualizarTipoMaterial';
 
 import SeleccionRol from '../screens/Registro/SeleccionRol';
 import RegistroSocioReciclador from '../screens/Registro/RegistroSocioReciclador';
@@ -65,11 +68,11 @@ const Stack = createStackNavigator();
 
 export const Navigator = () => {
 
-  const { permissions } = useContext( PermissionContext );
+  const { permissions } = useContext(PermissionContext);
   const { status, rol } = useContext(AuthContext);
 
   if (status === 'checking' || permissions === 'unavailable') return <LoadingScreen />
-  
+
   return (
     <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: 'white' } }}>
 
@@ -78,9 +81,9 @@ export const Navigator = () => {
           ? (
             <>
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "" , headerShown: false }} />
+              <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ title: "", headerShown: false }} />
               <Stack.Screen name="SeleccionRol" component={SeleccionRol} options={{ title: "", headerTitleStyle: { color: "#69A03A", fontWeight: 'bold' }, headerShown: false }} />
-              <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ title: "" , headerShown: false }} />
+              <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ title: "", headerShown: false }} />
               <Stack.Screen name="RegistroSocioReciclador" component={RegistroSocioReciclador} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="RegistroPuntoReciclaje" component={RegistroPuntoReciclaje} options={{ title: "REGISTRO", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
               <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ title: "CONFIRMAR UBICACIÓN", headerTitleAlign: 'center', headerTitleStyle: styleText.header }} />
@@ -90,28 +93,28 @@ export const Navigator = () => {
           : (rol === 3)
             ? (
               <>
-                <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} options={{ headerShown: false }}/>
-                <Stack.Screen name="AdministrarPremios" component={AdministrarPremios} options={{ headerShown: false }}/>
-                <Stack.Screen name="AgregarPremio" component={AgregarPremio} options={{ headerShown: false }}/>
-                <Stack.Screen name="EditarPremio" component={EditarPremio} options={{ headerShown: false }}/>
-                <Stack.Screen name="VerCodigos" component={VerCodigos} options={{ headerShown: false }}/>
-                <Stack.Screen name="AdministrarSponsors" component={AdministrarSponsors} options={{ headerShown: false }}/>
-                <Stack.Screen name="AgregarSponsor" component={AgregarSponsor} options={{ headerShown: false }}/>
-                <Stack.Screen name="ActualizarSponsor" component={ActualizarSponsor} options={{ headerShown: false }}/>
+                <Stack.Screen name="AdminMenuScreen" component={AdminMenuScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="AdministrarPremios" component={AdministrarPremios} options={{ headerShown: false }} />
+                <Stack.Screen name="AgregarPremio" component={AgregarPremio} options={{ headerShown: false }} />
+                <Stack.Screen name="EditarPremio" component={EditarPremio} options={{ headerShown: false }} />
+                <Stack.Screen name="VerCodigos" component={VerCodigos} options={{ headerShown: false }} />
+                <Stack.Screen name="AdministrarSponsors" component={AdministrarSponsors} options={{ headerShown: false }} />
+                <Stack.Screen name="AgregarSponsor" component={AgregarSponsor} options={{ headerShown: false }} />
+                <Stack.Screen name="ActualizarSponsor" component={ActualizarSponsor} options={{ headerShown: false }} />
                 <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
-                <Stack.Screen name="AdministrarTipos" component={AdministrarTipos} options={{ headerShown: false }}/>
-                <Stack.Screen name="EditarTipo" component={EditarTipo} options={{ headerShown: false }}/>
-                <Stack.Screen name="AgregarTipo" component={AgregarTipo} options={{ headerShown: false }}/>
-                <Stack.Screen name="AdministrarPlantas" component={AdministrarPlantas} options={{ headerShown: false }}/>
-                <Stack.Screen name="AgregarPlanta" component={AgregarPlanta} options={{ headerShown: false }}/>
-                <Stack.Screen name="EditarPlanta" component={EditarPlanta} options={{ headerShown: false }}/>
+                <Stack.Screen name="AdministrarTipos" component={AdministrarTipos} options={{ headerShown: false }} />
+                <Stack.Screen name="EditarTipo" component={EditarTipo} options={{ headerShown: false }} />
+                <Stack.Screen name="AgregarTipo" component={AgregarTipo} options={{ headerShown: false }} />
+                <Stack.Screen name="AdministrarPlantas" component={AdministrarPlantas} options={{ headerShown: false }} />
+                <Stack.Screen name="AgregarPlanta" component={AgregarPlanta} options={{ headerShown: false }} />
+                <Stack.Screen name="EditarPlanta" component={EditarPlanta} options={{ headerShown: false }} />
               </>
             )
             : (rol === 2)
               ? (
                 <>
-                  <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ headerShown: false }}/>
-                  <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }}/>
+                  <Stack.Screen name="PuntoMenuScreen" component={PuntoMenuScreen} options={{ headerShown: false }} />
+                  <Stack.Screen name="RegistrarIntercambio" component={RegistrarIntercambio} options={{ headerShown: false }} />
                   <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
                   <Stack.Screen name="MenuHamburguesaPunto" component={MenuHamburguesaPunto} options={{ headerShown: false }} />
                   <Stack.Screen name="MisLotes" component={MisLotes} options={{ headerShown: false }} />
@@ -119,29 +122,32 @@ export const Navigator = () => {
                   <Stack.Screen name="ActualizacionLote" component={ActualizacionLote} options={{ headerShown: false }} />
                   <Stack.Screen name="DetalleLote" component={DetalleLote} options={{ headerShown: false }} />
                   <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
-                  
+                  <Stack.Screen name="PuntoActualizar" component={PuntoActualizar} options={{ headerShown: false }} />
+                  <Stack.Screen name="ConfirmarDireccion" component={ConfirmarDireccion} options={{ headerShown: false }} />
+                  <Stack.Screen name="ActualizarTipoMaterial" component={ActualizarTipoMaterial} options={{ headerShown: false }} />
                 </>
               )
               : (rol === 1)
-              ? (
-                <>
-                  <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} options={{ headerShown: false }}/>
-                  <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ headerShown: false}} />
-                  <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} options={{headerShown: false}}/>
-                  <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ headerShown: false }} />
-                  <Stack.Screen name="MapaPuntosReciclaje" component={MapaPuntosReciclaje} options={{ title: "PUNTOS DE RECICLAJE" }, { headerShown: false }} />
-                  <Stack.Screen name="CatalogoPremios" component={CatalogoPremios} options={{ title: "PREMIOS" }, { headerShown: false }} />
-                  <Stack.Screen name="DetalleDePremio" component={DetalleDePremio} options={{ headerShown: false }} />
-                  <Stack.Screen name="CanjeResultado" component={CanjeResultado} options={{ headerShown: false }} />
-                  <Stack.Screen name="MisPremios" component={MisPremios} options={{ headerShown: false }} />
-                  <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
-                  <Stack.Screen name="DonacionDeMisPuntos" component={DonacionDeMisPuntos} options={{ headerShown: false }} />
-                  <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
-                  <Stack.Screen name="MisPuntos" component={MisPuntos} options={{ headerShown: false }} />
-                  <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
-                </>
-              )
-              : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
+                ? (
+                  <>
+                    <Stack.Screen name="SocioMenuScreen" component={SocioMenuScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="MisIntercambios" component={MisIntercambios} options={{ headerShown: false }} />
+                    <Stack.Screen name="DetalleDeIntercambio" component={DetalleDeIntercambio} options={{ headerShown: false }} />
+                    <Stack.Screen name="MenuHamburguesaSocio" component={MenuHamburguesaSocio} options={{ headerShown: false }} />
+                    <Stack.Screen name="MapaPuntosReciclaje" component={MapaPuntosReciclaje} options={{ title: "PUNTOS DE RECICLAJE" }, { headerShown: false }} />
+                    <Stack.Screen name="CatalogoPremios" component={CatalogoPremios} options={{ title: "PREMIOS" }, { headerShown: false }} />
+                    <Stack.Screen name="DetalleDePremio" component={DetalleDePremio} options={{ headerShown: false }} />
+                    <Stack.Screen name="CanjeResultado" component={CanjeResultado} options={{ headerShown: false }} />
+                    <Stack.Screen name="MisPremios" component={MisPremios} options={{ headerShown: false }} />
+                    <Stack.Screen name="DetalleDeMiPremio" component={DetalleDeMiPremio} options={{ headerShown: false }} />
+                    <Stack.Screen name="DonacionDeMisPuntos" component={DonacionDeMisPuntos} options={{ headerShown: false }} />
+                    <Stack.Screen name="Contacto" component={Contacto} options={{ headerShown: false }} />
+                    <Stack.Screen name="MisPuntos" component={MisPuntos} options={{ headerShown: false }} />
+                    <Stack.Screen name="Confirmacion" component={Confirmacion} options={{ headerShown: false }} />
+                    <Stack.Screen name="SocioActualizar" component={SocioActualizar} options={{ headerShown: false }} />
+                  </>
+                )
+                : <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
       }
 
     </Stack.Navigator>

@@ -1,103 +1,71 @@
 import React, { useContext } from 'react';
-import styleContainer from '../../styles/Container';
-import styleText from '../../styles/Text';
-import { View, Text, Image, TouchableHighlight, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Header } from 'react-native-elements';
-import FAIcon from 'react-native-vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons';
 import { AuthContext } from '../../context/AuthContext';
 
+export default function MenuHamburguesaSocio({ navigation }) {
 
-var { height } = Dimensions.get('window');
-var box_count = 8;
-var box_height = height / box_count;
+  const { logOut } = useContext(AuthContext);
 
-
-export default function MenuHamburguesaSocio({navigation}) {
-  
-  const { logOut } = useContext( AuthContext );
-
-    return (
-           
-       <View style={[styleContainer.main], { flex: 1, backgroundColor: "#69A03A" }}>
-
-        <Header   
-                              
-             backgroundColor="#69A03A"
-             leftComponent={
-             <TouchableHighlight onPress={() =>{ navigation.navigate('SocioMenuScreen');}}>
-             <FAIcon name='chevron-left' size={25} style={{ color: "#FFFF" }} />
-             </TouchableHighlight>           
-             }            
-             centerComponent={{ text: 'GREEN POINTS', style: { color: '#fff', fontWeight: "bold", fontSize: 18} }}
-             rightComponent={{ text: '', style: {color: '#fff', textAlign: 'right',
-             fontSize: 15, fontWeight: "bold" }}}
-             />
-                                                   
-            <View style={[styles.container ,{ marginTop: 30}]}>
-
-                  <View style={[styles.box, styles.box0], { marginLeft: 20}}>
-
-                      <Image source={require('../../assets/User.png')}
-                              style={{
-                                width: 80,
-                                height: 80
-                              }}>
-                            </Image>
-
-                  </View>
-
-                  <View style={[styles.box, styles.box1],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                  <TouchableOpacity  onPress={() => {}} >
-                              <View
-                                  style={[{flexDirection: "row"}]}>
-                                  <FAIcon name='user-circle' size={45} style={{ color: "#FFFF" }} />  
-                                  < Text style={[styleText.buttonH,{marginLeft: 30 }]}>Actualizar Datos</Text>
-                              </View>
-                  </TouchableOpacity>
-                  </View>
-
-                  <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                  <TouchableOpacity  onPress={() => navigation.navigate('Contacto')} >
-                              <View
-                                  style={[{flexDirection: "row"}]}>
-                                  <FAIcon name='question-circle' size={45} style={{ color: "#FFFF" }} />  
-                                  < Text style={[styleText.buttonH,{marginLeft: 30 }]}>Contáctanos</Text>
-                              </View>
-                  </TouchableOpacity>
-                  </View>
-
-                  <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 20, marginLeft: 8}}>
-                  <TouchableOpacity  onPress={logOut} >
-                              <View
-                                  style={[{flexDirection: "row"}]}>
-                                  <FAIcon name='arrow-right' size={45} style={{ color: "#FFFF" }} />  
-                                  < Text style={[styleText.buttonH,{marginLeft: 30 }]}>Salir</Text>
-                              </View>
-                  </TouchableOpacity>                    
-                  </View>
-
-                  <View style={[styles.box, styles.box4]}></View>
-                  <View style={[styles.box, styles.box5]}></View>
-                  <View style={[styles.box, styles.box6]}></View>
-                  <View style={[styles.box, styles.box7]}></View>
-                  <View style={[styles.box, styles.box8]}></View>
+  return (
+    <View style={{ flex: 1, backgroundColor: '#69A03A' }}>
+      <Header
+        leftContainerStyle={{ flex: 1, justifyContent: 'center', marginTop: -10 }}
+        centerContainerStyle={{ flex: 2, justifyContent: 'center', marginTop: -10 }}
+        rightContainerStyle={{ flex: 1 }}
+        backgroundColor="#69A03A"
+        leftComponent={
+          <TouchableOpacity onPress={() => { navigation.navigate('SocioMenuScreen'); }}>
+            <Ionicons name='chevron-back' size={35} style={{ color: 'white' }} />
+          </TouchableOpacity>
+        }
+        centerComponent={{ text: 'GREEN POINTS', style: { color: 'white', fontWeight: "bold", fontSize: 22 } }}
+      />
+      <View style={{ flex: 0.4, justifyContent: 'space-evenly', backgroundColor: '#69A03A', marginLeft: 10 }}>
+        <TouchableOpacity
+          onPress={() => { navigation.navigate('SocioActualizar')}}
+        >
+          <View style={{ flexDirection: "row", alignItems: 'center' }}>
+            <View style={styles.iconContainer}>
+              <Ionicons name='person-circle' size={50} style={{ color: 'white', marginLeft: 4 }} />
             </View>
-       
+            <Text style={styles.textOption}>Actualizar Datos</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Contacto')} >
+          <View style={{ flexDirection: "row", alignItems: 'center' }}>
+            <View style={styles.iconContainer}>
+              <Ionicons name='help-circle' size={55} style={{ color: 'white' }} />
+            </View>
+            <Text style={styles.textOption}>Contáctanos</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={logOut} >
+          <View style={{ flexDirection: "row", alignItems: 'center' }}>
+            <View style={styles.iconContainer}>
+              <Ionicons name='exit' size={50} style={{ color: 'white', marginLeft: 9 }} />
+            </View>
+            <Text style={styles.textOption}>Salir</Text>
+          </View>
+        </TouchableOpacity>
       </View>
+      <View style={{ flex: 0.6, backgroundColor: 'white' }} />
+    </View>
+  );
+}
 
-    );
+const styles = StyleSheet.create({
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width: 70,
+    height: 70
+  },
+  textOption: {
+    textAlign: 'left',
+    fontSize: 22,
+    color: 'white',
+    fontWeight: 'bold'
   }
-
-  const styles = StyleSheet.create({
-    container: { flex: 1, flexDirection: 'column' },
-    box: { height: box_height },
-    box0: { backgroundColor: '#69A03A' },
-    box1: { backgroundColor: '#69A03A' },
-    box2: { backgroundColor: '#69A03A' },
-    box3: { backgroundColor: '#69A03A' },
-    box4: { backgroundColor: '#FFFF' },
-    box5: { backgroundColor: '#FFFF' },
-    box6: { backgroundColor: '#FFFF' },
-    box7: { backgroundColor: '#FFFF' },
-    box8: { backgroundColor: '#FFFF' }
-  });   
+})

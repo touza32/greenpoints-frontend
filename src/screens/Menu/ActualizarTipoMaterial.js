@@ -6,13 +6,16 @@ import styleText from "../../styles/Text";
 import { Divider, CheckBox } from 'react-native-elements';
 import greenPointsApi from '../../api/greenPointsApi';
 import { AuthContext } from '../../context/AuthContext';
+import Header from '../../components/Header';
 
 
-export default function RegistroTipoMaterial({ route, navigation }) {
+export default function ActualizarTipoMaterial({ route, navigation }) {
 
     const errmsg = "Debes seleccionar al menos un tipo de material";
     const [alos, setAlos] = useState(false);
-    const { token } = useContext(AuthContext);
+    const { token, id } = useContext(AuthContext);
+    const [materiales, setMateriales] = useState([]);
+    const [materialesPunto, setMaterialesPunto] = useState([]);
     const [data, setData] = useState([]);
     const [checkState, setCheck] = useState([]);
 
@@ -28,17 +31,14 @@ export default function RegistroTipoMaterial({ route, navigation }) {
             reduce((previous, current) => [...previous, current.id], [])
         if (alos) return errmsg
         try {
-            await greenPointsApi.post('/punto-reciclaje', {
-                email: route.params.email,
-                customerName: route.params.customerName,
-                document: route.params.document,
-                latitud: route.params.latitud,
-                longitud: route.params.longitud,
-                direccion: route.params.address,
-                password: route.params.password,
-                materials: materials
-            })
-            navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Tu registro ha sido exitoso' })
+            // await greenPointsApi.post('/punto-reciclaje', {
+            //     email: route.params.correo,
+            //     document: route.params.documento,
+            //     latitud: route.params.latitud,
+            //     longitud: route.params.longitud,
+            //     materials: materials
+            // })
+            //navigation.navigate("Confirmacion", { nextScreen: 'LoginScreen', message: 'Tu registro ha sido exitoso' })
         } catch (e) {
             console.error(e)
         }
@@ -56,16 +56,33 @@ export default function RegistroTipoMaterial({ route, navigation }) {
                     get('/tipo-reciclable', { headers: { Authorization: token } })
                 const data = await response.data
                 setData(data)
-                setCheck(new Array(data.length).fill(false))
+                setMateriales(data)
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        const getMaterialesPunto = async () => {
+            try {
+                const response = await greenPointsApi.
+                    get('/punto-reciclaje/tipo-reciclables?puntoId=' + id + '&onlyOpenedLote=false')
+                const data = await response.data
+                setMaterialesPunto(data)
             } catch (e) {
                 console.error(e)
             }
         }
         getMateriales();
+        getMaterialesPunto();
     }, [])
+
+    useEffect(() => {
+        const idMaterialesPunto = materialesPunto.map(item => item.id)
+        setCheck(materiales.map(item => idMaterialesPunto.find(i => i === item.id) ? true : false))
+    }, [materialesPunto])
 
     return (
         <View>
+            <Header navigation={navigation} title="ACTUALIZAR DATOS" />
             <Text style={[styleText.blackText, { marginTop: 10 }]}>Estos son los tipos de materiales que vas a aceptar de los socios recicladores</Text>
             <View style={[styleContainer.main, { marginTop: 30, marginHorizontal: 30, alignItems: 'stretch' }]}>
                 <FlatList
