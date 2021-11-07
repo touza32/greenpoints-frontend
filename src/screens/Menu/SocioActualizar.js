@@ -7,6 +7,8 @@ import { AuthContext } from '../../context/AuthContext';
 import InputForm from '../../components/InputForm';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import greenPointsApi from '../../api/greenPointsApi';
+import Moment from 'moment';
 import styleTextInput from '../../styles/TextInput';
 import styleButton from '../../styles/Button';
 import styleText from '../../styles/Text'
@@ -30,21 +32,27 @@ export default function SocioActualizar({ navigation }) {
         resolver: yupResolver(schema)
     });
 
-    const data = {
-        nombre: 'Carlos',
-        apellido: 'Darwin',
-        correo: 'elcharlesdeadrogue@gmail.com',
-        fechaNac: '01/01/1500'
-    }
+    const [socio, setSocio] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            const socioData = await greenPointsApi.get('/socio-reciclador/Id?socioRecicladorId=' + id);
+            const socio = await socioData.data;
+            setSocio(socio);
+        })()
+    }, [])
 
     useEffect(() => {
         reset({
-            nombre: data.nombre,
-            apellido: data.apellido
+            nombre: socio.nombre,
+            apellido: socio.apellido
         })
-    }, [])
+    }, [socio])
 
-    const onSubmit = () => { console.log({ ...data, id }) }
+    const onSubmit = async data => {
+        await greenPointsApi.put('/socio-reciclador', { ...data, id });
+        navigation.navigate('Confirmacion', { nextScreen: 'MenuHamburguesa', message: 'Datos actualizados exitosamente' })
+    }
 
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
@@ -53,7 +61,7 @@ export default function SocioActualizar({ navigation }) {
                 <View style={{ marginVertical: 20 }}>
                     <Text style={styleTextInput.title}>Correo electrónico</Text>
                     <TextInput style={styleTextInput.large}
-                        value={data.correo}
+                        value={socio.email}
                         editable={false}
                     />
                 </View>
@@ -62,19 +70,19 @@ export default function SocioActualizar({ navigation }) {
                     errors={errors}
                     name="nombre"
                     title="Nombre (*)"
-                    defaultValue={data.nombre}
+                    defaultValue={socio.nombre}
                 />
                 <InputForm
                     control={control}
                     errors={errors}
                     name="apellido"
                     title="Apellido (*)"
-                    defaultValue={data.apellido}
+                    defaultValue={socio.apellido}
                 />
                 <View style={{ marginBottom: 40 }}>
                     <Text style={styleTextInput.title}>Fecha de nacimiento</Text>
                     <TextInput style={styleTextInput.large}
-                        value={data.fechaNac}
+                        value={Moment(socio.fechaNac).format('DD/MM/yyyy')}
                         editable={false}
                     />
                 </View>
