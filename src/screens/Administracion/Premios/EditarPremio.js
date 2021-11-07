@@ -109,9 +109,8 @@ export default function AgregarPremio({ route, navigation }) {
             descripcion: premio.description,
             observacion: premio.observacion,
             puntos: premio.puntos,
-            fechaInicio: premio.desde,
-            fechaVto: premio.hasta,
-        })
+            fechaInicio: premio.desde
+        }, premio.hasta !== null && { fechaVto: premio.hasta })
     }, [premio])
 
     useEffect(() => { if (codigos.length > 0) setErrorCodigo(false) }, [codigos])
