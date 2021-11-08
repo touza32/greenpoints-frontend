@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useForm } from "react-hook-form";
 import Header from '../../components/Header';
-import { Ionicons } from '@expo/vector-icons';
 import { AuthContext } from '../../context/AuthContext';
 import InputForm from '../../components/InputForm';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import styleTextInput from '../../styles/TextInput';
+import greenPointsApi from '../../api/greenPointsApi';
 import styleButton from '../../styles/Button';
 import styleText from '../../styles/Text'
 
@@ -35,7 +34,15 @@ export default function ActualizarPassword({ navigation }) {
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = data => { console.log({ ...data, id }) }
+    const onSubmit = async data => {
+        const response = await greenPointsApi.put('/usuario', { ...data, usuarioId: id })
+            .catch(function (error) {
+                if (error.response.status === 400) {
+                    Alert.alert('Error', 'Contraseña anterior es incorrecta')
+                }
+            })
+        response && navigation.navigate('Confirmacion', { nextScreen: 'MenuHamburguesa', message: 'Cambio de contraseña exitoso' })
+    }
 
     return (
         <View style={{ flex: 1, alignItems: 'center' }}>
