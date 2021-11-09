@@ -35,7 +35,7 @@ const schema = yup.object().shape({
         matches(/^[^!$%^&@*()_+|~=`{}\[\]:";'<>?,.\/0-9]+$/, 'Nombre inválido').
         required('Requerido'),
     birthDate: yup.
-        mixed().transform(e => e.toISOString().slice(8, 10) + e.toISOString().slice(4, 8) + e.toISOString().slice(0, 4)).
+        mixed().transform(value => Moment(value).format('DD-MM-yyyy')).
         required('Requerido')
 });
 
