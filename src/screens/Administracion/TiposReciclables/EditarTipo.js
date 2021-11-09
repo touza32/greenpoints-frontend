@@ -132,7 +132,7 @@ export default function EditarTipo({ route, navigation }) {
                             control={control}
                             errors={errors}
                             name="points"
-                            title="Puntos para obtenerlo (*)"
+                            title="Puntos por kilo (*)"
                             placeholder="0"
                             style={[styleTextInput.small]}
                             containerStyle={{ marginRight: 116 }}
