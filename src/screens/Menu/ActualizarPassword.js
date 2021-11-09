@@ -28,14 +28,14 @@ const schema = yup.object().shape({
 
 export default function ActualizarPassword({ navigation }) {
 
-    const { id } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
     const onSubmit = async data => {
-        const response = await greenPointsApi.put('/usuario', { ...data, usuarioId: id })
+        const response = await greenPointsApi.put('/usuario', { ...data, username: user })
             .catch(function (error) {
                 if (error.response.status === 400) {
                     Alert.alert('Error', 'Contraseña anterior es incorrecta')
