@@ -6,11 +6,11 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Moment from 'moment';
 import * as styles from '../styles';
 
-export default function InputForm( props ) {
+export default function InputForm(props) {
 
     const { control, errors, name, title, defaultDate, minDate, maxDate } = props
 
-    const [date, setDate] = useState(new Date(Moment(defaultDate).subtract(3, 'hours')));
+    const [date, setDate] = useState(new Date(Moment(defaultDate)));
     const [show, setShow] = useState(false);
 
     const onChangeDate = (event, selectedDate) => {
@@ -33,9 +33,7 @@ export default function InputForm( props ) {
                             <Text>
                                 {value !== undefined
                                     ?
-                                    value.toISOString().slice(8, 10) +
-                                    value.toISOString().slice(4, 8) +
-                                    value.toISOString().slice(0, 4)
+                                    Moment(value).format('DD-MM-yyyy')
                                     :
                                     <Text style={{ color: 'gray' }}>{Moment(defaultDate).format('DD-MM-yyyy')}</Text>}
                             </Text>
@@ -43,8 +41,8 @@ export default function InputForm( props ) {
                         {show && (
                             <DateTimePicker
                                 value={date}
-                                minimumDate={new Date(Moment(minDate||'1900-01-01'))}
-                                maximumDate={new Date(Moment(maxDate||'2050-01-01'))}
+                                minimumDate={new Date(Moment(minDate || '1900-01-01'))}
+                                maximumDate={new Date(Moment(maxDate || '2050-01-01'))}
                                 onChange={(e, s) => {
                                     onChangeDate(e, s)
                                     onChange(s)
