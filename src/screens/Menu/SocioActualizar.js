@@ -107,7 +107,7 @@ export default function SocioActualizar({ navigation }) {
                                 text: 'SI',
                                 onPress: async () => {
                                     await greenPointsApi.delete('/socio-reciclador/' + id)
-                                    Alert.alert('Confirmación', 'La baja fue procesada correctamente')
+                                    Alert.alert('Confirmación', 'La baja fue procesada exitosamente')
                                     logOut()
                                 }
                             }

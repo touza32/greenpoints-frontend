@@ -55,7 +55,7 @@ export default function Contacto({ navigation }) {
                   <View style={{ flex: 0.45, justifyContent: 'space-around', alignItems: 'center', marginBottom: '8%', margintop: '10%' }}>
                       
                         <View>
-                              <Text style={styleText.blackText}>También puedes mandarnos un mail a: contacto@greenpoints.com.ar</Text>
+                              <Text style={styleText.blackText}>También puedes mandarnos un mail a: green.points.argentina@gmail.com</Text>
                         </View>
                                             
                   </View>

@@ -142,7 +142,7 @@ export default function AgregarPremio({ route, navigation }) {
     const eliminarPremio = () => {
         Alert.alert(
             'Eliminar premio',
-            '¿Estas seguro que deseas eliminar este premio?',
+            '¿Estás seguro que deseas eliminar este premio?',
             [
                 {
                     text: 'NO'

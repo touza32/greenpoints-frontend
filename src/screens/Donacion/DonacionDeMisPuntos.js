@@ -63,7 +63,7 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
         }*/
         Alert.alert(
             'Donar puntos',
-            '¿Estas seguro que deseas donar ' + SlideValue + ' puntos a '+ socio.email + ' ?',
+            '¿Estás seguro que deseas donar ' + SlideValue + ' puntos a '+ socio.email + ' ?',
             [
                 {
                     text: 'NO'
@@ -77,7 +77,7 @@ export default function DonacionDeMisPuntos({ route, navigation }) {
                             puntos: SlideValue
                         });
                         donacion &&
-                            navigation.navigate('Confirmacion', { nextScreen: 'SocioMenuScreen', message: 'Su donación ha sido exitosa' });
+                            navigation.navigate('Confirmacion', { nextScreen: 'SocioMenuScreen', message: 'Tu donación ha sido exitosa' });
                     }
                 }
             ]

@@ -81,7 +81,7 @@ export default function EditarPlanta({ route, navigation }) {
     const eliminarPlanta = () => {
         Alert.alert(
             'Desactivar planta',
-            '¿Estas seguro que deseas desactivar esta planta?',
+            '¿Estás seguro que deseas desactivar esta planta?',
             [
                 {
                     text: 'NO'

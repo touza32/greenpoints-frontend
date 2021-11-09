@@ -73,7 +73,7 @@ export default function ActualizarSponsor({ route, navigation }) {
     const desactivarSponsor = () => {
         Alert.alert(
             'Desactivar Sponsor',
-            '¿Estas seguro que deseas desactivar este sponsor?',
+            '¿Estás seguro que deseas desactivar este sponsor?',
             [
                 {
                     text: 'NO'

@@ -49,7 +49,7 @@ export default function DetalleDePremio({ route, navigation }) {
     };*/
         Alert.alert(
             'Canjear premio',
-            '¿Estas seguro que deseas canjear este premio?',
+            '¿Estás seguro que deseas canjear este premio?',
             [
                 {
                     text: 'NO'

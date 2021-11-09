@@ -53,7 +53,7 @@ export default function RegistroSocioReciclador({ navigation }) {
             lastName: data.lastName,
             password: data.password
         })
-        navigation.navigate('Confirmacion', { nextScreen: 'LoginScreen', message: 'Su registro ha sido exitoso' })
+        navigation.navigate('Confirmacion', { nextScreen: 'LoginScreen', message: 'Tu registro ha sido exitoso' })
     }
 
 

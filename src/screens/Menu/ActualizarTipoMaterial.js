@@ -38,7 +38,7 @@ export default function ActualizarTipoMaterial({ route, navigation }) {
                 longitud: route.params.longitud,
                 materials: materials
              })
-            navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Datos actualizados con éxito' })
+            navigation.navigate("Confirmacion", { nextScreen: 'PuntoMenuScreen', message: 'Datos actualizados exitosamente' })
         } catch (e) {
             console.error(e)
         }
