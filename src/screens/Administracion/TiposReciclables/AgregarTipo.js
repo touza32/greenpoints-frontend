@@ -72,7 +72,7 @@ export default function AgregarTipo({ route, navigation }) {
                     title="Puntos por kilo (*)"
                     placeholder="0"
                     style={[styleTextInput.small]}
-                    containerStyle={{ marginRight: 116 }}
+                    containerStyle={{ marginRight: 170}}
                     keyboardType="numeric"
                 />
                 

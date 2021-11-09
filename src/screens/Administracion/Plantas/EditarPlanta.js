@@ -80,7 +80,7 @@ export default function EditarPlanta({ route, navigation }) {
 
     const eliminarPlanta = () => {
         Alert.alert(
-            'Eliminar planta',
+            'Desactivar planta',
             '¿Estas seguro que deseas desactivar esta planta?',
             [
                 {
@@ -90,7 +90,7 @@ export default function EditarPlanta({ route, navigation }) {
                     text: 'SI',
                     onPress: async () => {
                         await greenPointsApi.delete('/planta/' + planta.id)
-                        navigation.navigate('Confirmacion', { nextScreen: 'AdministrarPlantas', message: 'Se eliminó exitosamente' })
+                        navigation.navigate('Confirmacion', { nextScreen: 'AdministrarPlantas', message: 'Se desactivó exitosamente' })
                     }
                 }
             ]

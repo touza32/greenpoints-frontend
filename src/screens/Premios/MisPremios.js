@@ -49,7 +49,7 @@ export default function MisPremios({ props, navigation }) {
                                 <View>
                                     <Text style={styles.name}>{item.nombre}</Text>
                                     <Text style={styles.fechaObtencion}>{item.obtencion.substring(0, 10)}</Text>
-                                    <Text style={styles.fechavig}>{'Vigente hasta ' + item.hasta.substring(0, 10)}</Text>
+                                    <Text style={styles.fechavig}>{item.hasta !== null ? 'Vigente hasta ' + item.hasta.substring(0, 10) : 'Sin vencimiento'}</Text>
 
                                 </View>
                                 <View style={styles.icon}>

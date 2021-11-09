@@ -93,7 +93,7 @@ export default function DetalleDePremio({ route, navigation }) {
                 </View>
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>Vigente hasta</Text>
-                    <Text>{Moment(premio.hasta).format('DD/MM/yyyy')}</Text>
+                    <Text>{premio.hasta !== null ? Moment(premio.hasta).format('DD/MM/yyyy') : 'Sin vencimiento'}</Text>
                 </View>
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={styles.Text.titleList}>Puntos necesarios</Text>
