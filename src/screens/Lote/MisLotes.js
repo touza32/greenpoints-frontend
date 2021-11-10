@@ -19,10 +19,10 @@ export default function MisLotes({ props, navigation }) {
     const [lotes, setLotes] = useState([]);
     const [filtro, setFiltro] = useState({ id: 0, type: 'abiertos' });
     const [resultado, setResultado] = useState([]);
-   
+
     useEffect(() => {
         (async () => {
-            const lotesData = await greenPointsApi.get('/lote?puntoId='+id);
+            const lotesData = await greenPointsApi.get('/lote?puntoId=' + id);
             const lotes = await lotesData.data;
             setLotes(lotes);
             setResultado(lotes.filter(x => x.abierto));
@@ -54,27 +54,32 @@ export default function MisLotes({ props, navigation }) {
                 </View>
             </View>
             <View style={{ flex: 0.8 }}>
-                <FlatList
-                    data={ resultado }
-                    keyExtractor={(lote) => lote.id.toString()}
-                    renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => { filtro.id===0 ? navigation.navigate('ActualizacionLote', { loteId: item.id }) : navigation.navigate('DetalleLote', { loteId: item.id })}}>
-                            <View style={ styles.lote }>
-                            <Image source={{ uri: item.imagen }}
+                {resultado.length > 0
+                    ? <FlatList
+                        data={resultado}
+                        keyExtractor={(lote) => lote.id.toString()}
+                        renderItem={({ item }) =>
+                            <TouchableOpacity onPress={() => { filtro.id === 0 ? navigation.navigate('ActualizacionLote', { loteId: item.id }) : navigation.navigate('DetalleLote', { loteId: item.id }) }}>
+                                <View style={styles.lote}>
+                                    <Image source={{ uri: item.imagen }}
                                         style={styles.image}>
                                     </Image>
-                                <View style={ styles.loteDetail }>
-                                    <Text style={ styles.loteName }>{ item.tipoMaterialNombre }</Text>
-                                    <Text style={ styles.loteDate }>{ Moment(item.fecha).format('DD/MM/yyyy') }</Text>    
+                                    <View style={styles.loteDetail}>
+                                        <Text style={styles.loteName}>{item.tipoMaterialNombre}</Text>
+                                        <Text style={styles.loteDate}>{Moment(item.fecha).format('DD/MM/yyyy')}</Text>
+                                    </View>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                    }
-                    ItemSeparatorComponent={() => { return <Divider color='#B2B2B2' /> }}>
-                </FlatList>
+                            </TouchableOpacity>
+                        }
+                        ItemSeparatorComponent={() => { return <Divider color='#B2B2B2' /> }}>
+                    </FlatList>
+                    : filtro.id === 0
+                        ? <Text style={{ textAlign: 'center' }}>Aún no tienes ningún lote abierto</Text>
+                        : <Text style={{ textAlign: 'center' }}>Aún no tienes ningún lote cerrado</Text>
+                }
             </View>
         </View>
-        
+
     )
 }
 
