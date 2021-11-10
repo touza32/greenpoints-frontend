@@ -1,82 +1,60 @@
-import React from 'react';
-import styleText from '../../styles/Text';
-import styleButton from '../../styles/Button';
-import Header from '../../components/Header'; 
-import styleContainer from '../../styles/Container';
-import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity, Dimensions} from 'react-native'; 
-import styleTextInput from '../../styles/TextInput';
+import React, { useEffect, useState } from 'react';
+import Header from '../../components/Header';
+import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import Moment from 'moment';
+import greenPointsApi from '../../api/greenPointsApi';
+import * as styles from '../../styles';
 
+export default function DetalleLote({ route, navigation }) {
 
-var { height } = Dimensions.get('window');
-var box_count = 8;
-var box_height = height / box_count;
+      const { loteId } = route.params;
 
+      const [lote, setLote] = useState({})
 
-export default function DetalleLote({ navigation }) {
-    
+      useEffect(() => {
+            (async () => {
+                  const loteData = await greenPointsApi.get('/lote/' + loteId);
+                  const lote = await loteData.data;
+                  setLote(lote);
+            })();
+      }, []);
+
       return (
-           
-            <View style={[styleContainer.main], { flex: 1, backgroundColor: "#FFFF",  alignItems: 'center' }}>
-     
-            <Header navigation={navigation} title="DETALLE" />   
+            <View style={{ flex: 1 }}>
+                  <Header navigation={navigation} title="LOTE CERRADO" />
+                  <View style={{ flex: 1 }}>
+                        <View style={{ flex: 0.75, alignItems: 'center', justifyContent: 'space-evenly' }}>
+                              <View>
+                                    <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Tipo de material</Text>
+                                    <TextInput style={styles.TextInput.large}
+                                          value={lote.tipoMaterialNombre}
+                                          editable={false}
+                                    />
+                              </View>
+                              <View>
+                                    <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Fecha de creación</Text>
+                                    <TextInput style={styles.TextInput.large}
+                                          value={Moment(lote.fechaCreacion).format('DD/MM/yyyy')}
+                                          editable={false}
+                                    />
+                              </View>
+                              <View>
+                                    <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Fecha de cierre</Text>
+                                    <TextInput style={styles.TextInput.large}
+                                          value={Moment(lote.fechaCierre).format('DD/MM/yyyy')}
+                                          editable={false}
+                                    />
+                              </View>
+                              <View>
+                                    <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Planta recicladora</Text>
+                                    <TextInput style={styles.TextInput.large}
+                                          value={lote.plantaNombre}
+                                          editable={false}
+                                    />
+                              </View>
+                        </View>
+                  </View>
+            </View>
+      );
+}
 
-                 <View style={[styles.container ,{ marginTop: 30}]}>
-     
-                       <View style={[styles.box, styles.box1],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                      
-                       <Text style={styleText.blackTextleft}>Tipo de material</Text>                 
-                       <TextInput
-                        style={[styleTextInput.large, { marginBottom: 10 }]}
-                        placeholder='Carton'
-                        />                       
-                       </View>
-     
-                       <View style={[styles.box, styles.box2],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <Text style={styleText.blackTextleft}>Fecha  de creación</Text>  
-                       <TextInput
-                        style={[styleTextInput.large, { marginBottom: 10 }]}
-                        placeholder='01/06/2021'
-                        />    
-                       </View>
-
-                       <View style={[styles.box, styles.box3],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <Text style={styleText.blackTextleft}>Fecha  de cierre</Text>  
-                       <TextInput
-                        style={[styleTextInput.large, { marginBottom: 10 }]}
-                        placeholder='01/06/2021'
-                        />    
-                       </View>
-     
-                       <View style={[styles.box, styles.box4],{ marginTop: 25, marginBottom: 10, marginLeft: 8}}>
-                       <Text style={styleText.blackTextleft}>Planta Recicladora</Text>
-                       <TextInput
-                        style={[styleTextInput.large, { marginBottom: 10 }]}
-                        placeholder='Av. Corrientes 2332'
-                        />        
-                       </View>
-     
-                       <View style={[styles.box, styles.box4]}></View>
-                                      
-                       <View style={[styles.box, styles.box5]}></View>                  
-                       
-                       
-                 </View>
-            
-           </View>
-     
-         );
-       }
-
-       const styles = StyleSheet.create({
-            container: { flex: 1, flexDirection: 'column' },
-            box: { height: box_height },
-            box0: { backgroundColor: '#FFFF' },
-            box1: { backgroundColor: '#FFFF' },
-            box2: { backgroundColor: '#FFFF' },
-            box3: { backgroundColor: '#FFFF' },
-            box4: { backgroundColor: '#FFFF' },
-            box5: { backgroundColor: '#FFFF' },
-            box6: { backgroundColor: '#FFFF' },
-            box7: { backgroundColor: '#FFFF' },
-            box8: { backgroundColor: '#FFFF' }
-          }); 
