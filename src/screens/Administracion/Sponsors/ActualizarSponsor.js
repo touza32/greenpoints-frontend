@@ -102,7 +102,7 @@ export default function ActualizarSponsor({ route, navigation }) {
                         <Ionicons name="chevron-back" size={35} color="white" />
                     </TouchableOpacity>
                     <Text
-                        style={[styleText.button, { width: '90%' }]}>NUEVO SPONSOR</Text>
+                        style={[styleText.button, { width: '90%' }]}>EDITAR SPONSOR</Text>
                 </View>
             }
             navigation={navigation}
