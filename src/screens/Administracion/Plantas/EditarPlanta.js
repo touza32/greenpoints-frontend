@@ -116,11 +116,8 @@ export default function EditarPlanta({ route, navigation }) {
                             name="direccion"
                             title="Direccion (*)"
                             placeholder="Direccion"
-                            style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
-                            multiline
                             editable
-                            numberOfLines={3}
-                            maxLength={180}
+                            maxLength={128}
                         />
                         <InputForm
                             control={control}
@@ -132,7 +129,7 @@ export default function EditarPlanta({ route, navigation }) {
                             multiline
                             editable
                             numberOfLines={5}
-                            maxLength={180}
+                            maxLength={128}
                         />                                         
                         <TouchableOpacity
                             style={[styleButton.base, { alignSelf: 'center' }]}

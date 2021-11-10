@@ -26,7 +26,8 @@ export default function AgregarSponsor({ route, navigation }) {
     const [image, setImage] = useState({});
     
     const onSubmit = async data => {
-        if (image === null) return
+        if (image === null || image.cancelled) return;
+        
         const objData = {
             ...data,
                image: image

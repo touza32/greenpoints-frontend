@@ -75,7 +75,7 @@ export default function AdministrarTipos({ navigation }) {
                     <TouchableOpacity style={[styleButton.base]}
                         onPress={() => {navigation.navigate('AgregarTipo')}}
                     >
-                        <Text style={styleText.button}>AGREGAR NUEVO</Text>
+                        <Text style={styleText.button}>AGREGAR</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -78,7 +78,7 @@ export default function AdministrarSponsors({ navigation }) {
                     <TouchableOpacity style={[styleButton.base]}
                         onPress={() => {navigation.navigate('AgregarSponsor')}}
                     >
-                        <Text style={styleText.button}>AGREGAR NUEVO</Text>
+                        <Text style={styleText.button}>AGREGAR</Text>
                     </TouchableOpacity>
                 </View>
             </View>

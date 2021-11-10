@@ -21,7 +21,7 @@ export default function CanjeResultado({ route, navigation }) {
                 <Text style={[styles.Text.titleList, { fontWeight: 'normal', marginHorizontal: 50, marginBottom: 50 }]}>Canjealo en cualquiera de los locales adheridos</Text>
                 <TouchableOpacity
                     style={styles.Button.base}
-                    onPress={() => backToMenu ? navigation.navigate('SocioMenuScreen') : navigation.navigate('CatalogoPremios')}
+                    onPress={() => navigation.navigate('SocioMenuScreen') }
                 >
                     <Text style={styles.Text.button}>VOLVER</Text>
                 </TouchableOpacity>

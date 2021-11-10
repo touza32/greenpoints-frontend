@@ -63,11 +63,8 @@ export default function AgregarPlanta({ route, navigation }) {
                             name="direccion"
                             title="Dirección (*)"
                             placeholder="Dirección"
-                            style={[styleTextInput.large, { height: 110, textAlignVertical: 'top', padding: 10 }]}
-                            multiline
                             editable
-                            numberOfLines={5}
-                            maxLength={180}
+                            maxLength={128}
                         />
                         <InputForm
                             control={control}
@@ -79,7 +76,7 @@ export default function AgregarPlanta({ route, navigation }) {
                             multiline
                             editable
                             numberOfLines={5}
-                            maxLength={180}
+                            maxLength={128}
                         />
                      
                         <TouchableOpacity

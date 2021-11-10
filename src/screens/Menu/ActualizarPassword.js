@@ -38,7 +38,7 @@ export default function ActualizarPassword({ navigation }) {
         const response = await greenPointsApi.put('/usuario', { ...data, username: user })
             .catch(function (error) {
                 if (error.response.status === 400) {
-                    Alert.alert('Error', 'Contraseña anterior es incorrecta')
+                    Alert.alert('Error', 'Contraseña anterior incorrecta')
                 }
             })
         response && navigation.navigate('Confirmacion', { nextScreen: 'MenuHamburguesa', message: 'Cambio de contraseña exitoso' })

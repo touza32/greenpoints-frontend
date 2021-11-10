@@ -79,7 +79,7 @@ export default function AdministrarPlantas({ navigation }) {
                     <TouchableOpacity style={[styleButton.base]}
                         onPress={() => navigation.navigate('AgregarPlanta')}
                     >
-                        <Text style={styleText.button}>AGREGAR NUEVO</Text>
+                        <Text style={styleText.button}>AGREGAR</Text>
                     </TouchableOpacity>
                 </View>
             </View>
