@@ -58,7 +58,7 @@ export default function SocioMenuScreen({ navigation }) {
                 </View>
             </TouchableOpacity>
             <View style={[styleContainer.main, { flex: 5, marginTop: 20 }]}>
-                <CarouselMenu data={premios} navigation={navigation} puntos={puntos} />
+                <CarouselMenu data={premios} onPress={(item) => navigation.navigate('DetalleDePremio', { premioId: item.item.id, puntos: puntos, backToMenu: true })} />
             </View>
 
             <View

@@ -6,7 +6,7 @@ const { width } = Dimensions.get('window');
 const ITEM_WIDTH = Math.round(width * 0.7);
 
 export default function CarouselMenu(props) {
-    const { data, navigation, puntos } = props;
+    const { data, navigation, puntos, onPress } = props;
     const [activeSlide, setActiveSlide] = useState(0);
 
     return (
@@ -17,9 +17,8 @@ export default function CarouselMenu(props) {
                 renderItem={item =>
                     <View>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('DetalleDePremio', { premioId: item.item.id, puntos: puntos, backToMenu: true })}
+                            onPress={()=>onPress(item)}
                         >
-
                             <Image style={Styles.Image} source={{ uri: item.item.imagen }} />
                         </TouchableOpacity>
                     </View>

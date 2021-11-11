@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
     View,
     Image,
@@ -8,6 +8,8 @@ import {
 
 import { AuthContext } from '../../context/AuthContext';
 import Header from '../../components/Header';
+import CarouselMenu from "../../components/CarouselMenu";
+import greenPointsApi from '../../api/greenPointsApi';
 
 // styles
 import styleContainer from '../../styles/Container';
@@ -18,25 +20,28 @@ export default function AdminMenuScreen({ navigation }) {
 
     const { logOut } = useContext(AuthContext);
 
+    const [premios, setPremios] = useState([])
+
+    useEffect(() => {
+        (async () => {
+            const premiosData = await greenPointsApi.get('/premio/top');
+            const premios = await premiosData.data;
+            setPremios(premios);
+        })();
+    }, []);
+
     return (
         <View style={[styleContainer.main, { flex: 1 }]}>
-            <Header navigation={navigation} leftComponent={<></>} />
-            <View style={[styleContainer.main, { flex: 0.4, marginTop:50 }]}>
-
-                <Image
-                    source={require('../../assets/AdminMenu.png')}
-                    style={{
-                        width: 370,
-                        height: 231
-                    }}>
-                </Image>
+            <Header navigation={navigation} leftComponent={<View style={{ height: 0 }}></View>} />
+            <View style={[styleContainer.main, { flex: 0.5, marginTop: 40 }]}>
+                <CarouselMenu data={premios} onPress={()=>null}/>
             </View>
 
             <View
-                style={{ flex: 0.5, alignItems: 'center', justifyContent: 'space-between', marginVertical: 50 }} >
+                style={{ flex: 0.6, alignItems: 'center', justifyContent: 'space-around', marginVertical: 10 }} >
 
                 <TouchableOpacity
-                    onPress={() => { navigation.navigate('AdministrarPremios')}} >
+                    onPress={() => { navigation.navigate('AdministrarPremios') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
@@ -48,7 +53,7 @@ export default function AdminMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { navigation.navigate('AdministrarTipos')}} >
+                    onPress={() => { navigation.navigate('AdministrarTipos') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image style={[{ marginLeft: 1 }]}
@@ -60,7 +65,7 @@ export default function AdminMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => {navigation.navigate('AdministrarSponsors') }} >
+                    onPress={() => { navigation.navigate('AdministrarSponsors') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
@@ -71,7 +76,7 @@ export default function AdminMenuScreen({ navigation }) {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { navigation.navigate('AdministrarPlantas')}} >
+                    onPress={() => { navigation.navigate('AdministrarPlantas') }} >
                     <View
                         style={[styleContainer.main, { flexDirection: "row" }]}>
                         <Image
@@ -83,7 +88,7 @@ export default function AdminMenuScreen({ navigation }) {
                 </TouchableOpacity>
 
             </View>
-            <View style={{ flex: 0.1, alignItems: 'center', marginBottom:50 }}>
+            <View style={{ flex: 0.1, alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
                 <TouchableOpacity
                     style={styleButton.base}
                     onPress={logOut}

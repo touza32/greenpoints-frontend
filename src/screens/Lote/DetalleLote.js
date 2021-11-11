@@ -23,7 +23,7 @@ export default function DetalleLote({ route, navigation }) {
             <View style={{ flex: 1 }}>
                   <Header navigation={navigation} title="LOTE CERRADO" />
                   <View style={{ flex: 1 }}>
-                        <View style={{ flex: 0.75, alignItems: 'center', justifyContent: 'space-evenly' }}>
+                        <View style={{ flex: 0.8, alignItems: 'center', justifyContent: 'space-evenly' }}>
                               <View>
                                     <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Tipo de material</Text>
                                     <TextInput style={styles.TextInput.large}
@@ -42,6 +42,13 @@ export default function DetalleLote({ route, navigation }) {
                                     <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Fecha de cierre</Text>
                                     <TextInput style={styles.TextInput.large}
                                           value={Moment(lote.fechaCierre).format('DD/MM/yyyy')}
+                                          editable={false}
+                                    />
+                              </View>
+                              <View>
+                                    <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Kilos de material</Text>
+                                    <TextInput style={styles.TextInput.large}
+                                          value={lote.kilos}
                                           editable={false}
                                     />
                               </View>

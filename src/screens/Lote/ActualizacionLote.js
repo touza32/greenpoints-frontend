@@ -40,7 +40,7 @@ export default function ActualizacionLote({ route, navigation }) {
             }
       }, [lote, plantasAll]);
 
-      useEffect(() => { if (lote.plantaId !== '') setErrorPlanta(false) },[planta])
+      useEffect(() => { if (lote.plantaId !== '') setErrorPlanta(false) }, [planta])
 
       const cerrarLote = async () => {
             try {
@@ -99,7 +99,7 @@ export default function ActualizacionLote({ route, navigation }) {
                         </View>
                   ) : (
                         <View style={{ flex: 1 }}>
-                              <View style={{ flex: 0.6, alignItems: 'center', justifyContent: 'space-evenly' }}>
+                              <View style={{ flex: 0.65, alignItems: 'center', justifyContent: 'space-evenly' }}>
                                     <View>
                                           <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Tipo de material</Text>
                                           <TextInput style={styles.TextInput.large}
@@ -115,6 +115,13 @@ export default function ActualizacionLote({ route, navigation }) {
                                           />
                                     </View>
                                     <View>
+                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Kilos de material</Text>
+                                          <TextInput style={styles.TextInput.large}
+                                                value={lote.kilos}
+                                                editable={false}
+                                          />
+                                    </View>
+                                    <View>
                                           <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Planta recicladora (*)</Text>
                                           <TextInput
                                                 style={styles.TextInput.large}
@@ -125,7 +132,7 @@ export default function ActualizacionLote({ route, navigation }) {
                                           {errorPlanta && <Text style={{ color: 'red' }}>Requerido</Text>}
                                     </View>
                               </View>
-                              <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'flex-start' }}>
+                              <View style={{ flex: 0.15, alignItems: 'center', justifyContent: 'center' }}>
                                     <TouchableOpacity style={[styles.Button.base]}
                                           onPress={() => {
                                                 if (planta === undefined) return setErrorPlanta(true)
