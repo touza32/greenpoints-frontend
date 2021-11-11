@@ -108,16 +108,16 @@ export default function ActualizacionLote({ route, navigation }) {
                                           />
                                     </View>
                                     <View>
-                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Fecha de creación</Text>
+                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Kilos de material</Text>
                                           <TextInput style={styles.TextInput.large}
-                                                value={Moment(lote.fechaCreacion).format('DD/MM/yyyy')}
+                                                value={lote.kilos}
                                                 editable={false}
                                           />
                                     </View>
                                     <View>
-                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Kilos de material</Text>
+                                          <Text style={[styles.TextInput.title, { marginRight: 'auto' }]}>Fecha de creación</Text>
                                           <TextInput style={styles.TextInput.large}
-                                                value={lote.kilos}
+                                                value={Moment(lote.fechaCreacion).format('DD/MM/yyyy')}
                                                 editable={false}
                                           />
                                     </View>
