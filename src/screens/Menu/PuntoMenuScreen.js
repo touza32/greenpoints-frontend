@@ -1,21 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     View,
     Image,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    StyleSheet
 } from 'react-native';
 import Header from '../../components/Header';
 import { Ionicons } from '@expo/vector-icons';
+import CarouselMenu from "../../components/CarouselMenu";
 
 // styles
 import styleContainer from '../../styles/Container';
 import styleText from '../../styles/Text';
 import { AuthContext } from '../../context/AuthContext';
 
-
+//api
+import greenPointsApi from '../../api/greenPointsApi';
 
 export default function PuntMenuScreen({ navigation }) {
+    const [sponsors, setSponsors] = useState([])
+
+    useEffect(() => {
+        (async () => {
+            const sponsorsData = await greenPointsApi.get('/sponsor/top');
+            const sponsors = await sponsorsData.data;
+            setSponsors(sponsors);
+        })();
+    }, []);
 
     return (
         <View style={[styleContainer.main, { flex: 1 }]}>
@@ -25,7 +37,15 @@ export default function PuntMenuScreen({ navigation }) {
                 </TouchableOpacity>
             } />
 
-            <View style={[styleContainer.main, { flex: 1 }]}>
+            <View style={[styleContainer.main],{ marginVertical:10}}>
+                < Text style={styles.TextAuspician}>Auspician Green Points</Text>
+            </View>
+
+            <View style={[styleContainer.main,{ flex: 0.5}]}>
+                <CarouselMenu data={sponsors} onPress={()=>null}/>
+            </View>
+
+            {/*<View style={[styleContainer.main, { flex: 1 }]}>
                 <Image
                     source={require('../../assets/PuntoMenu.png')}
                     style={{
@@ -33,45 +53,45 @@ export default function PuntMenuScreen({ navigation }) {
                         height: 215
                     }}>
                 </Image>
-            </View>
+                </View>*/}
 
             <View
-                style={{ justifyContent: 'space-between', alignItems: 'center', flex: 1 }} >
+                style={{flex: 0.8}} >
 
                 <TouchableOpacity
                     onPress={() => { navigation.navigate('RegistrarIntercambio') }} >
                     <View
-                        style={[styleContainer.main, { flexDirection: "row" }]}>
+                        style={[styleContainer.main,{flexDirection: "row" , marginLeft:-30, marginVertical:20 }]}>
                         <Image
 
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 20 }]}>Registrar Intercambio                   </Text>
+                        < Text style={styles.TextItem}>Registrar Intercambio</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => { navigation.navigate('CrearLote') }} >
                     <View
-                        style={[styleContainer.main, { flexDirection: "row" }]}>
+                        style={[styleContainer.main, { flexDirection: "row", marginLeft:-143, marginVertical:20}]}>
                         <Image style={[{ marginLeft: 1 }]}
 
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 20 }]}>Nuevo Lote                                     </Text>
+                        < Text style={styles.TextItem}>Nuevo Lote</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => { navigation.navigate('MisLotes') }} >
                     <View
-                        style={[styleContainer.main, { flexDirection: "row", marginBottom: 120 }]}>
+                        style={[styleContainer.main, { flexDirection: "row", marginLeft:-157, marginVertical:20}]}>
                         <Image
                             source={require('../../assets/ItemFlechaMenu.png')}
                         >
                         </Image>
-                        < Text style={[styleText.blackText, { marginLeft: 20 }]
-                        }>Mis Lotes                                        </Text>
+                        < Text style={styles.TextItem}
+                        >Mis Lotes</Text>
                     </View>
                 </TouchableOpacity>
                               
@@ -93,3 +113,21 @@ export default function PuntMenuScreen({ navigation }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    TextAuspician: {
+        color: '#69A03A',
+        fontSize: 25,
+        fontWeight: 'bold',
+    },
+    TextItem: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 25,
+        marginLeft:20
+    },
+    
+
+
+
+})
