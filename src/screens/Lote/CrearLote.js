@@ -4,6 +4,7 @@ import styleContainer from '../../styles/Container';
 import { Divider } from 'react-native-elements';
 import { View, Text, Image, TouchableHighlight, StyleSheet, TouchableOpacity, Dimensions, FlatList, Alert } from 'react-native'; 
 import { AuthContext } from '../../context/AuthContext';
+import styleText from '../../styles/Text';
 
 // api
 import greenPointsApi from '../../api/greenPointsApi';
@@ -48,7 +49,12 @@ export default function CrearLote({ navigation }) {
       return (
            <View style={{ flex: 1 }}>
                  <Header navigation={navigation} title="CREAR LOTE" />   
+                 
                   <View style={{ flex: 0.8 }}>
+                  <View>
+                      <Text style={styleText.blackText}>Selecciona el tipo de material para crear un lote. 
+                      Si el botón se encuentra grisado, ya tienes un lote abierto.</Text>
+                  </View>
                         <FlatList
                               data={tipoReciclables}
                               keyExtractor={(tipoReciclable) => tipoReciclable.id.toString()}

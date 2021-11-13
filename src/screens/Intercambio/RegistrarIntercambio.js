@@ -97,11 +97,16 @@ export default function RegistrarIntercambio({ route, navigation }) {
     }, [intercambio])
 
     return (
-        socioFocus ? (
+
+          socioFocus ? (
             <View style={{ flex: 1 }}>
+
                 <Header navigation={navigation} title="REGISTRAR INTERCAMBIO" />
+             
                 <View style={{ flex: 1, alignItems: 'center', marginTop: 10, marginRight: '12%' }}>
+
                     <View>
+
                         <Text style={[styleTextInput.title, { marginLeft: 10 }]}>Socio reciclador</Text>
                         <Input
                             inputContainerStyle={styleTextInput.large}
@@ -141,6 +146,11 @@ export default function RegistrarIntercambio({ route, navigation }) {
         ) : (
             <View style={[styleContainer.main, { flex: 1 }]}>
                 <Header navigation={navigation} title="REGISTRAR INTERCAMBIO" />
+
+                <View>
+                      <Text style={styleText.blackText}>Ingresa el mail del socio reciclador y la cantidad de kilos
+                      por tipo de materiales recibidos.</Text>
+                </View>
                 <View style={{ flex: 4, marginTop: 10 }}>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styleTextInput.title, { marginRight: 'auto' }]}>Socio reciclador</Text>
