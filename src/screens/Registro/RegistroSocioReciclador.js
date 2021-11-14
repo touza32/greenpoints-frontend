@@ -69,7 +69,8 @@ export default function RegistroSocioReciclador({ navigation }) {
             email: data.email,
             firstName: data.firstName,
             lastName: data.lastName,
-            password: data.password
+            password: data.password,
+            referidoId: socio.socioId
         })
         navigation.navigate('Confirmacion', { nextScreen: 'LoginScreen', message: 'Tu registro ha sido exitoso' })
     }
@@ -128,6 +129,7 @@ export default function RegistroSocioReciclador({ navigation }) {
                 name="email"
                 title="Correo electrónico (*)"
                 placeholder="ejemplo@dominio.com"
+                keyboardType="email-address"
             />
             <InputForm
                 control={control}
@@ -173,6 +175,7 @@ export default function RegistroSocioReciclador({ navigation }) {
             <TextInput
                 style={styles.inputboxfilled}
                 placeholder="socio@correo.com"
+                value={setSocio}
                 value={socio.email}
                 onFocus={() => setReferidoFocus(true)}
             >

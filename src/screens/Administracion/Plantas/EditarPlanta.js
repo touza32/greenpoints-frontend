@@ -46,7 +46,7 @@ export default function EditarPlanta({ route, navigation }) {
 
     useEffect(() => {
         const { plantaId } = route.params;
-        console.log(plantaId);
+        
         (async () => {
             const plantaData = await greenPointsApi.get('/planta/' + plantaId);
             const planta = await plantaData.data;

@@ -31,9 +31,7 @@ export default function ActualizarSponsor({ route, navigation }) {
     
 
     useEffect(()=>{
-        const {id} = route.params
-        console.log(id);
-
+        const {id} = route.params;
         (async () => {
             const SponsorData = await greenPointsApi.get(`/sponsor/${ id }`);
             const Sponsor = await SponsorData.data;
@@ -53,8 +51,7 @@ export default function ActualizarSponsor({ route, navigation }) {
         const objData = {
             ...data,
                image: image
-        }
-        console.log(objData)
+        };
         
         await greenPointsApi.put('/sponsor', {
             id: Sponsor.id,

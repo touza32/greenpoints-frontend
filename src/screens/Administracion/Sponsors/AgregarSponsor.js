@@ -32,7 +32,7 @@ export default function AgregarSponsor({ route, navigation }) {
             ...data,
                image: image
         }
-        console.log(objData)
+        
         await greenPointsApi.post('/sponsor', {
             nombre: objData.nombre,
             image: objData.image

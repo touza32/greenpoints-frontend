@@ -26,7 +26,6 @@ export default function ResetPassword({ navigation }) {
     });
 
     const onSubmit = async data => {
-        console.log(data);
         await greenPointsApi.post('/usuario/reset', { email: data.email });
         navigation.navigate('Confirmacion', { nextScreen: 'LoginScreen', message: 'Ya te enviamos tu nueva contraseña' })
     }

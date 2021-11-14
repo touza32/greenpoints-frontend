@@ -140,6 +140,7 @@ export default function RegistroPuntoReciclaje({ navigation }) {
           name="email"
           title="Correo electrónico"
           placeholder="ejemplo@dominio.com"
+          keyboardType="email-address"
       />
       <InputForm
         control={control}
