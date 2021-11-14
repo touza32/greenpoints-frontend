@@ -20,7 +20,7 @@ export default function AdministrarPremios({ navigation }) {
     useEffect(() => {
         navigation.addListener('focus', () => {
             (async () => {
-                const premiosData = await greenPointsApi.get('/premio');
+                const premiosData = await greenPointsApi.get('/premio?admin=true');
                 const premios = await premiosData.data;
                 setPremios(premios);
                 setResultado(premios);
